@@ -1,4 +1,4 @@
-package edu.example.dam2024.features.superheroe.domain.models
+package edu.example.dam2024.features.superhero.domain.models
 
 data class Biography(
     val fullName: String, val alterEgo: String, val aliases: List<String>,

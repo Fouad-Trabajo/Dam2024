@@ -46,5 +46,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // Estas las he implementado yo
+    implementation("com.squareup.retrofit2:retrofit2:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation(libs.kotlinx.serialization.json)
 }

@@ -1,4 +1,4 @@
-package edu.example.dam2024.features.superheroe.domain.models
+package edu.example.dam2024.features.superhero.domain.models
 
 data class Appearance(
     val gender: String,
