@@ -12,4 +12,9 @@ class SuperheroMockRemoteDataSource {
             Superhero("4", "Ironman")
         )
     }
+
+    fun getSuperhero(id: String): Superhero? {
+        return getSuperheroes().find { it.id == id }
+    }
+
 }
