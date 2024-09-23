@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import edu.example.dam2024.R
 
 
-class MainActivity : AppCompatActivity() {
+class MovieActivity : AppCompatActivity() {
 
     private val movieViewModel: MovieFactory = MovieFactory()
 
