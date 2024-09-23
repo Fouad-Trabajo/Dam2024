@@ -11,9 +11,9 @@ class MovieMockRemoteDataSource {
 
     fun getMovies(): List<Movie>{
         return listOf(
-            Movie("1", "title1", "poster1"),
-            Movie("2", "title2", "poster2"),
-            Movie("3", "title3", "poster3"),
+            Movie("1", "TeneT", "-"),
+            Movie("2", "Seven", "-"),
+            Movie("3", "Figth Club", "-"),
             Movie(title = "title4", poster = "poster4", id = "4")
             // En Kotlin puedes alterar el orden del constructor
         )
