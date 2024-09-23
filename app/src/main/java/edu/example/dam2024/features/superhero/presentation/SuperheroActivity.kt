@@ -1,4 +1,4 @@
-package edu.example.dam2024.features.superheroe.presentation
+package edu.example.dam2024.features.superhero.presentation
 
 import android.os.Bundle
 import android.util.Log
