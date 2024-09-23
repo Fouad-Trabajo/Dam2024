@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class SuperheroApiClient {
 
     companion object {
-        private const val BASE_URL = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/"
+        private const val BASE_URL = "https://akabab.github.io/superhero-api/api/"
 
         private val retrofit: Retrofit by lazy {
             Retrofit.Builder()
