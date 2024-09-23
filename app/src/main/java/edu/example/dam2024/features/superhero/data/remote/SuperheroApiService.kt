@@ -1,6 +1,14 @@
 package edu.example.dam2024.features.superhero.data.remote
 
-class SuperheroApiService {
+import android.telecom.Call
+import edu.example.dam2024.features.superhero.domain.models.Superhero
+import retrofit2.http.GET
+import retrofit2.http.Path
 
-    private val URL_BASE
+interface SuperheroApiService {
+    @GET("all.json")
+    fun getSuperheroes(): Call<List<Superhero>>
+
+    @GET("id/{superHeroId}.json")
+    fun getSuperhero(@Path("superHeroId") superHeroId: Int): Call<Superhero>
 }

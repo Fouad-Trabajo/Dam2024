@@ -1,16 +1,22 @@
 package edu.example.dam2024.features.superhero.data.remote
 
-import android.telecom.Call
-import edu.example.dam2024.features.superhero.domain.models.Superhero
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
+class SuperheroApiClient {
 
-interface SuperheroApiClient {
-    
-    @GET("all.json")
-    fun getSuperheroes(): Call<List<Superhero>>
-    
-    @GET("id/{superHeroId}.json")
-    fun getSuperhero(@Path("superHeroId") superHeroId: Int): Call<Superhero>
+    companion object {
+        private const val BASE_URL = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/"
+
+        private val retrofit: Retrofit by lazy {
+            Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+
+        val apiService: ApiService by lazy {
+            retrofit.create(ApiService::class.java)
+        }
+    }
 }
