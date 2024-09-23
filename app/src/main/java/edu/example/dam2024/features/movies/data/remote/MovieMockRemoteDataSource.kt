@@ -18,4 +18,8 @@ class MovieMockRemoteDataSource {
             // En Kotlin puedes alterar el orden del constructor
         )
     }
+
+    fun getMovie(id: String): Movie? {
+        return getMovies().find { it.id == id }
+    }
 }

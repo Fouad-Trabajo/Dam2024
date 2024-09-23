@@ -4,7 +4,7 @@ import edu.example.dam2024.features.movies.domain.models.Movie
 
 class GetMovieUseCase(private val movieRepository: MovieRepository) {
 
-    fun invoke(): Movie {
-        return movieRepository.getMovie()
+    fun invoke(id: String): Movie? {
+        return movieRepository.getMovie(id)
     }
 }

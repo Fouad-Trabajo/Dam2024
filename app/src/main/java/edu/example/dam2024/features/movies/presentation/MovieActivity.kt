@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import edu.example.dam2024.R
 
 
-class MovieActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private val movieViewModel: MovieFactory = MovieFactory()
 
@@ -17,7 +17,16 @@ class MovieActivity : AppCompatActivity() {
         viewModel.viewCreated()
         val movies = viewModel.viewCreated()
         Log.d("@dev", movies.toString())
+        // Obtener una película específica por ID
+        val movieId = "1" // El ID de la película que quieres obtener
+        val movie = viewModel.getMovie(movieId)
+        movie?.let {
+            Log.d("@dev", it.toString())
+        }
+
+
     }
+
 
     override fun onStart() {
         super.onStart()
