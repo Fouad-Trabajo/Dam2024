@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.d("@dev", "onStart")
+        Log.d("@de", "onStart")
     }
 
     override fun onResume() {
@@ -48,9 +48,4 @@ class MainActivity : AppCompatActivity() {
         super.onRestart()
         Log.d("@dev", "onRestart")
     }
-
-
-
-
-
 }
