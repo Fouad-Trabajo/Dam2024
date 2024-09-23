@@ -1,6 +1,6 @@
 package edu.example.dam2024.features.superheroe.data.remote
 
-import edu.example.dam2024.features.superheroe.domain.Superhero
+import edu.example.dam2024.features.superheroe.domain.models.Superhero
 
 class SuperheroMockRemoteDataSource {
 
