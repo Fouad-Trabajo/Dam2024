@@ -1,6 +1,5 @@
-package edu.example.dam2024.features.superheroe.domain
+package edu.example.dam2024.features.superhero.domain
 
-import edu.example.dam2024.features.superhero.domain.SuperheroRepository
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 class GetSuperheroUseCase(private val superheroRepository: SuperheroRepository) {

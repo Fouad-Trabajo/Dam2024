@@ -3,7 +3,7 @@ package edu.example.dam2024.features.superhero.presentation
 import edu.example.dam2024.features.superhero.data.SuperheroDataRepository
 import edu.example.dam2024.features.superhero.data.remote.SuperheroMockRemoteDataSource
 import edu.example.dam2024.features.superhero.domain.GetSuperheroesUseCase
-import edu.example.dam2024.features.superheroe.domain.GetSuperheroUseCase
+import edu.example.dam2024.features.superhero.domain.GetSuperheroUseCase
 
 class SuperheroFactory {
 
