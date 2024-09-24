@@ -2,7 +2,6 @@ package edu.example.dam2024.features.movies.presentation
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +16,7 @@ class MovieActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_movie)
         val movies = viewModel.viewCreated()
         bindData(movies)
         viewModel.getMovie(movies.first().id) //Simular un click sobre un item
