@@ -9,7 +9,7 @@ import edu.example.dam2024.features.movies.domain.usecases.MovieRepository
  */
 
 class MovieDataRepository (private val mockRemoteDataSource: MovieMockRemoteDataSource) :
-    MovieRepository {
+    MovieRepository { //Concreción del MovieRepository
     // Las dependencias de clases en Kotlin las haremos por constructor
 
     override fun getMovies(): List<Movie>{
@@ -19,4 +19,12 @@ class MovieDataRepository (private val mockRemoteDataSource: MovieMockRemoteData
      override fun getMovie(id: String): Movie? {
         return mockRemoteDataSource.getMovie(id)
     }
+
+    /**
+    override fun getMovie(id: String): Movie? {
+        getMovies()
+    }
+        Nunca debemos hacer esto
+     */
+
 }
