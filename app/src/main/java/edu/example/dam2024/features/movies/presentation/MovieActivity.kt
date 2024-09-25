@@ -20,20 +20,6 @@ class MovieActivity : AppCompatActivity() {
         val movies = viewModel.viewCreated()
         bindData(movies)
         viewModel.getMovie(movies.first().id) //Simular un click sobre un item
-
-
-        //Log.d("@dev", movies.toString())
-
-
-        // val movie = viewModel.getMovie(movieId)
-        /*
-        movie?.let {
-            Log.d("@dev", it.toString())
-        }
-
-         */
-
-
     }
 
     private fun bindData(movies: List<Movie>) {
@@ -78,7 +64,7 @@ class MovieActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.d("@de", "onStart")
+        Log.d("@dev", "onStart")
     }
 
     override fun onResume() {
