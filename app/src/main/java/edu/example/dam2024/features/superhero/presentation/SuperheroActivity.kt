@@ -11,22 +11,28 @@ import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 class SuperheroActivity : AppCompatActivity() {
 
-    private val superheroViewModel: SuperheroFactory = SuperheroFactory()
-    private val viewModel = superheroViewModel.buildViewModel()
+
+    private val superheroFactory = SuperheroFactory()
+    private val viewModel = superheroFactory.buildViewModel()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_superhero)
-        val superheroes = viewModel.getSuperheroes()
-        bindData(superheroes)
-        viewModel.getSuperhero(superheroes.first().id)
+
+
+        // Show all superheroes in the logcat
+        val superhero: List<Superhero> = viewModel.getSuperheroes()
+        Log.d("@dev", superhero.toString())
+
+        // Call one superhero with clicker in the emulator
+        bindData(superhero)
+        viewModel.getSuperhero(superhero.first().id)
     }
 
 
     private fun bindData(superheroes: List<Superhero>){
-
-
         for (i in superheroes.indices) {
             val superhero = superheroes[i]
             val layoutId = resources.getIdentifier("layout_${i + 1}", "id", packageName)

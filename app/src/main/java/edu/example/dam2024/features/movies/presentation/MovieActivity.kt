@@ -11,13 +11,18 @@ import edu.example.dam2024.features.movies.domain.models.Movie
 
 class MovieActivity : AppCompatActivity() {
 
-    private val movieViewModel: MovieFactory = MovieFactory()
-    private val viewModel = movieViewModel.buildViewModel()
+    private val movieFactory = MovieFactory()
+    private val viewModel = movieFactory.buildViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
+
+        // Show all movies in the logcat
         val movies = viewModel.viewCreated()
+        Log.d("@dev", movies.toString())
+
+        // Call one movie with clicker in the emulator
         bindData(movies)
         viewModel.getMovie(movies.first().id) //Simular un click sobre un item
     }

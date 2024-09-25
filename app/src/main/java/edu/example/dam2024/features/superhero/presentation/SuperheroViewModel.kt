@@ -7,8 +7,8 @@ import edu.example.dam2024.features.superhero.domain.GetSuperheroUseCase
 
 
 class SuperheroViewModel(
-    val getSuperheroUseCase: GetSuperheroUseCase,
-    val getSuperheroesUseCase: GetSuperheroesUseCase
+    private val getSuperheroUseCase: GetSuperheroUseCase,
+    private val getSuperheroesUseCase: GetSuperheroesUseCase
 ) : ViewModel() {
 
     fun getSuperheroes(): List<Superhero> {

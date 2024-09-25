@@ -7,15 +7,15 @@ import edu.example.dam2024.features.movies.domain.usecases.GetMoviesUseCase
 
 class MovieFactory {
 
-    // Esta clase solo tiene una única responsabilidad, que es crear el ViewModel (crer objetos)
+    // Esta clase solo tiene una única responsabilidad, que es crear el ViewModel (crer UseCase)
 
+    private val movieMockRemoteDataSource = MovieMockRemoteDataSource()
+    private val movieDataRepository = MovieDataRepository(movieMockRemoteDataSource)
+    private val getMoviesUseCase = GetMoviesUseCase(movieDataRepository)
+    private val getMovieUseCase = GetMovieUseCase(movieDataRepository)
 
     fun buildViewModel(): MovieViewModel {
-        val movieRepository = MovieDataRepository(MovieMockRemoteDataSource())
-        return MovieViewModel(
-            getMoviesUseCase = GetMoviesUseCase(movieRepository),
-            getMovieUseCase = GetMovieUseCase(movieRepository)
-        )
+        return MovieViewModel(getMoviesUseCase, getMovieUseCase)
 
     }
 
