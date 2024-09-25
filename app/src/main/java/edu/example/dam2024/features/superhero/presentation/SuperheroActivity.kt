@@ -23,40 +23,22 @@ class SuperheroActivity : AppCompatActivity() {
         viewModel.getSuperhero(superheroes.first().id)
     }
 
+
     private fun bindData(superheroes: List<Superhero>){
-        findViewById<TextView>(R.id.superhero_id_1).text = superheroes[0].id
-        findViewById<TextView>(R.id.superhero_name_1).text = superheroes[0].name
-        findViewById<LinearLayout>(R.id.layout_1).setOnClickListener{
-            val superhero1: Superhero? = viewModel.getSuperhero(superheroes[0].id)
-            superhero1?.let{
-                Log.d("@dev", "Supherheroe seleccionado: ${it.name}")
-            }
-        }
 
-        findViewById<TextView>(R.id.superhero_id_2).text = superheroes[1].id
-        findViewById<TextView>(R.id.superhero_name_2).text = superheroes[1].name
-        findViewById<LinearLayout>(R.id.layout_2).setOnClickListener{
-            val superhero2: Superhero? = viewModel.getSuperhero(superheroes[1].id)
-            superhero2?.let {
-                Log.d("@dev", "Supherheroe seleccionado: ${it.name}")
-            }
-        }
 
-        findViewById<TextView>(R.id.superhero_id_3).text = superheroes[2].id
-        findViewById<TextView>(R.id.superhero_name_3).text = superheroes[2].name
-        findViewById<LinearLayout>(R.id.layout_3).setOnClickListener{
-            val superhero1: Superhero? = viewModel.getSuperhero(superheroes[2].id)
-            superhero1?.let{
-                Log.d("@dev", "Supherheroe seleccionado: ${it.name}")
-            }
-        }
+        for (i in superheroes.indices) {
+            val superhero = superheroes[i]
+            val layoutId = resources.getIdentifier("layout_${i + 1}", "id", packageName)
+            val idTextViewId = resources.getIdentifier("superhero_id_${i + 1}", "id", packageName)
+            val nameTextViewId = resources.getIdentifier("superhero_name_${i + 1}", "id", packageName)
 
-        findViewById<TextView>(R.id.superhero_id_4).text = superheroes[3].id
-        findViewById<TextView>(R.id.superhero_name_4).text = superheroes[3].name
-        findViewById<LinearLayout>(R.id.layout_4).setOnClickListener{
-            val superhero2: Superhero? = viewModel.getSuperhero(superheroes[3].id)
-            superhero2?.let {
-                Log.d("@dev", "Supherheroe seleccionado: ${it.name}")
+            findViewById<TextView>(idTextViewId).text = superhero.id
+            findViewById<TextView>(nameTextViewId).text = superhero.name
+            findViewById<LinearLayout>(layoutId).setOnClickListener {
+                viewModel.getSuperhero(superhero.id)?.let {
+                    Log.d("@dev", "Superhéroe seleccionado: ${it.name}")
+                }
             }
         }
     }
