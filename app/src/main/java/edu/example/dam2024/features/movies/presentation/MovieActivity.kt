@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import edu.example.dam2024.R
+import edu.example.dam2024.features.movies.data.local.MovieXmlLocalDataSource
 import edu.example.dam2024.features.movies.domain.models.Movie
 
 
@@ -25,6 +26,7 @@ class MovieActivity : AppCompatActivity() {
         // Call one movie with clicker in the emulator
         bindData(movies)
         viewModel.getMovie(movies.first().id) //Simular un click sobre un item
+        testXml()
     }
 
     private fun bindData(movies: List<Movie>) {
@@ -39,7 +41,7 @@ class MovieActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.movie_id_2).text = movies[1].id
         findViewById<TextView>(R.id.movie_title_2).text = movies[1].title
-        findViewById<LinearLayout>(R.id.layout_2).setOnClickListener{
+        findViewById<LinearLayout>(R.id.layout_2).setOnClickListener {
             val movie2: Movie? = viewModel.getMovie(movies[1].id)
             movie2?.let {
                 Log.d("@dev", "Película seleccionada: ${it.title}")
@@ -48,24 +50,35 @@ class MovieActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.movie_id_3).text = movies[2].id
         findViewById<TextView>(R.id.movie_title_3).text = movies[2].title
-        findViewById<LinearLayout>(R.id.layout_3).setOnClickListener{
+        findViewById<LinearLayout>(R.id.layout_3).setOnClickListener {
             val movie3: Movie? = viewModel.getMovie(movies[2].id)
-            movie3?.let{
+            movie3?.let {
                 Log.d("@dev", "Película seleccionada: ${it.title}")
             }
         }
 
         findViewById<TextView>(R.id.movie_id_4).text = movies[3].id
         findViewById<TextView>(R.id.movie_title_4).text = movies[3].title
-        findViewById<LinearLayout>(R.id.layout_4).setOnClickListener{
-            val movie4:Movie? = viewModel.getMovie(movies[3].id)
-            movie4?.let{
+        findViewById<LinearLayout>(R.id.layout_4).setOnClickListener {
+            val movie4: Movie? = viewModel.getMovie(movies[3].id)
+            movie4?.let {
                 Log.d("@dev", "Película seleccionada: ${it.title}")
             }
         }
 
     }
 
+
+    private fun testXml() {
+        val xmlDataSource = MovieXmlLocalDataSource(this) //Leer abajo
+        //Le estoy pasando MovieActivity porque hereda de Context y MovieXmlLocalDataSource hereda de Context
+        val movie = viewModel.getMovie("1")
+        movie?.let {
+            xmlDataSource.save(it)
+        }
+        val movieSave = xmlDataSource.getMovie()
+        Log.d("@dev", movieSave.toString())
+    }
 
     override fun onStart() {
         super.onStart()
