@@ -31,7 +31,7 @@ class MovieXmlLocalDataSource(private val context: Context) {
 
     fun getMovie(): Movie{
         val id = sharedPreferences.getString("id","")
-        val title = sharedPreferences.getString("id", "")
+        val title = sharedPreferences.getString("title", "")
         val poster = sharedPreferences.getString("poster", "")
         return Movie(id!!, title!!, poster!!) //Esto no es muy recomendable, porque sabemos que no es nulo. Estamos haciendo un test
     }
