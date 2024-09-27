@@ -1,10 +1,13 @@
 package edu.example.dam2024.features.superhero.data.local
 
 import android.content.Context
+import com.google.gson.Gson
 import edu.example.dam2024.R
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 class SuperheroXmlLocalDataSource(private val context: Context) {
+
+    private val gson = Gson()
 
     private val sharedPreferences =
         context.getSharedPreferences(
@@ -31,6 +34,24 @@ class SuperheroXmlLocalDataSource(private val context: Context) {
                 getString("image", "")!!
             )
         }
+    }
+
+    fun saveAll(superheroes: List<Superhero>){
+        val editor = sharedPreferences.edit()
+        superheroes.forEach{ superhero ->
+            editor.putString(superhero.id, gson.toJson(superhero))
+        }
+        editor.apply()
+    }
+
+    fun getSuperheroes(): List<Superhero> {
+        val superheroes = mutableListOf<Superhero>()
+        val mapSuperheroes = sharedPreferences.all
+        mapSuperheroes.values.forEach{ jsonSuperhero ->
+            val superhero =gson.fromJson(jsonSuperhero as String, Superhero::class.java)
+            superheroes.add(superhero)
+        }
+        return superheroes
     }
 
     fun delete() {

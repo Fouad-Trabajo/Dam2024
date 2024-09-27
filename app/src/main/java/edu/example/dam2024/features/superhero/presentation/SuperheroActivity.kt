@@ -12,9 +12,9 @@ import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 class SuperheroActivity : AppCompatActivity() {
 
-
-    private val superheroFactory = SuperheroFactory()
-    private val viewModel = superheroFactory.buildViewModel()
+    //Inicialización
+    private lateinit var superheroFactory : SuperheroFactory
+    private lateinit var viewModel : SuperheroViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,17 +22,22 @@ class SuperheroActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_superhero)
 
+        superheroFactory = SuperheroFactory(this)
+        viewModel = superheroFactory.buildViewModel()
 
         // Show all superheroes in the logcat
         val superhero: List<Superhero> = viewModel.getSuperheroes()
-        Log.d("@dev", superhero.toString())
+       // Log.d("@dev", superhero.toString())
 
         // Call one superhero with clicker in the emulator
         bindData(superhero)
         viewModel.getSuperhero(superhero.first().id)
 
         //Save, get and delete model in superheroes.xml
-        textXml()
+        //textXml()
+
+        //Save, get and delete list of superheroes in superheroes.xml
+        testListXml()
     }
 
 
@@ -67,6 +72,17 @@ class SuperheroActivity : AppCompatActivity() {
 
         //Delete superhero in superheroes.xml
         superheroXmlLocalDataSource.delete()
+    }
+
+    private fun testListXml(){
+        val superheroXmlLocalDataSource = SuperheroXmlLocalDataSource(this)
+        val superheroes = viewModel.getSuperheroes()
+        superheroXmlLocalDataSource.saveAll(superheroes)
+
+        // Get list of superheroes in superheroes.xml
+        val superheroSave = superheroXmlLocalDataSource.getSuperheroes()
+        Log.d("@dev", superheroSave.toString())
+
     }
 
     override fun onStart() {

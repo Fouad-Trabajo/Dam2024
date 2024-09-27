@@ -12,16 +12,21 @@ import edu.example.dam2024.features.movies.domain.models.Movie
 
 class MovieActivity : AppCompatActivity() {
 
-    private val movieFactory = MovieFactory()
-    private val viewModel = movieFactory.buildViewModel()
+    private lateinit var movieFactory: MovieFactory
+    private lateinit var viewModel: MovieViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
 
+        //Tengo que saber que es esto porque no me estoy enterando mucho jajajaj
+        movieFactory = MovieFactory(this)
+        viewModel = movieFactory.buildViewModel()
+
+
         // Show all movies in the logcat
         val movies = viewModel.viewCreated()
-        Log.d("@dev", movies.toString())
+       // Log.d("@dev", movies.toString())
 
         // Call one movie with clicker in the emulator
         bindData(movies)
@@ -30,7 +35,8 @@ class MovieActivity : AppCompatActivity() {
         //Save, get and delete model in movies.xml
         //testXml()
 
-        testListXml() //Para guardar una lista de películas en el archivo .xml
+        //Save, get and delete list of movies in movies.xml
+        testListXml()
     }
 
     private fun bindData(movies: List<Movie>) {
@@ -87,7 +93,9 @@ class MovieActivity : AppCompatActivity() {
         //Delete movie in movies.xml
         movieXmlLocalDataSource.delete()
     }
-    // Uno de los resultados de aprendizaje de AAD es guardar, obtener y borrar datos de un archivo .xml
+    /** Uno de los resultados de aprendizaje de AAD es guardar,
+    obtener y borrar datos de un archivo xml. Esto se llama persistencia de datos
+     */
 
 
     private fun testListXml() {
