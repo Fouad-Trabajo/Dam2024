@@ -37,12 +37,24 @@ android {
 
 dependencies {
 
+    // Librerías para la app
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.gson.serializer)
+    /**
+    Implementar librería que permite serializar y deserizalizar objetos a la hora de
+    guardarlos recuperarlos en un archivo local (.xml, .txt)
+     */
+
+
+    //Librerias para testing
     testImplementation(libs.junit)
+
+    //Librerías para Android-Testing
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }

@@ -26,7 +26,11 @@ class MovieActivity : AppCompatActivity() {
         // Call one movie with clicker in the emulator
         bindData(movies)
         viewModel.getMovie(movies.first().id) //Simular un click sobre un item
-        testXml()
+
+        //Save, get and delete model in movies.xml
+        //testXml()
+
+        testListXml() //Para guardar una lista de películas en el archivo .xml
     }
 
     private fun bindData(movies: List<Movie>) {
@@ -70,13 +74,30 @@ class MovieActivity : AppCompatActivity() {
 
 
     private fun testXml() {
-        val xmlDataSource = MovieXmlLocalDataSource(this) //Leer abajo
+        val movieXmlLocalDataSource = MovieXmlLocalDataSource(this) //Leer abajo
         //Le estoy pasando MovieActivity porque hereda de Context y MovieXmlLocalDataSource hereda de Context
         val movie = viewModel.getMovie("1")
         movie?.let {
-            xmlDataSource.save(it)
+            movieXmlLocalDataSource.save(it) //Save movie in movies.xml
         }
-        val movieSave = xmlDataSource.getMovie()
+        // Get movie from movies.xml
+        val movieSave = movieXmlLocalDataSource.getMovie()
+        Log.d("@dev", movieSave.toString())
+
+        //Delete movie in movies.xml
+        movieXmlLocalDataSource.delete()
+    }
+    // Uno de los resultados de aprendizaje de AAD es guardar, obtener y borrar datos de un archivo .xml
+
+
+    private fun testListXml() {
+        val movieXmlLocalDataSource = MovieXmlLocalDataSource(this)
+        val movies = viewModel.viewCreated()
+        movieXmlLocalDataSource.saveAll(movies) //Save list of movies in movies.xml
+
+
+        // Get list of movies in movies.xml
+        val movieSave = movieXmlLocalDataSource.getMovies()
         Log.d("@dev", movieSave.toString())
     }
 

@@ -14,18 +14,26 @@ class SuperheroXmlLocalDataSource(private val context: Context) {
 
 
     fun save(superhero: Superhero) {
-        val editor = sharedPreferences.edit()
-        editor.putString("id", superhero.id)
-        editor.putString("name", superhero.name)
-        editor.putString("image", superhero.image)
-        editor.apply()
+        sharedPreferences.edit().apply {
+            putString("id", superhero.id)
+            putString("name", superhero.name)
+            putString("image", superhero.image)
+            apply()
+        }
     }
 
 
     fun getSuperhero(): Superhero {
-        val id = sharedPreferences.getString("id", "")
-        val name = sharedPreferences.getString("name", "")
-        val image = sharedPreferences.getString("image", "")
-        return Superhero(id!!, name!!, image!!)
+        sharedPreferences.apply {
+            return Superhero(
+                getString("id", "")!!,
+                getString("name", "")!!,
+                getString("image", "")!!
+            )
+        }
+    }
+
+    fun delete() {
+        sharedPreferences.edit().clear().apply()
     }
 }

@@ -31,17 +31,18 @@ class SuperheroActivity : AppCompatActivity() {
         bindData(superhero)
         viewModel.getSuperhero(superhero.first().id)
 
-        //Save and get a superhero in file.xml
+        //Save, get and delete model in superheroes.xml
         textXml()
     }
 
 
-    private fun bindData(superheroes: List<Superhero>){
+    private fun bindData(superheroes: List<Superhero>) {
         for (i in superheroes.indices) {
             val superhero = superheroes[i]
             val layoutId = resources.getIdentifier("layout_${i + 1}", "id", packageName)
             val idTextViewId = resources.getIdentifier("superhero_id_${i + 1}", "id", packageName)
-            val nameTextViewId = resources.getIdentifier("superhero_name_${i + 1}", "id", packageName)
+            val nameTextViewId =
+                resources.getIdentifier("superhero_name_${i + 1}", "id", packageName)
 
             findViewById<TextView>(idTextViewId).text = superhero.id
             findViewById<TextView>(nameTextViewId).text = superhero.name
@@ -54,14 +55,18 @@ class SuperheroActivity : AppCompatActivity() {
     }
 
 
-    private fun textXml(){
+    private fun textXml() {
         val superheroXmlLocalDataSource = SuperheroXmlLocalDataSource(this)
         val superhero = viewModel.getSuperhero("1")
-        superhero?.let{
+        superhero?.let {
             superheroXmlLocalDataSource.save(it) //Guardar el superhéroe en el archivo xml
         }
-        val superheroSave = superheroXmlLocalDataSource.getSuperhero() //Obtener el superhero del xml
+        val superheroSave =
+            superheroXmlLocalDataSource.getSuperhero() //Obtener el superhero del xml
         Log.d("@dev", superheroSave.toString())
+
+        //Delete superhero in superheroes.xml
+        superheroXmlLocalDataSource.delete()
     }
 
     override fun onStart() {
