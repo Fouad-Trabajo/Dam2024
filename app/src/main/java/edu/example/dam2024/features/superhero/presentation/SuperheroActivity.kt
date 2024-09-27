@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import edu.example.dam2024.R
+import edu.example.dam2024.features.superhero.data.local.SuperheroXmlLocalDataSource
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 class SuperheroActivity : AppCompatActivity() {
@@ -29,6 +30,9 @@ class SuperheroActivity : AppCompatActivity() {
         // Call one superhero with clicker in the emulator
         bindData(superhero)
         viewModel.getSuperhero(superhero.first().id)
+
+        //Save and get a superhero in file.xml
+        textXml()
     }
 
 
@@ -47,6 +51,17 @@ class SuperheroActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+
+    private fun textXml(){
+        val superheroXmlLocalDataSource = SuperheroXmlLocalDataSource(this)
+        val superhero = viewModel.getSuperhero("1")
+        superhero?.let{
+            superheroXmlLocalDataSource.save(it) //Guardar el superhéroe en el archivo xml
+        }
+        val superheroSave = superheroXmlLocalDataSource.getSuperhero() //Obtener el superhero del xml
+        Log.d("@dev", superheroSave.toString())
     }
 
     override fun onStart() {
