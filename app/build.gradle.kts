@@ -43,15 +43,22 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
     implementation(libs.gson.serializer)
     /**
     Implementar librería que permite serializar y deserizalizar objetos a la hora de
     guardarlos recuperarlos en un archivo local (.xml, .txt)
      */
 
+    // Librerías para interactuar con la API superhero.xml y enviar solicitudes de red
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter)
+
 
     //Librerias para testing
     testImplementation(libs.junit)
+    testImplementation(libs.mockito.framework)
+    testImplementation(libs.mockito.junit)
 
     //Librerías para Android-Testing
     androidTestImplementation(libs.androidx.junit)

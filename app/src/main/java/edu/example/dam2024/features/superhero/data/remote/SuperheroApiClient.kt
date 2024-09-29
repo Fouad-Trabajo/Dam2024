@@ -1,7 +1,7 @@
 package edu.example.dam2024.features.superhero.data.remote
 
-//import retrofit2.Retrofit
-//import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class SuperheroApiClient {
 /*
@@ -15,10 +15,9 @@ class SuperheroApiClient {
                 .build()
         }
 
-        val apiService: ApiService by lazy {
-            retrofit.create(ApiService::class.java)
+        val SuperheroApiService: SuperheroApiService by lazy {
+            retrofit.create(SuperheroApiService::class.java)
         }
     }
-
- */
+*/
 }
