@@ -26,7 +26,7 @@ class MovieActivity : AppCompatActivity() {
 
         // Show all movies in the logcat
         val movies = viewModel.viewCreated()
-       // Log.d("@dev", movies.toString())
+        // Log.d("@dev", movies.toString())
 
         // Call one movie with clicker in the emulator
         bindData(movies)
@@ -93,6 +93,7 @@ class MovieActivity : AppCompatActivity() {
         //Delete movie in movies.xml
         movieXmlLocalDataSource.delete()
     }
+
     /** Uno de los resultados de aprendizaje de AAD es guardar,
     obtener y borrar datos de un archivo xml. Esto se llama persistencia de datos
      */
