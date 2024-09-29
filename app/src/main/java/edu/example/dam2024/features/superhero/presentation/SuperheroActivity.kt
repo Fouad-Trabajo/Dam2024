@@ -12,9 +12,9 @@ import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 class SuperheroActivity : AppCompatActivity() {
 
-
-    private val superheroFactory = SuperheroFactory()
-    private val viewModel = superheroFactory.buildViewModel()
+    //Inicialización
+    private lateinit var superheroFactory : SuperheroFactory
+    private lateinit var viewModel : SuperheroViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,26 +22,32 @@ class SuperheroActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_superhero)
 
+        superheroFactory = SuperheroFactory(this)
+        viewModel = superheroFactory.buildViewModel()
 
         // Show all superheroes in the logcat
         val superhero: List<Superhero> = viewModel.getSuperheroes()
-        Log.d("@dev", superhero.toString())
+       // Log.d("@dev", superhero.toString())
 
         // Call one superhero with clicker in the emulator
         bindData(superhero)
         viewModel.getSuperhero(superhero.first().id)
 
-        //Save and get a superhero in file.xml
-        textXml()
+        //Save, get and delete model in superheroes.xml
+        //textXml()
+
+        //Save, get and delete list of superheroes in superheroes.xml
+        testListXml()
     }
 
 
-    private fun bindData(superheroes: List<Superhero>){
+    private fun bindData(superheroes: List<Superhero>) {
         for (i in superheroes.indices) {
             val superhero = superheroes[i]
             val layoutId = resources.getIdentifier("layout_${i + 1}", "id", packageName)
             val idTextViewId = resources.getIdentifier("superhero_id_${i + 1}", "id", packageName)
-            val nameTextViewId = resources.getIdentifier("superhero_name_${i + 1}", "id", packageName)
+            val nameTextViewId =
+                resources.getIdentifier("superhero_name_${i + 1}", "id", packageName)
 
             findViewById<TextView>(idTextViewId).text = superhero.id
             findViewById<TextView>(nameTextViewId).text = superhero.name
@@ -54,14 +60,29 @@ class SuperheroActivity : AppCompatActivity() {
     }
 
 
-    private fun textXml(){
+    private fun textXml() {
         val superheroXmlLocalDataSource = SuperheroXmlLocalDataSource(this)
         val superhero = viewModel.getSuperhero("1")
-        superhero?.let{
+        superhero?.let {
             superheroXmlLocalDataSource.save(it) //Guardar el superhéroe en el archivo xml
         }
-        val superheroSave = superheroXmlLocalDataSource.getSuperhero() //Obtener el superhero del xml
+        val superheroSave =
+            superheroXmlLocalDataSource.getSuperhero() //Obtener el superhero del xml
         Log.d("@dev", superheroSave.toString())
+
+        //Delete superhero in superheroes.xml
+        superheroXmlLocalDataSource.delete()
+    }
+
+    private fun testListXml(){
+        val superheroXmlLocalDataSource = SuperheroXmlLocalDataSource(this)
+        val superheroes = viewModel.getSuperheroes()
+        superheroXmlLocalDataSource.saveAll(superheroes)
+
+        // Get list of superheroes in superheroes.xml
+        val superheroSave = superheroXmlLocalDataSource.getSuperheroes()
+        Log.d("@dev", superheroSave.toString())
+
     }
 
     override fun onStart() {
