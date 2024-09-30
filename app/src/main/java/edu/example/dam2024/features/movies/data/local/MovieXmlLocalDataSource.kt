@@ -25,12 +25,9 @@ class MovieXmlLocalDataSource(private val context: Context) {
         )
 
     fun save(movie: Movie) {
-        sharedPreferences.edit().apply {
-            putString("id", movie.id)
-            putString("title", movie.title)
-            putString("poster", movie.poster)
-            apply() //Guardar los cambios, también se puede hacer con editor.commit() (Esto es sincrono)
-        }
+        val editor = sharedPreferences.edit()
+        editor.putString(movie.id, gson.toJson(movie))
+        editor.apply()
     }
 
 
@@ -46,11 +43,17 @@ class MovieXmlLocalDataSource(private val context: Context) {
         //Esto no es muy recomendable, porque sabemos que no es nulo. Estamos haciendo un test
     }
 
+    fun findById(movie: String): Movie? {
+        return sharedPreferences.getString(movie, null)?.let { movie ->
+            gson.fromJson(movie, Movie::class.java)
+        }
+    }
 
     fun saveAll(movies: List<Movie>) {
         val editor = sharedPreferences.edit()
         movies.forEach { movie ->  //Renombrar la variable movie a it
-            editor.putString(movie.id,
+            editor.putString(
+                movie.id,
                 gson.toJson(movie)
             ) //Serializar la película (persistir sus estados)
         }
@@ -62,15 +65,19 @@ class MovieXmlLocalDataSource(private val context: Context) {
         val mapMovies =
             sharedPreferences.all  // as Map<String, String> Esto es un mapa de clave-valor
         mapMovies.values.forEach { jsonMovie ->
-            val movie = gson.fromJson(jsonMovie as String, Movie::class.java) //Deseriazliar la lista
+            val movie =
+                gson.fromJson(jsonMovie as String, Movie::class.java) //Deseriazliar la lista
             movies.add(movie)
         }
         return movies
     }
 
-
     fun delete() {
         sharedPreferences.edit().clear().apply()
     }
 
+
+    fun deleteById(movieId: String){
+        sharedPreferences.edit().remove(movieId)
+    }
 }

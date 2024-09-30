@@ -57,4 +57,8 @@ class SuperheroXmlLocalDataSource(private val context: Context) {
     fun delete() {
         sharedPreferences.edit().clear().apply()
     }
+
+    fun deleteById(superheroId: String){
+        sharedPreferences.edit().remove(superheroId)
+    }
 }

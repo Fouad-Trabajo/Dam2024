@@ -36,7 +36,9 @@ class MovieActivity : AppCompatActivity() {
         //testXml()
 
         //Save, get and delete list of movies in movies.xml
-        testListXml()
+        //testListXml()
+
+        testMovie()
     }
 
     private fun bindData(movies: List<Movie>) {
@@ -108,6 +110,13 @@ class MovieActivity : AppCompatActivity() {
         // Get list of movies in movies.xml
         val movieSave = movieXmlLocalDataSource.getMovies()
         Log.d("@dev", movieSave.toString())
+    }
+
+    private fun testMovie(){
+        val movies = viewModel.viewCreated()
+        val movieXmlLocalDataSource = MovieXmlLocalDataSource(this)
+    val movie = movieXmlLocalDataSource.findById("1")
+        Log.d("@dev", movie.toString())
     }
 
     override fun onStart() {
