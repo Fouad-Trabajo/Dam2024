@@ -20,7 +20,7 @@ class MovieXmlLocalDataSource(private val context: Context) {
 
     private val sharedPreferences =
         context.getSharedPreferences(
-            context.getString(R.string.name_file_xml), // Clave
+            context.getString(R.string.movies_file_xml), // Clave
             Context.MODE_PRIVATE // Valor
         )
 

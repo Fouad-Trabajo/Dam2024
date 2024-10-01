@@ -17,7 +17,7 @@ class MoviesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie)
+        setContentView(R.layout.activity_movies)
 
         //Tengo que saber que es esto porque no me estoy enterando mucho jajajaj
         movieFactory = MovieFactory(this)
