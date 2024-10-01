@@ -53,6 +53,7 @@ dependencies {
     // Librerías para interactuar con la API superhero.xml y enviar solicitudes de red
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter)
+    implementation(libs.glide)
 
 
     //Librerias para testing

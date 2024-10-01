@@ -10,10 +10,10 @@ import edu.example.dam2024.features.movies.data.local.MovieXmlLocalDataSource
 import edu.example.dam2024.features.movies.domain.models.Movie
 
 
-class MovieActivity : AppCompatActivity() {
+class MoviesActivity : AppCompatActivity() {
 
     private lateinit var movieFactory: MovieFactory
-    private lateinit var viewModel: MovieViewModel
+    private lateinit var viewModel: MoviesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class MovieActivity : AppCompatActivity() {
 
         // Call one movie with clicker in the emulator
         bindData(movies)
-        viewModel.getMovie(movies.first().id) //Simular un click sobre un item
+        //viewModel.getMovie(movies.first().id) //Simular un click sobre un item
 
         //Save, get and delete model in movies.xml
         //testXml()
@@ -45,42 +45,34 @@ class MovieActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].id
         findViewById<TextView>(R.id.movie_title_1).text = movies[0].title
         findViewById<LinearLayout>(R.id.layout_1).setOnClickListener { //Lambdas
-            val movie1: Movie? = viewModel.getMovie(movies[0].id)
-            movie1?.let {
-                Log.d("@dev", "Película seleccionada: ${it.title}")
-            } //Esto se va a ir duplicando entonces debo sacarlo fuera
+            navigateToMovieDetail(movies[0].id)
         }
 
         findViewById<TextView>(R.id.movie_id_2).text = movies[1].id
         findViewById<TextView>(R.id.movie_title_2).text = movies[1].title
         findViewById<LinearLayout>(R.id.layout_2).setOnClickListener {
-            val movie2: Movie? = viewModel.getMovie(movies[1].id)
-            movie2?.let {
-                Log.d("@dev", "Película seleccionada: ${it.title}")
-            }
+            navigateToMovieDetail(movies[1].id)
         }
 
         findViewById<TextView>(R.id.movie_id_3).text = movies[2].id
         findViewById<TextView>(R.id.movie_title_3).text = movies[2].title
         findViewById<LinearLayout>(R.id.layout_3).setOnClickListener {
-            val movie3: Movie? = viewModel.getMovie(movies[2].id)
-            movie3?.let {
-                Log.d("@dev", "Película seleccionada: ${it.title}")
-            }
+            navigateToMovieDetail(movies[2].id)
         }
 
         findViewById<TextView>(R.id.movie_id_4).text = movies[3].id
         findViewById<TextView>(R.id.movie_title_4).text = movies[3].title
         findViewById<LinearLayout>(R.id.layout_4).setOnClickListener {
-            val movie4: Movie? = viewModel.getMovie(movies[3].id)
-            movie4?.let {
-                Log.d("@dev", "Película seleccionada: ${it.title}")
-            }
+            navigateToMovieDetail(movies[3].id)
         }
 
     }
 
+    private fun navigateToMovieDetail(movieId: String) {
+        startActivity(MovieDetailActivity.getIntent(this, movieId))
+    }
 
+/*
     private fun testXml() {
         val movieXmlLocalDataSource = MovieXmlLocalDataSource(this) //Leer abajo
         //Le estoy pasando MovieActivity porque hereda de Context y MovieXmlLocalDataSource hereda de Context
@@ -99,7 +91,7 @@ class MovieActivity : AppCompatActivity() {
     /** Uno de los resultados de aprendizaje de AAD es guardar,
     obtener y borrar datos de un archivo xml. Esto se llama persistencia de datos
      */
-
+*/
 
     private fun testListXml() {
         val movieXmlLocalDataSource = MovieXmlLocalDataSource(this)
@@ -112,12 +104,13 @@ class MovieActivity : AppCompatActivity() {
         Log.d("@dev", movieSave.toString())
     }
 
-    private fun testMovie(){
+    private fun testMovie() {
         val movies = viewModel.viewCreated()
         val movieXmlLocalDataSource = MovieXmlLocalDataSource(this)
-    val movie = movieXmlLocalDataSource.findById("1")
+        val movie = movieXmlLocalDataSource.findById("1")
         Log.d("@dev", movie.toString())
     }
+
 
     override fun onStart() {
         super.onStart()

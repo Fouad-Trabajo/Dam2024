@@ -5,6 +5,6 @@
 
 </resources>
 
-<!-- Esta clase es muy importante, en el texView (GUI) no se debe poner a pelo
+    <!-- Esta clase es muy importante, en el texView (GUI) no se debe poner a pelo
 Esta clase sive para poder traducir toda nuestra aplicación a cualquier idioma,
  para eso copiamos esta clase y la ponemos dentro de una carpeta ES(España), UK(Reino Unido-->
