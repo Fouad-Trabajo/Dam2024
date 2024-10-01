@@ -11,7 +11,7 @@ class SuperheroXmlLocalDataSource(private val context: Context) {
 
     private val sharedPreferences =
         context.getSharedPreferences(
-            context.getString(R.string.name_file_xml2),
+            context.getString(R.string.superheroes_file_xml),
             Context.MODE_PRIVATE
         )
 

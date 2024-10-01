@@ -10,14 +10,14 @@ import edu.example.dam2024.features.movies.data.local.MovieXmlLocalDataSource
 import edu.example.dam2024.features.movies.domain.models.Movie
 
 
-class MovieActivity : AppCompatActivity() {
+class MoviesActivity : AppCompatActivity() {
 
     private lateinit var movieFactory: MovieFactory
-    private lateinit var viewModel: MovieViewModel
+    private lateinit var viewModel: MoviesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie)
+        setContentView(R.layout.activity_movies)
 
         //Tengo que saber que es esto porque no me estoy enterando mucho jajajaj
         movieFactory = MovieFactory(this)
