@@ -10,11 +10,11 @@ import edu.example.dam2024.R
 import edu.example.dam2024.features.superhero.data.local.SuperheroXmlLocalDataSource
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
-class SuperheroActivity : AppCompatActivity() {
+class SuperheroesActivity : AppCompatActivity() {
 
     //Inicialización
     private lateinit var superheroFactory : SuperheroFactory
-    private lateinit var viewModel : SuperheroViewModel
+    private lateinit var viewModel : SuperheroesViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
