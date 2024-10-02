@@ -31,13 +31,13 @@ class SuperheroesActivity : AppCompatActivity() {
 
         // Call one superhero with clicker in the emulator
         bindData(superhero)
-        viewModel.getSuperhero(superhero.first().id)
+        //viewModel.getSuperhero(superhero.first().id)
 
         //Save, get and delete model in superheroes.xml
         //textXml()
 
         //Save, get and delete list of superheroes in superheroes.xml
-        testListXml()
+        //testListXml()
     }
 
 
@@ -52,14 +52,16 @@ class SuperheroesActivity : AppCompatActivity() {
             findViewById<TextView>(idTextViewId).text = superhero.id
             findViewById<TextView>(nameTextViewId).text = superhero.name
             findViewById<LinearLayout>(layoutId).setOnClickListener {
-                viewModel.getSuperhero(superhero.id)?.let {
-                    Log.d("@dev", "Superhéroe seleccionado: ${it.name}")
-                }
+                navigateToSuperheroDetail(superhero.id)
             }
         }
     }
 
+    private fun navigateToSuperheroDetail(superheroId: String){
+        startActivity(SuperheroDetailActivity.getIntent(this, superheroId))
+    }
 
+/*
     private fun textXml() {
         val superheroXmlLocalDataSource = SuperheroXmlLocalDataSource(this)
         val superhero = viewModel.getSuperhero("1")
@@ -84,6 +86,8 @@ class SuperheroesActivity : AppCompatActivity() {
         Log.d("@dev", superheroSave.toString())
 
     }
+
+ */
 
     override fun onStart() {
         super.onStart()
