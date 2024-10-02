@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import edu.example.dam2024.R
-import edu.example.dam2024.features.superhero.data.local.SuperheroXmlLocalDataSource
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 class SuperheroesActivity : AppCompatActivity() {
@@ -20,7 +19,7 @@ class SuperheroesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_superhero)
+        setContentView(R.layout.activity_superheroes)
 
         superheroFactory = SuperheroFactory(this)
         viewModel = superheroFactory.buildViewModel()
