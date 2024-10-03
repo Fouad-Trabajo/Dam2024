@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import edu.example.dam2024.R
+import edu.example.dam2024.app.extensions.loadUrl
 import edu.example.dam2024.features.movies.domain.models.Movie
 
 class MovieDetailActivity : AppCompatActivity() {
@@ -47,7 +48,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
     private fun bindData(movie: Movie) {
         val imageView = findViewById<ImageView>(R.id.poster)
-        Glide.with(this).load(movie.poster).into(imageView)
+        imageView.loadUrl(movie.poster)
     }
 
     // Función estática
