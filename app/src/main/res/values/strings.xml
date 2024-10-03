@@ -3,6 +3,14 @@
     <string name="movies_file_xml">movies</string>
     <string name="superheroes_file_xml">superheroes</string>
 
+    <!-- Datos de las películas -->
+    <string name="name">Nombre</string>
+
+    <!-- Datos de los superheroes -->
+    <string name="slug">Slug</string>
+    <string name="powers_stats">PowerStats</string>
+    <string name="appearance">Appearance</string>
+
 </resources>
 
     <!-- Esta clase es muy importante, en el texView (GUI) no se debe poner a pelo
