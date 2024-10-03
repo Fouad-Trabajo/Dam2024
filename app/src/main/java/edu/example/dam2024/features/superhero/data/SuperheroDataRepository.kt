@@ -8,13 +8,27 @@ import edu.example.dam2024.features.superhero.domain.models.Superhero
 class SuperheroDataRepository(
     private val superheroXmlLocalDataSource: SuperheroXmlLocalDataSource,
     private val superheroMockRemoteDataSource: SuperheroMockRemoteDataSource
-) :
-    SuperheroRepository {
+) : SuperheroRepository {
+
     override fun getSuperheroes(): List<Superhero> {
-        return superheroMockRemoteDataSource.getSuperheroes()
+        val superheroFromLocal = superheroXmlLocalDataSource.getSuperheroes()
+        if (superheroFromLocal.isEmpty()) {
+            val superheroesFromRemote = superheroMockRemoteDataSource.getSuperheroes()
+            superheroXmlLocalDataSource.saveAll(superheroesFromRemote)
+            return superheroesFromRemote
+        } else {
+            return superheroFromLocal
+        }
     }
 
     override fun getSuperhero(id: String): Superhero? {
-        return superheroMockRemoteDataSource.getSuperhero(id)
+        val superheroFromLocal = superheroXmlLocalDataSource.findById(id)
+        if (superheroFromLocal == null) {
+            superheroMockRemoteDataSource.getSuperhero(id)?.let {
+                superheroXmlLocalDataSource.save(it)
+                return it
+            }
+        }
+        return superheroFromLocal
     }
 }

@@ -16,13 +16,10 @@ class SuperheroXmlLocalDataSource(private val context: Context) {
         )
 
 
-    fun save(superhero: Superhero) {
-        sharedPreferences.edit().apply {
-            putString("id", superhero.id)
-            putString("name", superhero.name)
-            putString("image", superhero.image)
-            apply()
-        }
+    fun save(superhero: Superhero){
+        val editor = sharedPreferences.edit()
+        editor.putString(superhero.id, gson.toJson(superhero))
+        editor.apply()
     }
 
 
@@ -33,6 +30,12 @@ class SuperheroXmlLocalDataSource(private val context: Context) {
                 getString("name", "")!!,
                 getString("image", "")!!
             )
+        }
+    }
+
+    fun findById(superhero: String): Superhero? {
+        return sharedPreferences.getString(superhero, null)?.let { superhero ->
+            gson.fromJson(superhero, Superhero::class.java)
         }
     }
 
