@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import edu.example.dam2024.R
 import edu.example.dam2024.features.movies.data.local.MovieXmlLocalDataSource
 import edu.example.dam2024.features.movies.domain.models.Movie
@@ -23,13 +24,14 @@ class MoviesActivity : AppCompatActivity() {
         movieFactory = MovieFactory(this)
         viewModel = movieFactory.buildViewModel()
 
+       setupObserver()
 
         // Show all movies in the logcat
-        val movies = viewModel.viewCreated()
+        viewModel.viewCreated()
         // Log.d("@dev", movies.toString())
 
         // Call one movie with clicker in the emulator
-        bindData(movies)
+        //bindData(movies)
         //viewModel.getMovie(movies.first().id) //Simular un click sobre un item
 
         //Save, get and delete model in movies.xml
@@ -38,10 +40,31 @@ class MoviesActivity : AppCompatActivity() {
         //Save, get and delete list of movies in movies.xml
         //testListXml()
 
-        testMovie()
+        //testMovie()
     }
 
-    private fun bindData(movies: List<Movie>) {
+
+    private fun setupObserver(){
+        // Me creo un observador para el ViewModel
+        val movieObserver = Observer<MoviesViewModel.UiState> { uiState ->
+            uiState.movies?.let{
+                bindData(it)
+            }
+            uiState.errorApp?.let{
+                // Pinto el error
+            }
+            if (uiState.isLoading) {
+                // muestro cargando...
+            }else{
+                // oculto cargando...
+            }
+        }
+
+        //uso la variable movieObserver para observar el ViewModel
+        viewModel.uiState.observe(this, movieObserver)
+    }
+
+     fun bindData(movies: List<Movie>) {
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].id
         findViewById<TextView>(R.id.movie_title_1).text = movies[0].title
         findViewById<LinearLayout>(R.id.layout_1).setOnClickListener { //Lambdas
@@ -93,6 +116,7 @@ class MoviesActivity : AppCompatActivity() {
      */
 */
 
+    /*
     private fun testListXml() {
         val movieXmlLocalDataSource = MovieXmlLocalDataSource(this)
         val movies = viewModel.viewCreated()
@@ -110,7 +134,7 @@ class MoviesActivity : AppCompatActivity() {
         val movie = movieXmlLocalDataSource.findById("1")
         Log.d("@dev", movie.toString())
     }
-
+*/
 
     override fun onStart() {
         super.onStart()

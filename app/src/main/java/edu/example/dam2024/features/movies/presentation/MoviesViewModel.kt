@@ -1,21 +1,48 @@
 package edu.example.dam2024.features.movies.presentation
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.features.movies.domain.models.Movie
 import edu.example.dam2024.features.movies.domain.usecases.GetMovieUseCase
 import edu.example.dam2024.features.movies.domain.usecases.GetMoviesUseCase
+import kotlinx.coroutines.*
 
 
 // El ViewModel sobrevive al ciclo de vida del software
 class MoviesViewModel(
-
     private val getMoviesUseCase: GetMoviesUseCase,
     private val getMovieUseCase: GetMovieUseCase
 ) : ViewModel() {
 
-    fun viewCreated(): List<Movie> {
-        return getMoviesUseCase.invoke()
+    private val _uiState = MutableLiveData<UiState>()
+    val uiState: LiveData<UiState> = _uiState
+
+    /**El problema está que utilizando corrutinas, no podemos comunicarnos con el activity,
+    por esto utilizamos el partón Observer */
+
+    fun viewCreated() {
+        viewModelScope.launch(Dispatchers.IO) { //Esto es para cambiar el thread
+            val movies = getMoviesUseCase.invoke() //Las corrutinas no devuelven nada
+            // postValues -> origen: Defaul, IO, Main destino: Main
+            _uiState.postValue(UiState(movies = movies))
+
+            // value -> origen/destino: Mismo --- Defaul-Defaul Main-Main IO-IO
+            //_uiState.value(UiState(movies = movies))
+        }
+        val i = 0
     }
+
+
+    //Inner Clas
+    data class UiState( //Esto es para cuando se encuentra un error a la hora de cargar la info
+        val isLoading: Boolean = false,
+        val errorApp: ErrorApp? = null,
+        val movies: List<Movie>? = null
+    ) //Cada error es una vista distinta
+
 
     fun getMovie(id: String): Movie? {
         return getMovieUseCase.invoke(id)
