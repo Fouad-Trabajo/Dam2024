@@ -5,6 +5,8 @@ import edu.example.dam2024.features.movies.domain.models.Movie
 import edu.example.dam2024.features.movies.domain.usecases.GetMovieUseCase
 import edu.example.dam2024.features.movies.domain.usecases.GetMoviesUseCase
 
+
+// El ViewModel sobrevive al ciclo de vida del software
 class MoviesViewModel(
 
     private val getMoviesUseCase: GetMoviesUseCase,

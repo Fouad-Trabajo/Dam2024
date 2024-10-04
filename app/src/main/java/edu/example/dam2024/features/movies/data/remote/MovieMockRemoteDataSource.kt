@@ -10,9 +10,9 @@ class MovieMockRemoteDataSource {
 
     private val movies = listOf(
         Movie("1", "TeneT", "https://image.tmdb.org/t/p/original/aCIFMriQh8rvhxpN1IWGgvH0Tlg.jpg"),
-        Movie("2", "Seven", "https://image.tmdb.org/t/p/original/aCIFMriQh8rvhxpN1IWGgvH0Tlg.jpg"),
-        Movie("3", "Fight Club", "https://image.tmdb.org/t/p/original/aCIFMriQh8rvhxpN1IWGgvH0Tlg.jpg"),
-        Movie("4", "Pulp Fiction", "https://image.tmdb.org/t/p/original/aCIFMriQh8rvhxpN1IWGgvH0Tlg.jpg")
+        Movie("2", "Seven", "https://es.web.img3.acsta.net/medias/nmedia/18/69/04/89/19757783.jpg"),
+        Movie("3", "Fight Club", "https://image.tmdb.org/t/p/original/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg"),
+        Movie("4", "Pulp Fiction", "https://image.tmdb.org/t/p/original/pbWgQPC6l9pkpEpi3WNRSfWYNP6.jpg")
         //Movie(title = "title4", poster = "poster4", id = "4")
     )
 

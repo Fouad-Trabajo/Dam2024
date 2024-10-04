@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -47,8 +48,15 @@ class MovieDetailActivity : AppCompatActivity() {
 
 
     private fun bindData(movie: Movie) {
-        val imageView = findViewById<ImageView>(R.id.poster)
+        val imageView = findViewById<ImageView>(R.id.poster_1)
         imageView.loadUrl(movie.poster)
+
+        // Texto
+        val idTextView = findViewById<TextView>(R.id.title_1) // Reemplaza con el ID correcto de tu TextView
+        val nameTextView = findViewById<TextView>(R.id.title_1) // Reemplaza con el ID correcto de tu TextView
+        idTextView.text = movie.id
+        nameTextView.text = movie.title
+
     }
 
     // Función estática

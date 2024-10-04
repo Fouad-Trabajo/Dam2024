@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter)
     implementation(libs.glide)
+    implementation(libs.viewmodel.scope)
 
 
     //Librerias para testing
