@@ -10,7 +10,7 @@
 
 
     <TextView
-        android:id="@+id/title_1"
+        android:id="@+id/title_superhero_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -23,14 +23,13 @@
         android:id="@+id/image_1"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_below="@id/title_1"
-        android:layout_marginTop="1dp" />
+        android:layout_below="@id/title_superhero_1"/>
 
     <LinearLayout
         android:id="@+id/details_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title_1"
+        android:layout_below="@id/title_superhero_1"
         android:layout_toEndOf="@id/image_1"
         android:orientation="vertical">
 
@@ -49,13 +48,6 @@
             android:text="@string/powers_stats"
             android:textColor="@android:color/black"
             android:textSize="18sp"/>
-        <LinearLayout
-            android:id="@+id/details_container2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
-
         <TextView
             android:id="@+id/other_line"
             android:layout_width="wrap_content"

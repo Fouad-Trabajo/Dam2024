@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import edu.example.dam2024.R
+import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.features.movies.data.local.MovieXmlLocalDataSource
 import edu.example.dam2024.features.movies.domain.models.Movie
 
@@ -24,7 +25,7 @@ class MoviesActivity : AppCompatActivity() {
         movieFactory = MovieFactory(this)
         viewModel = movieFactory.buildViewModel()
 
-       setupObserver()
+        setupObserver()
 
         // Show all movies in the logcat
         viewModel.viewCreated()
@@ -44,19 +45,21 @@ class MoviesActivity : AppCompatActivity() {
     }
 
 
-    private fun setupObserver(){
+    private fun setupObserver() {
         // Me creo un observador para el ViewModel
         val movieObserver = Observer<MoviesViewModel.UiState> { uiState ->
-            uiState.movies?.let{
+            uiState.movies?.let {
                 bindData(it)
             }
-            uiState.errorApp?.let{
+            uiState.errorApp?.let {
                 // Pinto el error
             }
             if (uiState.isLoading) {
                 // muestro cargando...
-            }else{
+                Log.d("@dev", "Cargando...")
+            } else {
                 // oculto cargando...
+                Log.d("@dev", "Oculto cargando...")
             }
         }
 
@@ -64,7 +67,7 @@ class MoviesActivity : AppCompatActivity() {
         viewModel.uiState.observe(this, movieObserver)
     }
 
-     fun bindData(movies: List<Movie>) {
+    fun bindData(movies: List<Movie>) {
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].id
         findViewById<TextView>(R.id.movie_title_1).text = movies[0].title
         findViewById<LinearLayout>(R.id.layout_1).setOnClickListener { //Lambdas
@@ -91,30 +94,38 @@ class MoviesActivity : AppCompatActivity() {
 
     }
 
+    private fun showError(error: ErrorApp) {
+        when (error) {
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.InternetErrorApp -> TODO()
+            ErrorApp.ServerErrorApp -> TODO()
+        }
+    }
+
     private fun navigateToMovieDetail(movieId: String) {
         startActivity(MovieDetailActivity.getIntent(this, movieId))
     }
 
-/*
-    private fun testXml() {
-        val movieXmlLocalDataSource = MovieXmlLocalDataSource(this) //Leer abajo
-        //Le estoy pasando MovieActivity porque hereda de Context y MovieXmlLocalDataSource hereda de Context
-        val movie = viewModel.getMovie("1")
-        movie?.let {
-            movieXmlLocalDataSource.save(it) //Save movie in movies.xml
+    /*
+        private fun testXml() {
+            val movieXmlLocalDataSource = MovieXmlLocalDataSource(this) //Leer abajo
+            //Le estoy pasando MovieActivity porque hereda de Context y MovieXmlLocalDataSource hereda de Context
+            val movie = viewModel.getMovie("1")
+            movie?.let {
+                movieXmlLocalDataSource.save(it) //Save movie in movies.xml
+            }
+            // Get movie from movies.xml
+            val movieSave = movieXmlLocalDataSource.getMovie()
+            Log.d("@dev", movieSave.toString())
+
+            //Delete movie in movies.xml
+            movieXmlLocalDataSource.delete()
         }
-        // Get movie from movies.xml
-        val movieSave = movieXmlLocalDataSource.getMovie()
-        Log.d("@dev", movieSave.toString())
 
-        //Delete movie in movies.xml
-        movieXmlLocalDataSource.delete()
-    }
-
-    /** Uno de los resultados de aprendizaje de AAD es guardar,
-    obtener y borrar datos de un archivo xml. Esto se llama persistencia de datos
-     */
-*/
+        /** Uno de los resultados de aprendizaje de AAD es guardar,
+        obtener y borrar datos de un archivo xml. Esto se llama persistencia de datos
+         */
+    */
 
     /*
     private fun testListXml() {

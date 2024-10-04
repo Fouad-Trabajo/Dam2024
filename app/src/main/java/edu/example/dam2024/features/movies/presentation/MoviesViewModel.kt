@@ -24,15 +24,19 @@ class MoviesViewModel(
     por esto utilizamos el partón Observer */
 
     fun viewCreated() {
+
+
+        _uiState.value = (UiState(isLoading = true))
+
         viewModelScope.launch(Dispatchers.IO) { //Esto es para cambiar el thread
             val movies = getMoviesUseCase.invoke() //Las corrutinas no devuelven nada
             // postValues -> origen: Defaul, IO, Main destino: Main
+            //delay(5000)
             _uiState.postValue(UiState(movies = movies))
 
             // value -> origen/destino: Mismo --- Defaul-Defaul Main-Main IO-IO
             //_uiState.value(UiState(movies = movies))
         }
-        val i = 0
     }
 
 

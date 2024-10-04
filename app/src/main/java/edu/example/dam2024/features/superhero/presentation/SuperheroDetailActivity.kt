@@ -41,9 +41,7 @@ class SuperheroDetailActivity : AppCompatActivity() {
 
     private fun bindData(superhero: Superhero){
         // Texto
-        val idTextView = findViewById<TextView>(R.id.title_1) // Reemplaza con el ID correcto de tu TextView
-        val nameTextView = findViewById<TextView>(R.id.title_1) // Reemplaza con el ID correcto de tu TextView
-        idTextView.text = superhero.id
+        val nameTextView = findViewById<TextView>(R.id.title_superhero_1) // Reemplaza con el ID correcto de tu TextView
         nameTextView.text = superhero.name
 
         // Imagen
