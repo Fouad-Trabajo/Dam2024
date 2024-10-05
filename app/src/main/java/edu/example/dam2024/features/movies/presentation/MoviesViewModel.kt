@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.features.movies.domain.models.Movie
-import edu.example.dam2024.features.movies.domain.usecases.GetMovieUseCase
 import edu.example.dam2024.features.movies.domain.usecases.GetMoviesUseCase
 import kotlinx.coroutines.*
 
@@ -14,7 +13,6 @@ import kotlinx.coroutines.*
 // El ViewModel sobrevive al ciclo de vida del software
 class MoviesViewModel(
     private val getMoviesUseCase: GetMoviesUseCase,
-    private val getMovieUseCase: GetMovieUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()
@@ -40,16 +38,10 @@ class MoviesViewModel(
     }
 
 
-    //Inner Clas
+    //Inner Class
     data class UiState( //Esto es para cuando se encuentra un error a la hora de cargar la info
         val isLoading: Boolean = false,
         val errorApp: ErrorApp? = null,
         val movies: List<Movie>? = null
-    ) //Cada error es una vista distinta
-
-
-    fun getMovie(id: String): Movie? {
-        return getMovieUseCase.invoke(id)
-    }
-
+    ) //Cada error es una vista distinta (interfaz)
 }
