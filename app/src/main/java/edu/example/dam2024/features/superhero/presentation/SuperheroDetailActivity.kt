@@ -44,7 +44,7 @@ class SuperheroDetailActivity : AppCompatActivity() {
         val nameTextView = findViewById<TextView>(R.id.title_superhero_1) // Reemplaza con el ID correcto de tu TextView
         nameTextView.text = superhero.name
 
-        // Imagen
+        // Image
         val imageView = findViewById<ImageView>(R.id.image_1)
         imageView.loadUrl(superhero.image)
     }

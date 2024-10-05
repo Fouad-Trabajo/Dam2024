@@ -6,7 +6,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import edu.example.dam2024.R
+import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 class SuperheroesActivity : AppCompatActivity() {
@@ -25,11 +27,12 @@ class SuperheroesActivity : AppCompatActivity() {
         viewModel = superheroFactory.buildViewModel()
 
         // Show all superheroes in the logcat
-        val superhero: List<Superhero> = viewModel.getSuperheroes()
+        //val superhero: List<Superhero> = viewModel.getSuperheroes()
        // Log.d("@dev", superhero.toString())
-
+        setupObserver()
+        viewModel.viewCreated()
         // Call one superhero with clicker in the emulator
-        bindData(superhero)
+        //bindData(superhero)
         //viewModel.getSuperhero(superhero.first().id)
 
         //Save, get and delete model in superheroes.xml
@@ -39,6 +42,26 @@ class SuperheroesActivity : AppCompatActivity() {
         //testListXml()
     }
 
+    fun setupObserver(){
+        val superheroObserver = Observer<SuperheroesViewModel.UiState> { uiState ->
+            uiState.superheroes?.let{
+                bindData(it)
+            }
+            uiState.errorApp?.let{
+                //pinto el error
+            }
+            if (uiState.isLoading){
+                //muestro el cargando...
+                Log.d("@dev", "Cargando...")
+            }else{
+                //oculto el cargando
+                Log.d("@dev","Oculto cargando...")
+            }
+        }
+        //uso la variable superheroObserver para "observar" el ViewModel
+        viewModel.uiState.observe(this, superheroObserver)
+
+    }
 
     private fun bindData(superheroes: List<Superhero>) {
         for (i in superheroes.indices) {
@@ -53,6 +76,14 @@ class SuperheroesActivity : AppCompatActivity() {
             findViewById<LinearLayout>(layoutId).setOnClickListener {
                 navigateToSuperheroDetail(superhero.id)
             }
+        }
+    }
+
+    private fun showError(error: ErrorApp){
+        when(error){
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.InternetErrorApp -> TODO()
+            ErrorApp.ServerErrorApp -> TODO()
         }
     }
 

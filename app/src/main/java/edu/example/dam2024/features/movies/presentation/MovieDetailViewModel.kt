@@ -8,9 +8,7 @@ class MovieDetailViewModel(
     private val getMovieUseCase: GetMovieUseCase
 ) : ViewModel() {
 
-
     fun viewCreated(id: String): Movie? {
         return getMovieUseCase.invoke(id)
     }
-
 }

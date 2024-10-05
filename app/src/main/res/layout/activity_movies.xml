@@ -4,19 +4,25 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/cinema_background"
     android:orientation="vertical"
     tools:context=".features.movies.presentation.MoviesActivity">
 
+    <!-- Fila 1 -->
+
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="275dp"
         android:gravity="center"
         android:text="LISTA DE PELÍCULAS"
+        android:textColor="@android:color/white"
+        android:textSize="50sp"
         android:textStyle="bold" />
 
-    <!-- Fila 1 -->
     <LinearLayout
-        android:id="@+id/layout_1"
+        android:id="@+id/layout_movie_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -25,7 +31,10 @@
         <TextView
             android:id="@+id/movie_id_1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textColor="@android:color/white"
+            android:textSize="20sp">
             <!-- android:text="@string/name_file_xml" Acceder a un recurso-->
         </TextView>
 
@@ -33,14 +42,16 @@
             android:id="@+id/movie_title_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp">
+            android:layout_marginStart="20dp"
+            android:textColor="@android:color/white"
+            android:textSize="20sp">
 
         </TextView>
     </LinearLayout>
 
     <!-- Fila 2 -->
     <LinearLayout
-        android:id="@+id/layout_2"
+        android:id="@+id/layout_movie_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -49,7 +60,10 @@
         <TextView
             android:id="@+id/movie_id_2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:textColor="@android:color/white"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp">
 
         </TextView>
 
@@ -57,15 +71,18 @@
             android:id="@+id/movie_title_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp">
+            android:textColor="@android:color/white"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp">
 
         </TextView>
     </LinearLayout>
 
     <!-- Fila 3 -->
     <LinearLayout
-        android:id="@+id/layout_3"
+        android:id="@+id/layout_movie_3"
         android:layout_width="match_parent"
+        android:textColor="@android:color/white"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:orientation="horizontal">
@@ -73,7 +90,10 @@
         <TextView
             android:id="@+id/movie_id_3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp">
 
         </TextView>
 
@@ -81,12 +101,14 @@
             android:id="@+id/movie_title_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"></TextView>
+            android:layout_marginStart="20dp"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <!-- Fila 4 -->
     <LinearLayout
-        android:id="@+id/layout_4"
+        android:id="@+id/layout_movie_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -95,7 +117,10 @@
         <TextView
             android:id="@+id/movie_id_4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:textColor="@android:color/white"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp">
 
         </TextView>
 
@@ -103,7 +128,9 @@
             android:id="@+id/movie_title_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp">
+            android:textColor="@android:color/white"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp">
 
         </TextView>
     </LinearLayout>

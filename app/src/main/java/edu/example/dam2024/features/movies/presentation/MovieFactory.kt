@@ -19,7 +19,7 @@ class MovieFactory(private val context: Context) {
     private val getMovieUseCase = GetMovieUseCase(movieDataRepository)
 
     fun buildViewModel(): MoviesViewModel {
-        return MoviesViewModel(getMoviesUseCase, getMovieUseCase)
+        return MoviesViewModel(getMoviesUseCase)
     }
 
     fun buildMovieDetailViewModel(): MovieDetailViewModel {

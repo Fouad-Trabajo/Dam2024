@@ -70,25 +70,25 @@ class MoviesActivity : AppCompatActivity() {
     fun bindData(movies: List<Movie>) {
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].id
         findViewById<TextView>(R.id.movie_title_1).text = movies[0].title
-        findViewById<LinearLayout>(R.id.layout_1).setOnClickListener { //Lambdas
+        findViewById<LinearLayout>(R.id.layout_movie_1).setOnClickListener { //Lambdas
             navigateToMovieDetail(movies[0].id)
         }
 
         findViewById<TextView>(R.id.movie_id_2).text = movies[1].id
         findViewById<TextView>(R.id.movie_title_2).text = movies[1].title
-        findViewById<LinearLayout>(R.id.layout_2).setOnClickListener {
+        findViewById<LinearLayout>(R.id.layout_movie_2).setOnClickListener {
             navigateToMovieDetail(movies[1].id)
         }
 
         findViewById<TextView>(R.id.movie_id_3).text = movies[2].id
         findViewById<TextView>(R.id.movie_title_3).text = movies[2].title
-        findViewById<LinearLayout>(R.id.layout_3).setOnClickListener {
+        findViewById<LinearLayout>(R.id.layout_movie_3).setOnClickListener {
             navigateToMovieDetail(movies[2].id)
         }
 
         findViewById<TextView>(R.id.movie_id_4).text = movies[3].id
         findViewById<TextView>(R.id.movie_title_4).text = movies[3].title
-        findViewById<LinearLayout>(R.id.layout_4).setOnClickListener {
+        findViewById<LinearLayout>(R.id.layout_movie_4).setOnClickListener {
             navigateToMovieDetail(movies[3].id)
         }
 

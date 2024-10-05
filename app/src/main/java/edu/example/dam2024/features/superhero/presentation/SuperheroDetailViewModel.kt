@@ -8,10 +8,7 @@ class SuperheroDetailViewModel(
     private val getSuperheroUseCase: GetSuperheroUseCase
 ) : ViewModel() {
 
-
     fun viewCreated(id: String): Superhero? {
         return getSuperheroUseCase.invoke(id)
     }
-
-
 }
