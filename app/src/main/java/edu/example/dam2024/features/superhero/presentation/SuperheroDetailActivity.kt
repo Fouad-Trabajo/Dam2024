@@ -3,12 +3,14 @@ package edu.example.dam2024.features.superhero.presentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
+import androidx.lifecycle.Observer
 import edu.example.dam2024.R
+import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.app.extensions.loadUrl
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
@@ -26,11 +28,9 @@ class SuperheroDetailActivity : AppCompatActivity() {
         viewModel = superheroFactory.buildSuperheroDetailViewModel()
 
 
+        setupObserver()
         getSuperheroId()?.let{ superheroId ->
-            viewModel.viewCreated(superheroId)?.let{ superhero ->
-                bindData(superhero)
-            }
-
+            viewModel.viewCreated(superheroId)
         }
     }
 
@@ -47,6 +47,33 @@ class SuperheroDetailActivity : AppCompatActivity() {
         // Image
         val imageView = findViewById<ImageView>(R.id.image_1)
         imageView.loadUrl(superhero.image)
+    }
+
+    private fun setupObserver(){
+        val superheroObserver = Observer<SuperheroDetailViewModel.UiState>{ uiState ->
+            uiState.superhero?.let{
+                bindData(it)
+            }
+            uiState.errorApp?.let{
+                // pinto el error
+            }
+            if (uiState.isLoading){
+                //muestro cargando...
+                Log.d("@dev", "Cargando...")
+            }else{
+                //oculto cargando
+                Log.d("@dev", "Oculto cargando...")
+            }
+        }
+        viewModel.uiState.observe(this, superheroObserver)
+    }
+
+    private fun showError(error: ErrorApp){
+        when(error){
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.InternetErrorApp -> TODO()
+            ErrorApp.ServerErrorApp -> TODO()
+        }
     }
 
     //Función estática que siempre va en la parte de abajo de la clase

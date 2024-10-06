@@ -3,14 +3,17 @@ package edu.example.dam2024.features.movies.presentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import edu.example.dam2024.R
+import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.app.extensions.loadUrl
 import edu.example.dam2024.features.movies.domain.models.Movie
 
@@ -29,11 +32,31 @@ class MovieDetailActivity : AppCompatActivity() {
         movieFactory = MovieFactory(this)
         viewModel = movieFactory.buildMovieDetailViewModel()
 
+        setupObserver()
         getMovieId()?.let { movieId ->
-            viewModel.viewCreated(movieId)?.let { movie ->
-                bindData(movie)
+            viewModel.viewCreated(movieId)
+        }
+
+    }
+
+    private fun setupObserver(){
+        val movieObserver = Observer<MovieDetailViewModel.UiState> { uiState ->
+            uiState.movie?.let{
+                bindData(it)
+            }
+
+            uiState.errorApp?.let{
+                // Pinto el error
+            }
+            if (uiState.isLoading){
+                //muestro cargando
+                Log.d("@dev", "Cargando...")
+            }else{
+                // oculto cargando
+                Log.d("@dev", "Oculto cargando...")
             }
         }
+        viewModel.uiState.observe(this,movieObserver)
     }
 
     private fun getMovieId(): String? {
@@ -55,6 +78,15 @@ class MovieDetailActivity : AppCompatActivity() {
         // Image
         val imageView = findViewById<ImageView>(R.id.poster_1)
         imageView.loadUrl(movie.poster)
+    }
+
+    private fun showError(error: ErrorApp){
+    when(error){
+        ErrorApp.DataErrorApp -> TODO()
+        ErrorApp.InternetErrorApp -> TODO()
+        ErrorApp.ServerErrorApp -> TODO()
+    }
+
     }
 
     // Función estática

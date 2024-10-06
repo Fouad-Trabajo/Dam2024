@@ -26,9 +26,9 @@ class MoviesActivity : AppCompatActivity() {
         viewModel = movieFactory.buildViewModel()
 
         setupObserver()
-
-        // Show all movies in the logcat
         viewModel.viewCreated()
+        // Show all movies in the logcat
+
         // Log.d("@dev", movies.toString())
 
         // Call one movie with clicker in the emulator
@@ -67,7 +67,7 @@ class MoviesActivity : AppCompatActivity() {
         viewModel.uiState.observe(this, movieObserver)
     }
 
-    fun bindData(movies: List<Movie>) {
+    private fun bindData(movies: List<Movie>) {
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].id
         findViewById<TextView>(R.id.movie_title_1).text = movies[0].title
         findViewById<LinearLayout>(R.id.layout_movie_1).setOnClickListener { //Lambdas
