@@ -53,14 +53,18 @@ dependencies {
     // Librerías para interactuar con la API superhero.xml y enviar solicitudes de red
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter)
-    implementation(libs.glide)
-    implementation(libs.viewmodel.scope)
 
+    //Acceder a las imágenes
+    implementation(libs.glide)
+    // ViewModel
+    implementation(libs.viewmodel.scope)
 
     //Librerias para testing
     testImplementation(libs.junit)
     testImplementation(libs.mockito.framework)
     testImplementation(libs.mockito.junit)
+    testImplementation(libs.junit.jupiter)
+    testImplementation (libs.mockk)
 
     //Librerías para Android-Testing
     androidTestImplementation(libs.androidx.junit)
