@@ -12,7 +12,7 @@ import kotlinx.coroutines.*
 
 // El ViewModel sobrevive al ciclo de vida del software
 class MoviesViewModel(
-    private val getMoviesUseCase: GetMoviesUseCase,
+    private val getMoviesUseCase: GetMoviesUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()
@@ -22,10 +22,7 @@ class MoviesViewModel(
     por esto utilizamos el partón Observer */
 
     fun viewCreated() {
-
-
         _uiState.value = (UiState(isLoading = true))
-
         viewModelScope.launch(Dispatchers.IO) { //Esto es para cambiar el thread
             val movies = getMoviesUseCase.invoke() //Las corrutinas no devuelven nada
             // postValues -> origen: Defaul, IO, Main destino: Main
