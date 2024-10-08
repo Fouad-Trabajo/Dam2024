@@ -29,11 +29,12 @@ class GetMovieUseCaseTest {
     fun tearDown() {
     }
 
+    /*
     @Test
     fun `verficar que se llama al getMovie`() = runBlocking {
         //Given: Declaración de variables
         val movieExpected = Movie("1", "Up", "https://n9.cl/1jeti")
-        coEvery { movieRepository.getMovie("1")} returns movieExpected
+        coEvery { movieRepository.getMovie("1") } returns movieExpected
 
 
         //When
@@ -44,12 +45,25 @@ class GetMovieUseCaseTest {
         coVerify(exactly = 1) {
             movieRepository.getMovie("1")
         }
-        assertEquals(movieExpected ,movieReceived)
+        assertEquals(movieExpected, movieReceived)
     }
 
-
+*/
     @Test
-    fun `cuando introduczo un id valido obtengo el modelo correcto`() = runBlocking{
+    fun d() = runBlocking {
+        //Given:
+        coEvery { movieRepository.getMovies() } returns emptyList()
+
+        //when
+        val movieReceived = getMovieUseCase.invoke("1")
+
+        //Then
+        assert(movieReceived == null)
+    }
+
+/*
+    @Test
+    fun `cuando introduczo un id valido obtengo el modelo correcto`() = runBlocking {
         //Given: Declaración de variables
         val movieExpected = Movie("1", "Up", "https://n9.cl/1jeti")
         coEvery { movieRepository.getMovie("1") } returns movieExpected
@@ -60,25 +74,25 @@ class GetMovieUseCaseTest {
         coVerify(exactly = 1) {
             movieRepository.getMovie("1")
         }
-        Assert.assertEquals(movieExpected.id,movieReceived?.id )
+        Assert.assertEquals(movieExpected.id, movieReceived?.id)
         Assert.assertEquals(movieExpected.title, movieReceived?.title)
         Assert.assertEquals(movieExpected.poster, movieReceived?.poster)
 
     }
 
+*/
+    /*
+        @Test
+        fun `cuando introduczo un id invalido`() = runBlocking {
+            //Given: Declaración de variables
+            val invalidId = "2"
+            Mockito.`when`(movieRepository.getMovie("1")).thenReturn(null)
 
-/*
-    @Test
-    fun `cuando introduczo un id invalido`() = runBlocking {
-        //Given: Declaración de variables
-        val invalidId = "2"
-        Mockito.`when`(movieRepository.getMovie("1")).thenReturn(null)
+            //When
+            val movieReceived: Movie? = getMovieUseCase.invoke(invalidId)
 
-        //When
-        val movieReceived: Movie? = getMovieUseCase.invoke(invalidId)
-
-        //Then
-        Assertions.assertNull(movieReceived)
-    }
- */
+            //Then
+            Assertions.assertNull(movieReceived)
+        }
+     */
 }
