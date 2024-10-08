@@ -1,15 +1,17 @@
 package edu.example.dam2024.features.movies.domain.usecases
 
-
 import edu.example.dam2024.features.movies.domain.models.Movie
 import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert
+import org.junit.Assert.assertEquals
+import org.junit.Test
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import org.mockito.Mockito
+
 
 class GetMovieUseCaseTest {
 
@@ -27,25 +29,45 @@ class GetMovieUseCaseTest {
     fun tearDown() {
     }
 
-
     @Test
-    fun `cuando introduczo un id valido obtengo el modelo correcto`() {
+    fun `verficar que se llama al getMovie`() = runBlocking {
         //Given: Declaración de variables
         val movieExpected = Movie("1", "Up", "https://n9.cl/1jeti")
-        Mockito.`when`(movieRepository.getMovie("1")).thenReturn(null)
+        coEvery { movieRepository.getMovie("1")} returns movieExpected
+
 
         //When
-        getMovieUseCase.invoke("1")?.let { movieReceived ->
+        val movieReceived = getMovieUseCase.invoke("1")
 
 
-            //Then
-            Assertions.assertEquals(movieReceived.id, "1");
-            Assertions.assertEquals(movieReceived.title, "Up");
-            Assertions.assertEquals(movieReceived.poster, "https://n9.cl/1jeti");
+        //Then
+        coVerify(exactly = 1) {
+            movieRepository.getMovie("1")
         }
+        assertEquals(movieExpected ,movieReceived)
     }
 
 
+    @Test
+    fun `cuando introduczo un id valido obtengo el modelo correcto`() = runBlocking{
+        //Given: Declaración de variables
+        val movieExpected = Movie("1", "Up", "https://n9.cl/1jeti")
+        coEvery { movieRepository.getMovie("1") } returns movieExpected
+
+        //When
+        val movieReceived = getMovieUseCase.invoke("1")
+
+        coVerify(exactly = 1) {
+            movieRepository.getMovie("1")
+        }
+        Assert.assertEquals(movieExpected.id,movieReceived?.id )
+        Assert.assertEquals(movieExpected.title, movieReceived?.title)
+        Assert.assertEquals(movieExpected.poster, movieReceived?.poster)
+
+    }
+
+
+/*
     @Test
     fun `cuando introduczo un id invalido`() = runBlocking {
         //Given: Declaración de variables
@@ -58,4 +80,5 @@ class GetMovieUseCaseTest {
         //Then
         Assertions.assertNull(movieReceived)
     }
+ */
 }

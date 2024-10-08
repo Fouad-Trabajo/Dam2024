@@ -37,7 +37,9 @@ class GetMoviesUseCaseTest {
     @Test
     fun `cuando el repositorio devuelve una lista vacia`() = runBlocking {
         //Given: Declaración de variables
+        val movieRepository = mockk<MovieRepository>()
         coEvery { movieRepository.getMovies() } returns emptyList()
+        val getMoviesUseCase = GetMoviesUseCase(movieRepository)
 
         //When: Acciones a realizar
         val movies: List<Movie> = getMoviesUseCase() //llamar al caso de uso
@@ -48,37 +50,22 @@ class GetMoviesUseCaseTest {
         assert(movies.isEmpty())
     }
 
-
-    @Test
-    fun `invoke should return movies from repository`() = runBlocking {
-        // Arrange
-        val movieRepository = mockk<MovieRepository>()
-        val expectedMovies = listOf(
-            Movie("1", "Up", "https://n9.cl/1jeti")
-        )
-        coEvery { movieRepository.getMovies() } returns expectedMovies
-        val getMoviesUseCase = GetMoviesUseCase(movieRepository)
-
-        // Act
-        val actualMovies = getMoviesUseCase()
-
-        // Assert
-        Assert.assertEquals(expectedMovies, actualMovies)
-    }
-
-
     @Test
     fun `cuando el repositorio devuelve una lista correcta`() = runBlocking {
         //Given: Declaración de variables
-        val moviesExpected = listOf(Movie("1", "Up", "https://n9.cl/1jeti"))
-        every { movieRepository.getMovies() } returns moviesExpected
+        val movieRepository = mockk<MovieRepository>()
+        val moviesExpected = listOf(
+            Movie("1", "Up", "https://n9.cl/1jeti"),
+            Movie("2","It","https://n9.cl/1jeti"))
+        coEvery { movieRepository.getMovies() } returns moviesExpected
+        val getMoviesUseCase = GetMoviesUseCase(movieRepository)
 
         //When: Acciones a realizar
         val moviesReceived: List<Movie> = getMoviesUseCase()
 
         //Then: Comprobaciones
         coVerify(exactly = 1) { movieRepository.getMovies() }
-        assert(moviesReceived == moviesExpected)
+        Assert.assertEquals(moviesReceived, moviesExpected)
     }
 
 
