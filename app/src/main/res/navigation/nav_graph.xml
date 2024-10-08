@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:andoroid="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/movie_fragment">
+
+    <fragment
+        andoroid:id="@+id/movie_fragment"
+        android:name="edu.example.dam2024.features.movies.presentation.MoviesFragment"
+        tools:layout="@layout/fragment_movies"/>
+</navigation>

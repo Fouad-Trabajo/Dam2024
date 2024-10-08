@@ -21,12 +21,6 @@ class MoviesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movies)
 
-        //Tengo que saber que es esto porque no me estoy enterando mucho jajajaj
-        movieFactory = MovieFactory(this)
-        viewModel = movieFactory.buildViewModel()
-
-        setupObserver()
-        viewModel.viewCreated()
         // Show all movies in the logcat
 
         // Log.d("@dev", movies.toString())
@@ -45,66 +39,6 @@ class MoviesActivity : AppCompatActivity() {
     }
 
 
-    private fun setupObserver() {
-        // Me creo un observador para el ViewModel
-        val movieObserver = Observer<MoviesViewModel.UiState> { uiState ->
-            uiState.movies?.let {
-                bindData(it)
-            }
-            uiState.errorApp?.let {
-                // Pinto el error
-            }
-            if (uiState.isLoading) {
-                // muestro cargando...
-                Log.d("@dev", "Cargando...")
-            } else {
-                // oculto cargando...
-                Log.d("@dev", "Oculto cargando...")
-            }
-        }
-
-        //uso la variable movieObserver para observar el ViewModel
-        viewModel.uiState.observe(this, movieObserver)
-    }
-
-    private fun bindData(movies: List<Movie>) {
-        findViewById<TextView>(R.id.movie_id_1).text = movies[0].id
-        findViewById<TextView>(R.id.movie_title_1).text = movies[0].title
-        findViewById<LinearLayout>(R.id.layout_movie_1).setOnClickListener { //Lambdas
-            navigateToMovieDetail(movies[0].id)
-        }
-
-        findViewById<TextView>(R.id.movie_id_2).text = movies[1].id
-        findViewById<TextView>(R.id.movie_title_2).text = movies[1].title
-        findViewById<LinearLayout>(R.id.layout_movie_2).setOnClickListener {
-            navigateToMovieDetail(movies[1].id)
-        }
-
-        findViewById<TextView>(R.id.movie_id_3).text = movies[2].id
-        findViewById<TextView>(R.id.movie_title_3).text = movies[2].title
-        findViewById<LinearLayout>(R.id.layout_movie_3).setOnClickListener {
-            navigateToMovieDetail(movies[2].id)
-        }
-
-        findViewById<TextView>(R.id.movie_id_4).text = movies[3].id
-        findViewById<TextView>(R.id.movie_title_4).text = movies[3].title
-        findViewById<LinearLayout>(R.id.layout_movie_4).setOnClickListener {
-            navigateToMovieDetail(movies[3].id)
-        }
-
-    }
-
-    private fun showError(error: ErrorApp) {
-        when (error) {
-            ErrorApp.DataErrorApp -> TODO()
-            ErrorApp.InternetErrorApp -> TODO()
-            ErrorApp.ServerErrorApp -> TODO()
-        }
-    }
-
-    private fun navigateToMovieDetail(movieId: String) {
-        startActivity(MovieDetailActivity.getIntent(this, movieId))
-    }
 
     /*
         private fun testXml() {
@@ -146,34 +80,4 @@ class MoviesActivity : AppCompatActivity() {
         Log.d("@dev", movie.toString())
     }
 */
-
-    override fun onStart() {
-        super.onStart()
-        Log.d("@dev", "onStart")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("@dev", "onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("@dev", "onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("@dev", "onStop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("@dev", "onDestroy")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.d("@dev", "onRestart")
-    }
 }
