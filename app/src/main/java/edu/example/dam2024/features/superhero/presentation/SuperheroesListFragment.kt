@@ -14,7 +14,7 @@ import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.databinding.FragmentSuperheroesBinding
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
-class SuperheroesFragment : Fragment() {
+class SuperheroesListFragment : Fragment() {
 
     private lateinit var superheroFactory: SuperheroFactory
     private lateinit var viewModel: SuperheroesViewModel
@@ -38,7 +38,6 @@ class SuperheroesFragment : Fragment() {
         setupObserver()
         superheroFactory = SuperheroFactory(requireContext())
         viewModel = superheroFactory.buildViewModel()
-        viewModel.viewCreated()
     }
 
     fun setupObserver() {
