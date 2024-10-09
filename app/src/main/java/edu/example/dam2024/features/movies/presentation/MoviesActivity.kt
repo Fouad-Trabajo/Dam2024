@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import edu.example.dam2024.R
@@ -19,6 +20,7 @@ class MoviesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_movies)
 
         // Show all movies in the logcat

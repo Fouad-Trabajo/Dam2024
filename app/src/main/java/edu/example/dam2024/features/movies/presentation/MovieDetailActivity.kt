@@ -26,7 +26,7 @@ class MovieDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_movie_detail)
+        setContentView(R.layout.fragment_movie_detail)
 
 
         movieFactory = MovieFactory(this)

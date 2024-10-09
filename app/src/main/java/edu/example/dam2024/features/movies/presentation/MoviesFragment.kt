@@ -25,7 +25,7 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
 
 
     override fun onCreateView(
-        infa: LayoutInflater,
+        inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
@@ -68,26 +68,26 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
 
 
     private fun bindData(movies: List<Movie>) {
-        binding.movieId1.txt = movies[0].id
-        binding.movieTitle1.txt = movies[0].title
+        binding.movieId1.text = movies[0].id
+        binding.movieTitle1.text = movies[0].title
         binding.layoutMovie1.setOnClickListener { //Lambdas
             findNavController().navigate()
         }
 
-        binding.movieId2.txt = movies[1].id
-        binding.movieTitle2.txt = movies[1].title
+        binding.movieId2.text = movies[1].id
+        binding.movieTitle2.text = movies[1].title
         binding.layoutMovie2.setOnClickListener {
             navigateToMovieDetail(movies[1].id)
         }
 
-        binding.movieId3.txt = movies[2].id
-        binding.movieTitle3.txt = movies[2].title
+        binding.movieId3.text = movies[2].id
+        binding.movieTitle3.text = movies[2].title
         binding.layoutMovie3.setOnClickListener {
             navigateToMovieDetail(movies[2].id)
         }
 
-        binding.movieId4.txt = movies[3].id
-        binding.movieTitle4.txt = movies[3].title
+        binding.movieId4.text = movies[3].id
+        binding.movieTitle4.text = movies[3].title
         binding.layoutMovie4.setOnClickListener {
             navigateToMovieDetail(movies[3].id)
         }

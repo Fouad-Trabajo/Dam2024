@@ -23,14 +23,12 @@ class SuperheroesActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_superheroes)
 
-        superheroFactory = SuperheroFactory(this)
-        viewModel = superheroFactory.buildViewModel()
+
 
         // Show all superheroes in the logcat
         //val superhero: List<Superhero> = viewModel.getSuperheroes()
        // Log.d("@dev", superhero.toString())
-        setupObserver()
-        viewModel.viewCreated()
+
         // Call one superhero with clicker in the emulator
         //bindData(superhero)
         //viewModel.getSuperhero(superhero.first().id)
@@ -42,54 +40,6 @@ class SuperheroesActivity : AppCompatActivity() {
         //testListXml()
     }
 
-    fun setupObserver(){
-        val superheroObserver = Observer<SuperheroesViewModel.UiState> { uiState ->
-            uiState.superheroes?.let{
-                bindData(it)
-            }
-            uiState.errorApp?.let{
-                //pinto el error
-            }
-            if (uiState.isLoading){
-                //muestro el cargando...
-                Log.d("@dev", "Cargando...")
-            }else{
-                //oculto el cargando
-                Log.d("@dev","Oculto cargando...")
-            }
-        }
-        //uso la variable superheroObserver para "observar" el ViewModel
-        viewModel.uiState.observe(this, superheroObserver)
-
-    }
-
-    private fun bindData(superheroes: List<Superhero>) {
-        for (i in superheroes.indices) {
-            val superhero = superheroes[i]
-            val layoutId = resources.getIdentifier("layout_${i + 1}", "id", packageName)
-            val idTextViewId = resources.getIdentifier("superhero_id_${i + 1}", "id", packageName)
-            val nameTextViewId =
-                resources.getIdentifier("superhero_name_${i + 1}", "id", packageName)
-
-            findViewById<TextView>(idTextViewId).text = superhero.id
-            findViewById<TextView>(nameTextViewId).text = superhero.name
-            findViewById<LinearLayout>(layoutId).setOnClickListener {
-                navigateToSuperheroDetail(superhero.id)
-            }
-        }
-    }
-
-    private fun showError(error: ErrorApp){
-        when(error){
-            ErrorApp.DataErrorApp -> TODO()
-            ErrorApp.InternetErrorApp -> TODO()
-            ErrorApp.ServerErrorApp -> TODO()
-        }
-    }
-
-    private fun navigateToSuperheroDetail(superheroId: String){
-        startActivity(SuperheroDetailActivity.getIntent(this, superheroId))
-    }
 
 /*
     private fun textXml() {
@@ -118,34 +68,4 @@ class SuperheroesActivity : AppCompatActivity() {
     }
 
  */
-
-    override fun onStart() {
-        super.onStart()
-        Log.d("@dev", "onStart")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("@dev", "onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("@dev", "onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("@dev", "onStop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("@dev", "onDestroy")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.d("@dev", "onRestart")
-    }
 }

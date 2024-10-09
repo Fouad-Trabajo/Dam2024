@@ -27,14 +27,10 @@ class MovieDetailFragment : Fragment() {
     private val binding get() = _binding!! //!! es mala práctica, se puede utilizar para test
 
     override fun onCreateView(
-
-        infa: LayoutInflater,
+        inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        private var _binding: FragmentMoviesBinding? = null
-        private val binding get() = _binding!! //!! es mala práctica, se puede utilizar para test
         _binding = FragmentMoviesBinding.inflate(inflater, container, false)
         _binding?.movieTitle1
         return binding.root

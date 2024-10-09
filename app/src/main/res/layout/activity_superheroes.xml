@@ -1,98 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".features.superhero.presentation.SuperheroesActivity">
 
-    <TextView
+
+    <androidx.fragment.app.FragmentContainerView
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph="@navigation/nav_graph"
+        app:defaultNavHost="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="40dp"
-        android:text="LISTA DE SUPERHÉROES"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"/>
 
-    <!-- Líena 1 -->
-    <LinearLayout
-        android:id="@+id/layout_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/superhero_id_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
-
-        <TextView
-            android:id="@+id/superhero_name_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"></TextView>
-    </LinearLayout>
-
-    <!-- Fila 2 -->
-    <LinearLayout
-        android:id="@+id/layout_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/superhero_id_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
-
-        <TextView
-            android:id="@+id/superhero_name_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"></TextView>
-    </LinearLayout>
-
-    <!-- Línea 3 -->
-    <LinearLayout
-        android:id="@+id/layout_3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/superhero_id_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
-
-        <TextView
-            android:id="@+id/superhero_name_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"></TextView>
-    </LinearLayout>
-
-    <!-- Línea 4 -->
-    <LinearLayout
-        android:id="@+id/layout_4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/superhero_id_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
-
-        <TextView
-            android:id="@+id/superhero_name_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"></TextView>
-    </LinearLayout>
 
 </LinearLayout>
