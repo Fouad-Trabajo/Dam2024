@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import edu.example.dam2024.R
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.app.extensions.loadUrl
@@ -26,12 +27,17 @@ class SuperheroDetailFragment: Fragment() {
     private var _binding: FragmentSuperheroesBinding? = null
     private val binding get() = _binding!!
 
+
+    private val superheroArgs: SuperheroDetailFragmentArgs by navArgs()
+    //Delegación de funciones en otra clase
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+    ): View {
+        _binding = FragmentSuperheroesBinding.inflate(inflater, container, false)
+        return binding.root //este punto de ruptura es muy importante para saber si el proyecto llegá hata aquí
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,8 +48,8 @@ class SuperheroDetailFragment: Fragment() {
         getSuperheroId()?.let {
             viewModel.viewCreated(it)
         }
-    }
 
+    }
 
 
     private fun setupObserver(){
@@ -92,7 +98,7 @@ class SuperheroDetailFragment: Fragment() {
         val KEY_SUPERHERO_ID = "key_superhero_id"
 
         fun getIntent(context: Context, superheroId: String): Intent {
-            val intent = Intent(context, SuperheroDetailActivity::class.java)
+            val intent = Intent(context, SuperheroDetailFragment::class.java)
             intent.putExtra(KEY_SUPERHERO_ID, superheroId)
             return intent
         }

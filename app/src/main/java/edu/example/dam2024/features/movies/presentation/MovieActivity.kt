@@ -1,19 +1,12 @@
 package edu.example.dam2024.features.movies.presentation
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import edu.example.dam2024.R
-import edu.example.dam2024.app.domain.ErrorApp
-import edu.example.dam2024.features.movies.data.local.MovieXmlLocalDataSource
-import edu.example.dam2024.features.movies.domain.models.Movie
 
 
-class MoviesActivity : AppCompatActivity() {
+class MovieActivity : AppCompatActivity() {
 
     private lateinit var movieFactory: MovieFactory
     private lateinit var viewModel: MoviesViewModel

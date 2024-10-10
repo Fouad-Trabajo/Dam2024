@@ -14,7 +14,7 @@ import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.databinding.FragmentSuperheroesBinding
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
-class SuperheroesListFragment : Fragment() {
+class SuperheroesFragment : Fragment() {
 
     private lateinit var superheroFactory: SuperheroFactory
     private lateinit var viewModel: SuperheroesViewModel
@@ -29,7 +29,6 @@ class SuperheroesListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSuperheroesBinding.inflate(inflater, container, false)
-        _binding?.superheroName1
         return binding.root
     }
 
@@ -47,6 +46,8 @@ class SuperheroesListFragment : Fragment() {
             }
             uiState.errorApp?.let {
                 //pinto el error
+            } ?: run { //es como un else
+                // ocultar el error
             }
             if (uiState.isLoading) {
                 //muestro el cargando...
@@ -62,21 +63,49 @@ class SuperheroesListFragment : Fragment() {
     }
 
     private fun bindData(superheroes: List<Superhero>) {
-        for (i in superheroes.indices) {
-            val superhero = superheroes[i]
-            val layoutId = resources.getIdentifier("layout_${i + 1}", "id", packageName)
-            val idTextViewId = resources.getIdentifier("superhero_id_${i + 1}", "id", packageName)
-            val nameTextViewId =
-                resources.getIdentifier("superhero_name_${i + 1}", "id", packageName)
+        binding.apply {
+            superhero_name_1.apply {
+                text = superheroes[0].name
+                setOnClickListener {
+                   navigateToSuperheroDetail(superheroes[0].id)
+                }
 
-            findViewById<TextView>(idTextViewId).text = superhero.id
-            findViewById<TextView>(nameTextViewId).text = superhero.name
-            findViewById<LinearLayout>(layoutId).setOnClickListener {
-                findNavController().navigate()
+                superhero_name_2.apply {
+                    text = superheroes[1].name
+                    setOnClickListener {
+                        navigateToSuperheroDetail(superheroes[1].id)
+                    }
+                }
+                superhero_name_3.apply {
+                    text = superheroes[2].name
+                    setOnClickListener {
+                        navigateToSuperheroDetail(superheroes[2].id)
+                    }
+                }
+                superhero_name_4.apply {
+                    text = superheroes[3].name
+                    setOnClickListener {
+                        navigateToSuperheroDetail(superheroes[3].id)
+                    }
+                }
+            }
+
+            for (i in superheroes.indices) {
+                val superhero = superheroes[i]
+                val layoutId = resources.getIdentifier("layout_${i + 1}", "id", packageName)
+                val idTextViewId =
+                    resources.getIdentifier("superhero_id_${i + 1}", "id", packageName)
+                val nameTextViewId =
+                    resources.getIdentifier("superhero_name_${i + 1}", "id", packageName)
+
+                findViewById<TextView>(idTextViewId).text = superhero.id
+                findViewById<TextView>(nameTextViewId).text = superhero.name
+                findViewById<LinearLayout>(layoutId).setOnClickListener {
+                    findNavController()
+                }
             }
         }
     }
-
     private fun showError(error: ErrorApp) {
         when (error) {
             ErrorApp.DataErrorApp -> TODO()
@@ -86,7 +115,8 @@ class SuperheroesListFragment : Fragment() {
     }
 
     private fun navigateToSuperheroDetail(superheroId: String) {
-        startActivity(SuperheroDetailActivity.getIntent(requireContext(), superheroId))
+        findNavController().navigate(SuperheroFragmentDirections.
+        actionSuperheroFragmentToSuperheroDetailFragment(superheroId))
     }
 
 

@@ -103,7 +103,7 @@ class MovieDetailFragment : Fragment() {
 
         //Al hacerlo de esta forma estamos haciendo el código más limpio y estructurado (OpenToClose)
         fun getIntent(context: Context, movieId: String): Intent {
-            val intent = Intent(context, MovieDetailActivity::class.java)
+            val intent = Intent(context, MovieDetailFragment::class.java)
             intent.putExtra(KEY_MOVIE_ID, movieId)
             return intent
         }

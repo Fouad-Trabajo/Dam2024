@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:andoroid="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/movie_fragment">
+    app:startDestination="@id/superhero_fragment">
 
     <fragment
-        andoroid:id="@+id/movie_fragment"
-        android:name="edu.example.dam2024.features.movies.presentation.MoviesFragment"
-        tools:layout="@layout/fragment_movies"/>
+        android:name="edu.example.dam2024.features.superhero.presentation.SuperheroesFragment"
+        tools:layout="@layout/fragment_movies"
+        andoroid:id="@+id/superhero_fragment" />
+
+    <action android:if="@+id/action_from_superhero_to_superhero_detail"
+        app:destination="@id/superhero_detail_fragment"/>
+
+    <fragment
+        android:name="edu.example.dam2024.features.superhero.presentation.SuperheroDetailFragment"
+        tools:layout="@layout/fragment_movies"
+        andoroid:id="@+id/superhero_detail_fragment" >
+        <argument
+            android:name="superheroId"
+            app:argType="string"
+            app:nullable="false"/>
+    </fragment>
 </navigation>

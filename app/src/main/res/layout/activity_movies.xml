@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/cinema_background"
     android:orientation="vertical"
-    tools:context=".features.movies.presentation.MoviesActivity">
+    tools:context=".features.movies.presentation.MovieActivity">
 
     <!-- Es como un div de html -->
     <androidx.fragment.app.FragmentContainerView

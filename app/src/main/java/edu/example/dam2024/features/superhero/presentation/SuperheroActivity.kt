@@ -1,17 +1,11 @@
 package edu.example.dam2024.features.superhero.presentation
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import edu.example.dam2024.R
-import edu.example.dam2024.app.domain.ErrorApp
-import edu.example.dam2024.features.superhero.domain.models.Superhero
 
-class SuperheroesActivity : AppCompatActivity() {
+class SuperheroActivity : AppCompatActivity() {
 
     //Inicialización
     private lateinit var superheroFactory : SuperheroFactory
