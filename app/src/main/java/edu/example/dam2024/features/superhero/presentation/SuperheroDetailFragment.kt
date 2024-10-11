@@ -8,15 +8,13 @@ import androidx.lifecycle.Observer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import edu.example.dam2024.R
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.app.extensions.loadUrl
-import edu.example.dam2024.databinding.FragmentSuperheroesBinding
-import edu.example.dam2024.features.movies.presentation.MovieFactory
+
+import edu.example.dam2024.databinding.*
+
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 class SuperheroDetailFragment: Fragment() {
@@ -24,7 +22,7 @@ class SuperheroDetailFragment: Fragment() {
     private lateinit var superheroFactory: SuperheroFactory
     private lateinit var viewModel: SuperheroDetailViewModel
 
-    private var _binding: FragmentSuperheroesBinding? = null
+    private var _binding: FragmentSuperheroDetailBinding? = null
     private val binding get() = _binding!!
 
 
@@ -36,12 +34,13 @@ class SuperheroDetailFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSuperheroesBinding.inflate(inflater, container, false)
+        _binding = FragmentSuperheroDetailBinding.inflate(inflater, container, false)
         return binding.root //este punto de ruptura es muy importante para saber si el proyecto llegá hata aquí
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        superheroArgs.superheroId
         setupObserver()
         superheroFactory = SuperheroFactory(requireContext())
         viewModel = superheroFactory.buildSuperheroDetailViewModel()
@@ -73,16 +72,14 @@ class SuperheroDetailFragment: Fragment() {
 
     private fun bindData(superhero: Superhero){
         // Texto
-        val nameTextView = binding<TextView>(R.id.title_superhero_1) // Reemplaza con el ID correcto de tu TextView
-        nameTextView.text = superhero.name
-
+        binding.titleSuperhero.text = superhero.name
         // Image
-        val imageView = findViewById<ImageView>(R.id.image_1)
-        imageView.loadUrl(superhero.image)
+        binding.image1.loadUrl(superhero.image)
     }
-
+val intent = requireActivity().intent
     private fun getSuperheroId(): String?{
         return intent.getStringExtra(KEY_SUPERHERO_ID)
+        return "1"
     }
 
     private fun showError(error: ErrorApp){

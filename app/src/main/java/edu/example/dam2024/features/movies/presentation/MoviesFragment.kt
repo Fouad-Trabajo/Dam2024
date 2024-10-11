@@ -5,12 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
-import edu.example.dam2024.R
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.databinding.FragmentMoviesBinding
 import edu.example.dam2024.features.movies.domain.models.Movie
@@ -30,7 +26,6 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMoviesBinding.inflate(inflater, container, false)
-        _binding?.movieTitle1
         return binding.root
     }
 
@@ -68,28 +63,36 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
 
 
     private fun bindData(movies: List<Movie>) {
-        binding.movieId1.text = movies[0].id
-        binding.movieTitle1.text = movies[0].title
-        binding.layoutMovie1.setOnClickListener { //Lambdas
-            findNavController()
+        binding.apply {
+            layoutMovie1.setOnClickListener {
+                navigateToMovieDetail(movies[0].id)
+            }
+            binding.movieId1.text = movies[0].id
+            binding.movieTitle1.text = movies[0].title
         }
 
-        binding.movieId2.text = movies[1].id
-        binding.movieTitle2.text = movies[1].title
-        binding.layoutMovie2.setOnClickListener {
-            findNavController()
+        binding.apply {
+            layoutMovie2.setOnClickListener {
+                navigateToMovieDetail(movies[1].id)
+            }
+            binding.movieId1.text = movies[1].id
+            binding.movieTitle1.text = movies[1].title
         }
 
-        binding.movieId3.text = movies[2].id
-        binding.movieTitle3.text = movies[2].title
-        binding.layoutMovie3.setOnClickListener {
-            findNavController()
+        binding.apply {
+            layoutMovie3.setOnClickListener {
+                navigateToMovieDetail(movies[2].id)
+            }
+            binding.movieId1.text = movies[2].id
+            binding.movieTitle1.text = movies[2].title
         }
 
-        binding.movieId4.text = movies[3].id
-        binding.movieTitle4.text = movies[3].title
-        binding.layoutMovie4.setOnClickListener {
-            findNavController()
+        binding.apply {
+            layoutMovie4.setOnClickListener {
+                navigateToMovieDetail(movies[3].id)
+            }
+            binding.movieId1.text = movies[3].id
+            binding.movieTitle1.text = movies[3].title
         }
     }
 
@@ -102,7 +105,9 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
     }
 
     private fun navigateToMovieDetail(movieId: String) {
-        startActivity(MovieDetailFragment.getIntent(requireContext(), movieId))
+        //findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(movieId))
+
+        //startActivity(MovieDetailFragment.getIntent(requireContext(), movieId))
     }
 
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/title_superhero_1"
+        android:id="@+id/title_superhero"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -18,13 +18,13 @@
         android:id="@+id/image_1"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_below="@id/title_superhero_1"/>
+        android:layout_below="@id/title_superhero"/>
 
     <LinearLayout
         android:id="@+id/details_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title_superhero_1"
+        android:layout_below="@id/title_superhero"
         android:layout_toEndOf="@id/image_1"
         android:orientation="vertical">
 

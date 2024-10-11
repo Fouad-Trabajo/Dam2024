@@ -5,8 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -16,11 +14,11 @@ import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 class SuperheroesFragment : Fragment() {
 
-    private lateinit var superheroFactory: SuperheroFactory
-    private lateinit var viewModel: SuperheroesViewModel
-
     private var _binding: FragmentSuperheroesBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var superheroFactory: SuperheroFactory
+    private lateinit var viewModel: SuperheroesViewModel
 
 
     override fun onCreateView(
@@ -37,12 +35,13 @@ class SuperheroesFragment : Fragment() {
         setupObserver()
         superheroFactory = SuperheroFactory(requireContext())
         viewModel = superheroFactory.buildViewModel()
+        viewModel.viewCreated()
     }
 
-    fun setupObserver() {
+    private fun setupObserver() {
         val superheroObserver = Observer<SuperheroesViewModel.UiState> { uiState ->
             uiState.superheroes?.let {
-                bindData(it)
+               bindData(it)
             }
             uiState.errorApp?.let {
                 //pinto el error
@@ -64,33 +63,38 @@ class SuperheroesFragment : Fragment() {
 
     private fun bindData(superheroes: List<Superhero>) {
         binding.apply {
-            superhero_name_1.apply {
-                text = superheroes[0].name
-                setOnClickListener {
-                   navigateToSuperheroDetail(superheroes[0].id)
-                }
-
-                superhero_name_2.apply {
-                    text = superheroes[1].name
-                    setOnClickListener {
-                        navigateToSuperheroDetail(superheroes[1].id)
-                    }
-                }
-                superhero_name_3.apply {
-                    text = superheroes[2].name
-                    setOnClickListener {
-                        navigateToSuperheroDetail(superheroes[2].id)
-                    }
-                }
-                superhero_name_4.apply {
-                    text = superheroes[3].name
-                    setOnClickListener {
-                        navigateToSuperheroDetail(superheroes[3].id)
-                    }
-                }
+            // Bind data for superhero 1
+            layoutSuperhero1.setOnClickListener {
+                navigateToSuperheroDetail(superheroes[0].id)
             }
+            superheroId1.text = superheroes[0].id
+            superheroName1.text = superheroes[0].name
+
+            // Bind data for superhero 2
+            layoutSuperhero2.setOnClickListener {
+                navigateToSuperheroDetail(superheroes[1].id)
+            }
+            superheroId2.text = superheroes[1].id
+            superheroName2.text = superheroes[1].name
+
+            // Bind data for superhero 3
+            layoutSuperhero3.setOnClickListener {
+                navigateToSuperheroDetail(superheroes[2].id)
+            }
+            superheroId3.text = superheroes[2].id
+            superheroName3.text = superheroes[2].name
+
+            // Bind data for superhero 4
+            layoutSuperhero4.setOnClickListener {
+                navigateToSuperheroDetail(superheroes[3].id)
+            }
+            superheroId4.text = superheroes[3].id
+            superheroName4.text = superheroes[3].name
         }
     }
+
+
+
     private fun showError(error: ErrorApp) {
         when (error) {
             ErrorApp.DataErrorApp -> TODO()
@@ -100,8 +104,7 @@ class SuperheroesFragment : Fragment() {
     }
 
     private fun navigateToSuperheroDetail(superheroId: String) {
-        findNavController().navigate(SuperheroFragmentDirections.
-        actionSuperheroFragmentToSuperheroDetailFragment(superheroId))
+        //findNavController().navigate(SuperheroFragmentDirections.actionSuperheroFragmentToSuperheroDetailFragment(superheroId))
     }
 
 

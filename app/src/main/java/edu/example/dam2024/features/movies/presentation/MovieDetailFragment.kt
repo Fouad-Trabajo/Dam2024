@@ -7,14 +7,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import edu.example.dam2024.R
+import androidx.navigation.fragment.navArgs
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.app.extensions.loadUrl
-import edu.example.dam2024.databinding.FragmentMoviesBinding
+import edu.example.dam2024.databinding.FragmentMovieDetailBinding
 import edu.example.dam2024.features.movies.domain.models.Movie
 
 
@@ -23,21 +21,23 @@ class MovieDetailFragment : Fragment() {
     private lateinit var movieFactory: MovieFactory
     private lateinit var viewModel: MovieDetailViewModel
 
-    private var _binding: FragmentMoviesBinding? = null
+    private var _binding: FragmentMovieDetailBinding? = null
     private val binding get() = _binding!! //!! es mala práctica, se puede utilizar para test
+
+    private val movieArgs: MovieDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMoviesBinding.inflate(inflater, container, false)
-        _binding?.movieTitle1
+        _binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        movieArgs.movieId
         setupObserver()
         movieFactory = MovieFactory(requireContext())
         viewModel = movieFactory.buildMovieDetailViewModel()
@@ -49,7 +49,7 @@ class MovieDetailFragment : Fragment() {
     private fun setupObserver() {
         val movieObserver = Observer<MovieDetailViewModel.UiState> { uiState ->
             uiState.movie?.let {
-                bindData(it)
+               bindData(it)
             }
 
             uiState.errorApp?.let {
@@ -65,9 +65,10 @@ class MovieDetailFragment : Fragment() {
         }
         viewModel.uiState.observe(viewLifecycleOwner, movieObserver)
     }
-
+val intent = requireActivity().intent
     private fun getMovieId(): String? {
         return intent.getStringExtra(KEY_MOVIE_ID)
+        return "1"
     } //La forma de mandar información entre pantallas es con el intent (Es una clase muy importante)
 
     /**
@@ -78,14 +79,11 @@ class MovieDetailFragment : Fragment() {
 
 
     private fun bindData(movie: Movie) {
-        // Texto
-        val titleTextView = findViewById<TextView>(R.id.title_movie_1) // Reemplaza con el ID correcto de tu TextView
-        titleTextView.text = movie.title
+        // Asignar el título de la película al TextView
+        binding.titleMovie.text = movie.title
 
-        // Image
-        binding.poster.loadUrl(movie.poster)
-        val imageView = findViewById<ImageView>(R.id.poster_1)
-        imageView.loadUrl(movie.poster)
+        // Cargar la imagen del póster de la película en el ImageView
+        binding.posterMovie.loadUrl(movie.poster)
     }
 
     private fun showError(error: ErrorApp) {
