@@ -78,7 +78,7 @@ class SuperheroDetailFragment: Fragment() {
     }
 val intent = requireActivity().intent
     private fun getSuperheroId(): String?{
-        return intent.getStringExtra(KEY_SUPERHERO_ID)
+       // return intent.getStringExtra(KEY_SUPERHERO_ID)
         return "1"
     }
 

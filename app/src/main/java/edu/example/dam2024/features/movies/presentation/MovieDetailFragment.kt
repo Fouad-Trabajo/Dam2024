@@ -67,7 +67,7 @@ class MovieDetailFragment : Fragment() {
     }
 val intent = requireActivity().intent
     private fun getMovieId(): String? {
-        return intent.getStringExtra(KEY_MOVIE_ID)
+       // return intent.getStringExtra(KEY_MOVIE_ID)
         return "1"
     } //La forma de mandar información entre pantallas es con el intent (Es una clase muy importante)
 

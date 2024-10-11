@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.databinding.FragmentMoviesBinding
 import edu.example.dam2024.features.movies.domain.models.Movie
@@ -105,9 +106,8 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
     }
 
     private fun navigateToMovieDetail(movieId: String) {
-        //findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(movieId))
-
-        //startActivity(MovieDetailFragment.getIntent(requireContext(), movieId))
+         findNavController().navigate(MoviesFragmentDirections.
+         actionFromMoviesToMoviesDetail(movieId))
     }
 
 

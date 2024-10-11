@@ -61,7 +61,7 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.viewmodel.scope)
 
-    implementation(libs.nav.fragment)
+    implementation(libs.nav.fragment.ktx)
     implementation(libs.nav.ui)
     api(libs.nav.fragment.ktx)
 
