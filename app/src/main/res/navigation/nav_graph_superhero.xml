@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/superheroes_fragment"
         android:name="edu.example.dam2024.features.superhero.presentation.SuperheroesFragment"
-        tools:layoyt="@layout/fragment_superheroes">
+        tools:layout="@layout/fragment_superheroes">
 
         <action
             android:id="@+id/action_from_superhero_to_superhero_detail"

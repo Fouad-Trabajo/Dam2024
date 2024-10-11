@@ -38,9 +38,10 @@ class MovieDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         movieArgs.movieId
-        setupObserver()
+
         movieFactory = MovieFactory(requireContext())
         viewModel = movieFactory.buildMovieDetailViewModel()
+        setupObserver()
         getMovieId()?.let {
             viewModel.viewCreated(it)
         }
@@ -65,10 +66,9 @@ class MovieDetailFragment : Fragment() {
         }
         viewModel.uiState.observe(viewLifecycleOwner, movieObserver)
     }
-val intent = requireActivity().intent
+
     private fun getMovieId(): String? {
-       // return intent.getStringExtra(KEY_MOVIE_ID)
-        return "1"
+        return movieArgs.movieId
     } //La forma de mandar información entre pantallas es con el intent (Es una clase muy importante)
 
     /**

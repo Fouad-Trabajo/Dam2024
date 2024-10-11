@@ -32,9 +32,9 @@ class SuperheroesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupObserver()
         superheroFactory = SuperheroFactory(requireContext())
         viewModel = superheroFactory.buildViewModel()
+        setupObserver()
         viewModel.viewCreated()
     }
 

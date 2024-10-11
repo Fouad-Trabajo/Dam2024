@@ -41,9 +41,10 @@ class SuperheroDetailFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         superheroArgs.superheroId
-        setupObserver()
+
         superheroFactory = SuperheroFactory(requireContext())
         viewModel = superheroFactory.buildSuperheroDetailViewModel()
+        setupObserver()
         getSuperheroId()?.let {
             viewModel.viewCreated(it)
         }
@@ -76,10 +77,9 @@ class SuperheroDetailFragment: Fragment() {
         // Image
         binding.image1.loadUrl(superhero.image)
     }
-val intent = requireActivity().intent
+
     private fun getSuperheroId(): String?{
-       // return intent.getStringExtra(KEY_SUPERHERO_ID)
-        return "1"
+        return superheroArgs.superheroId
     }
 
     private fun showError(error: ErrorApp){

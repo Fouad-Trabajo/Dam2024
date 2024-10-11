@@ -33,9 +33,9 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
     // Para
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupObserver()
         movieFactory = MovieFactory(requireContext())
         viewModel = movieFactory.buildViewModel()
+        setupObserver()
         viewModel.viewCreated()
     }
 
@@ -68,32 +68,32 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
             layoutMovie1.setOnClickListener {
                 navigateToMovieDetail(movies[0].id)
             }
-            binding.movieId1.text = movies[0].id
-            binding.movieTitle1.text = movies[0].title
+            movieId1.text = movies[0].id
+            movieTitle1.text = movies[0].title
         }
 
         binding.apply {
             layoutMovie2.setOnClickListener {
                 navigateToMovieDetail(movies[1].id)
             }
-            binding.movieId1.text = movies[1].id
-            binding.movieTitle1.text = movies[1].title
+            movieId2.text = movies[1].id
+            movieTitle2.text = movies[1].title
         }
 
         binding.apply {
             layoutMovie3.setOnClickListener {
                 navigateToMovieDetail(movies[2].id)
             }
-            binding.movieId1.text = movies[2].id
-            binding.movieTitle1.text = movies[2].title
+            movieId3.text = movies[2].id
+            movieTitle3.text = movies[2].title
         }
 
         binding.apply {
             layoutMovie4.setOnClickListener {
                 navigateToMovieDetail(movies[3].id)
             }
-            binding.movieId1.text = movies[3].id
-            binding.movieTitle1.text = movies[3].title
+            movieId4.text = movies[3].id
+            movieTitle4.text = movies[3].title
         }
     }
 

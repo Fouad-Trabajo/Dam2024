@@ -10,10 +10,6 @@
     tools:context=".features.movies.presentation.MovieActivity">
 
 
-    <Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:title="Movie" />
 
 
     <!-- Es como un div de html -->
