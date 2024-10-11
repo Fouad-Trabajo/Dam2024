@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".features.superhero.presentation.SuperheroesFragment"
     android:orientation="vertical">
 
     <TextView
@@ -14,7 +16,7 @@
 
     <!-- Líena 1 -->
     <LinearLayout
-        android:id="@+id/layout_1"
+        android:id="@+id/layout_superhero_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -34,7 +36,7 @@
 
     <!-- Fila 2 -->
     <LinearLayout
-        android:id="@+id/layout_2"
+        android:id="@+id/layout_superhero_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -54,7 +56,7 @@
 
     <!-- Línea 3 -->
     <LinearLayout
-        android:id="@+id/layout_3"
+        android:id="@+id/layout_superhero_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -74,7 +76,7 @@
 
     <!-- Línea 4 -->
     <LinearLayout
-        android:id="@+id/layout_4"
+        android:id="@+id/layout_superhero_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

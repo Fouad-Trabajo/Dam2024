@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/cinema_background"
     android:orientation="vertical"
-    tools:context=".features.movies.presentation.MovieActivity">
+    tools:context=".features.movies.presentation.MoviesFragment">
 
     <!-- Fila 1 -->
 

@@ -89,21 +89,6 @@ class SuperheroesFragment : Fragment() {
                     }
                 }
             }
-
-            for (i in superheroes.indices) {
-                val superhero = superheroes[i]
-                val layoutId = resources.getIdentifier("layout_${i + 1}", "id", packageName)
-                val idTextViewId =
-                    resources.getIdentifier("superhero_id_${i + 1}", "id", packageName)
-                val nameTextViewId =
-                    resources.getIdentifier("superhero_name_${i + 1}", "id", packageName)
-
-                findViewById<TextView>(idTextViewId).text = superhero.id
-                findViewById<TextView>(nameTextViewId).text = superhero.name
-                findViewById<LinearLayout>(layoutId).setOnClickListener {
-                    findNavController()
-                }
-            }
         }
     }
     private fun showError(error: ErrorApp) {
