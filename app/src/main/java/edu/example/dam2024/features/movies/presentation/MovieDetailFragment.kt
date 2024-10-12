@@ -50,7 +50,7 @@ class MovieDetailFragment : Fragment() {
     private fun setupObserver() {
         val movieObserver = Observer<MovieDetailViewModel.UiState> { uiState ->
             uiState.movie?.let {
-               bindData(it)
+                bindData(it)
             }
 
             uiState.errorApp?.let {
@@ -67,7 +67,7 @@ class MovieDetailFragment : Fragment() {
         viewModel.uiState.observe(viewLifecycleOwner, movieObserver)
     }
 
-    private fun getMovieId(): String? {
+    private fun getMovieId(): String {
         return movieArgs.movieId
     } //La forma de mandar información entre pantallas es con el intent (Es una clase muy importante)
 
