@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.databinding.FragmentMoviesBinding
+import edu.example.dam2024.features.movies.data.remote.MovieMockRemoteDataSource
 import edu.example.dam2024.features.movies.domain.models.Movie
+import edu.example.dam2024.features.movies.presentation.adapter.MovieAdapter
 
 class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
 
@@ -20,6 +23,7 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
     private var _binding: FragmentMoviesBinding? = null
     private val binding get() = _binding!! //!! es mala práctica, se puede utilizar para test
 
+    private val movieAdapter = MovieAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +31,7 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMoviesBinding.inflate(inflater, container, false)
+        setupView()
         return binding.root
     }
 
@@ -35,9 +40,12 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
         super.onViewCreated(view, savedInstanceState)
         movieFactory = MovieFactory(requireContext())
         viewModel = movieFactory.buildViewModel()
+
+
         setupObserver()
         viewModel.viewCreated()
     }
+
 
     private fun setupObserver() {
         // Me creo un observador para el ViewModel
@@ -46,6 +54,7 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
                 bindData(it)
             }
             uiState.errorApp?.let {
+                showError(it)
                 // Pinto el error
             }
             if (uiState.isLoading) {
@@ -62,39 +71,22 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
         MoviesActivity si que hereda de ViewLifeCycleOwner con el AppCompatActivity */
     }
 
+    private fun setupView() {
+        binding.apply {
+            listMovie.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL, false
+            )
+
+            movieAdapter.setEvent { movieId ->
+                navigateToMovieDetail(movieId)
+            }
+            listMovie.adapter = movieAdapter
+        }
+    }
 
     private fun bindData(movies: List<Movie>) {
-        binding.apply {
-            layoutMovie1.setOnClickListener {
-                navigateToMovieDetail(movies[0].id)
-            }
-            movieId1.text = movies[0].id
-            movieTitle1.text = movies[0].title
-        }
-
-        binding.apply {
-            layoutMovie2.setOnClickListener {
-                navigateToMovieDetail(movies[1].id)
-            }
-            movieId2.text = movies[1].id
-            movieTitle2.text = movies[1].title
-        }
-
-        binding.apply {
-            layoutMovie3.setOnClickListener {
-                navigateToMovieDetail(movies[2].id)
-            }
-            movieId3.text = movies[2].id
-            movieTitle3.text = movies[2].title
-        }
-
-        binding.apply {
-            layoutMovie4.setOnClickListener {
-                navigateToMovieDetail(movies[3].id)
-            }
-            movieId4.text = movies[3].id
-            movieTitle4.text = movies[3].title
-        }
+        movieAdapter.submitList(movies)
     }
 
     private fun showError(error: ErrorApp) {
@@ -106,8 +98,9 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
     }
 
     private fun navigateToMovieDetail(movieId: String) {
-         findNavController().navigate(MoviesFragmentDirections.
-         actionFromMoviesToMoviesDetail(movieId))
+        findNavController().navigate(
+            MoviesFragmentDirections.actionFromMoviesToMoviesDetail(movieId)
+        )
     }
 
 

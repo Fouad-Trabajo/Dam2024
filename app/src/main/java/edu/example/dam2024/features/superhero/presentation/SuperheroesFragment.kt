@@ -8,18 +8,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.databinding.FragmentSuperheroesBinding
 import edu.example.dam2024.features.superhero.domain.models.Superhero
+import edu.example.dam2024.features.superhero.presentation.adapter.SuperheroAdapter
 
 class SuperheroesFragment : Fragment() {
-
-    private var _binding: FragmentSuperheroesBinding? = null
-    private val binding get() = _binding!!
 
     private lateinit var superheroFactory: SuperheroFactory
     private lateinit var viewModel: SuperheroesViewModel
 
+    private var _binding: FragmentSuperheroesBinding? = null
+    private val binding get() = _binding!!
+
+    private val superheroAdapter = SuperheroAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +30,7 @@ class SuperheroesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSuperheroesBinding.inflate(inflater, container, false)
+        setupView()
         return binding.root
     }
 
@@ -45,6 +49,7 @@ class SuperheroesFragment : Fragment() {
             }
             uiState.errorApp?.let {
                 //pinto el error
+                showError(it)
             } ?: run { //es como un else
                 // ocultar el error
             }
@@ -61,36 +66,21 @@ class SuperheroesFragment : Fragment() {
 
     }
 
-    private fun bindData(superheroes: List<Superhero>) {
-        binding.apply {
-            // Bind data for superhero 1
-            layoutSuperhero1.setOnClickListener {
-                navigateToSuperheroDetail(superheroes[0].id)
+    private fun setupView() {
+        binding.apply{
+            listSuperhero.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL, false
+            )
+            superheroAdapter.setEvent { superheroId ->
+                navigateToSuperheroDetail(superheroId)
             }
-            superheroId1.text = superheroes[0].id
-            superheroName1.text = superheroes[0].name
-
-            // Bind data for superhero 2
-            layoutSuperhero2.setOnClickListener {
-                navigateToSuperheroDetail(superheroes[1].id)
-            }
-            superheroId2.text = superheroes[1].id
-            superheroName2.text = superheroes[1].name
-
-            // Bind data for superhero 3
-            layoutSuperhero3.setOnClickListener {
-                navigateToSuperheroDetail(superheroes[2].id)
-            }
-            superheroId3.text = superheroes[2].id
-            superheroName3.text = superheroes[2].name
-
-            // Bind data for superhero 4
-            layoutSuperhero4.setOnClickListener {
-                navigateToSuperheroDetail(superheroes[3].id)
-            }
-            superheroId4.text = superheroes[3].id
-            superheroName4.text = superheroes[3].name
+            listSuperhero.adapter = superheroAdapter
         }
+    }
+
+    private fun bindData(superheroes: List<Superhero>) {
+        superheroAdapter.submitList(superheroes)
     }
 
 
