@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.navigation.safeargs.kotlin)
 }
 
 android {
@@ -33,6 +34,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -56,6 +61,9 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.viewmodel.scope)
 
+    implementation(libs.nav.fragment.ktx)
+    implementation(libs.nav.ui)
+    api(libs.nav.fragment.ktx)
 
     //Librerias para testing
     testImplementation(libs.junit)
