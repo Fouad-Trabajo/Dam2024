@@ -12,7 +12,8 @@ class MovieMockRemoteDataSource {
         Movie("1", "TeneT", "https://image.tmdb.org/t/p/original/aCIFMriQh8rvhxpN1IWGgvH0Tlg.jpg"),
         Movie("2", "Seven", "https://es.web.img3.acsta.net/medias/nmedia/18/69/04/89/19757783.jpg"),
         Movie("3", "Fight Club", "https://image.tmdb.org/t/p/original/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg"),
-        Movie("4", "Pulp Fiction", "https://image.tmdb.org/t/p/original/pbWgQPC6l9pkpEpi3WNRSfWYNP6.jpg")
+        Movie("4", "Pulp Fiction", "https://image.tmdb.org/t/p/original/pbWgQPC6l9pkpEpi3WNRSfWYNP6.jpg"),
+        Movie("5", "It", "https://th.bing.com/th/id/R.d85f4b8020cbd285f55b396db231b661?rik=Vd9Qt%2fcGAjkQhw&pid=ImgRaw&r=0")
         //Movie(title = "title4", poster = "poster4", id = "4")
     )
 

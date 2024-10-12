@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/movie_detail_fragment"
         android:name="edu.example.dam2024.features.movies.presentation.MovieDetailFragment"
-        tools:layout="@layout/fragment_movie_detail">
+        tools:layout="@layout/view_movie_item">
 
         <argument
             android:name="movieId"
