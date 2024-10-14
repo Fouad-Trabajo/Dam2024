@@ -15,14 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dam2024"
         tools:targetApi="31">
-
+        <activity
+            android:name=".features.pokemon.presentation.PokemonActivity"
+            android:exported="false" />
         <activity
             android:name=".features.superhero.presentation.SuperheroActivity"
-            android:exported="true">
-
-        </activity>
-
-
+            android:exported="true"></activity>
         <activity
             android:name=".features.movies.presentation.MovieActivity"
             android:exported="true">
