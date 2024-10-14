@@ -11,6 +11,9 @@
     <string name="powers_stats">PowerStats</string>
     <string name="appearance">Appearance</string>
 
+    <!-- Datos de pokemons -->
+    <string name="pokemon_file_xml">pokemon</string>
+
 </resources>
 
     <!-- Esta clase es muy importante, en el texView (GUI) no se debe poner a pelo
