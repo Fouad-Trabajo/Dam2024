@@ -16,7 +16,8 @@ class PokemonViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
         binding = ViewPokemonItemBinding.bind(view)
 
         binding.apply {
-            pokemonImage.loadUrl(pokemon.abilities.toString())
+            val imageUrl ="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+            pokemonImage.loadUrl(imageUrl)
             pokemonName.text = pokemon.name
             //movieDescription1.text = movie.description
             view.setOnClickListener {
