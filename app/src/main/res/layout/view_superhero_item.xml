@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="12dp"> <!-- Añadido padding general -->
+    android:background="@drawable/border_background"
+    android:padding="12dp"> <!-- Añadido padding general -->
 
     <ImageView
         android:id="@+id/superhero_image"

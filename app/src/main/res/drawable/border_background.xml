@@ -3,6 +3,6 @@
     <solid android:color="@android:color/white" /> <!-- Color del fondo -->
     <stroke
         android:width="2dp"
-        android:color="@android:color/holo_blue_light" /> <!-- Color y grosor del borde -->
+        android:color="@color/bisque" /> <!-- Color y grosor del borde -->
     <corners android:radius="8dp" /> <!-- Esquinas redondeadas -->
 </shape>
