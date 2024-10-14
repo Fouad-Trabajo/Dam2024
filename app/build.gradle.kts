@@ -64,11 +64,12 @@ dependencies {
     implementation(libs.nav.fragment.ktx)
     implementation(libs.nav.ui)
     api(libs.nav.fragment.ktx)
+    implementation(libs.ktor)
 
     //Librerias para testing
     testImplementation(libs.junit)
-    testImplementation(libs.mockito.framework)
-    testImplementation(libs.mockito.junit)
+    //testImplementation(libs.mockito.framework)
+    //testImplementation(libs.mockito.junit)
 
     //Librerías para Android-Testing
     androidTestImplementation(libs.androidx.junit)
