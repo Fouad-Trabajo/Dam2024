@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import edu.example.dam2024.app.domain.ErrorApp
-import edu.example.dam2024.features.movies.domain.models.Movie
 import edu.example.dam2024.features.pokemon.domain.GetPokemonsUseCase
 import edu.example.dam2024.features.pokemon.domain.Pokemon
 import kotlinx.coroutines.Dispatchers
@@ -19,8 +18,8 @@ class PokemonsViewModel(private val getPokemonsUseCase: GetPokemonsUseCase) : Vi
     fun viewCreated() {
         _uiState.value = (UiState(isLoading = true))
         viewModelScope.launch(Dispatchers.IO) {
-            val pokemons = getPokemonsUseCase.invoke()
-            _uiState.postValue(UiState(pokemons = pokemons))
+            val pokemon = getPokemonsUseCase.invoke()
+            _uiState.postValue(UiState(pokemons = pokemon))
         }
     }
 

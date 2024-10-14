@@ -21,7 +21,7 @@
         tools:layout="@layout/view_pokemon_item">
 
         <argument
-            android:name="movieId"
+            android:name="pokemonId"
             app:argType="string"
             app:nullable="false" />
     </fragment>
