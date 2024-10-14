@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.navigation.safeargs.kotlin)
 }
 
 android {
@@ -33,6 +34,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -53,16 +58,16 @@ dependencies {
     // Librerías para interactuar con la API superhero.xml y enviar solicitudes de red
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter)
-
-    //Acceder a las imágenes
     implementation(libs.glide)
-    // ViewModel
     implementation(libs.viewmodel.scope)
+
+    implementation(libs.nav.fragment.ktx)
+    implementation(libs.nav.ui)
+    api(libs.nav.fragment.ktx)
+    implementation(libs.ktor)
 
     //Librerias para testing
     testImplementation(libs.junit)
-    testImplementation(libs.junit.jupiter)
-    testImplementation (libs.mockk)
     //testImplementation(libs.mockito.framework)
     //testImplementation(libs.mockito.junit)
 
