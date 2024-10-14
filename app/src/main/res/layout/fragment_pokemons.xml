@@ -6,28 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".features.pokemon.presentation.PokemonActivity">
+    <!-- Fila 1  android:background="@drawable/cinema_background" -->
 
-    <EditText
-        android:id="@+id/edit_1"
+    <TextView
+        android:id="@+id/title_pokemons"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:hint="Busqueda"
-        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="LISTA DE POKEMONS"
+        android:textSize="50sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <!-- Es como un div de html -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/movie_container"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_pokemons"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:defaultNavHost="true"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_1"
-        app:navGraph="@navigation/nav_graph_pokemon" />
+        app:layout_constraintTop_toBottomOf="@+id/title_pokemons"
+        tools:listitem="@layout/view_pokemon_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

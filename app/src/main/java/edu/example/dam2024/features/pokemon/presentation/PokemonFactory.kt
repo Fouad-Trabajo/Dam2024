@@ -17,4 +17,11 @@ class PokemonFactory(private val context: Context) {
     private val getPokemonUseCase = GetPokemonUseCase(pokemonDataRepository)
 
 
+    fun buildViewModel(): PokemonsViewModel {
+        return PokemonsViewModel(getPokemonsUseCase)
+    }
+
+    fun buildPokemonDetailViewModel(): PokemonDetailViewModel {
+        return PokemonDetailViewModel(getPokemonUseCase)
+    }
 }
