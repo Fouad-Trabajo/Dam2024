@@ -44,4 +44,5 @@ ktor = { group ="io.ktor", name="ktor-server-netty", version.ref = "ktor"}
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+navigation_safeargs-kotlin = { id="androidx.navigation.safeargs.kotlin", version.ref="navigationComponent"}
 
