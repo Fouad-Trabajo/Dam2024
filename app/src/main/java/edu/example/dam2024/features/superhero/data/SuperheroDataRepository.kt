@@ -1,19 +1,20 @@
 package edu.example.dam2024.features.superhero.data
 
 import edu.example.dam2024.features.superhero.data.local.SuperheroXmlLocalDataSource
+import edu.example.dam2024.features.superhero.data.remote.SuperheroApiRemoteDataSource
 import edu.example.dam2024.features.superhero.data.remote.SuperheroMockRemoteDataSource
 import edu.example.dam2024.features.superhero.domain.SuperheroRepository
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 class SuperheroDataRepository(
     private val superheroXmlLocalDataSource: SuperheroXmlLocalDataSource,
-    private val superheroMockRemoteDataSource: SuperheroMockRemoteDataSource
+    private val superheroApiRemoteDataSource: SuperheroApiRemoteDataSource
 ) : SuperheroRepository {
 
     override fun getSuperheroes(): List<Superhero> {
         val superheroFromLocal = superheroXmlLocalDataSource.getSuperheroes()
         if (superheroFromLocal.isEmpty()) {
-            val superheroesFromRemote = superheroMockRemoteDataSource.getSuperheroes()
+            val superheroesFromRemote = superheroApiRemoteDataSource.getSuperheroes()
             superheroXmlLocalDataSource.saveAll(superheroesFromRemote)
             return superheroesFromRemote
         } else {
@@ -23,12 +24,15 @@ class SuperheroDataRepository(
 
     override fun getSuperhero(id: String): Superhero? {
         val superheroFromLocal = superheroXmlLocalDataSource.findById(id)
-        if (superheroFromLocal == null) {
-            superheroMockRemoteDataSource.getSuperhero(id)?.let {
+        return if (superheroFromLocal == null || superheroFromLocal.id !=id) {
+            val superheroFromRemote = superheroApiRemoteDataSource.getSuperhero(id)
+            superheroFromRemote?.let {
                 superheroXmlLocalDataSource.save(it)
-                return it
             }
+            superheroFromRemote
+        }else{
+            superheroFromLocal
         }
-        return superheroFromLocal
+
     }
 }

@@ -22,17 +22,6 @@ class SuperheroXmlLocalDataSource(private val context: Context) {
         editor.apply()
     }
 
-
-    fun getSuperhero(): Superhero {
-        sharedPreferences.apply {
-            return Superhero(
-                getString("id", "")!!,
-                getString("name", "")!!,
-                getString("image", "")!!
-            )
-        }
-    }
-
     fun findById(superhero: String): Superhero? {
         return sharedPreferences.getString(superhero, null)?.let { superhero ->
             gson.fromJson(superhero, Superhero::class.java)
