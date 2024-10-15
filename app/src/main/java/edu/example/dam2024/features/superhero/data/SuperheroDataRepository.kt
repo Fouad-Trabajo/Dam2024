@@ -11,7 +11,7 @@ class SuperheroDataRepository(
     private val superheroApiRemoteDataSource: SuperheroApiRemoteDataSource
 ) : SuperheroRepository {
 
-    override fun getSuperheroes(): List<Superhero> {
+    override suspend fun getSuperheroes(): List<Superhero> {
         val superheroFromLocal = superheroXmlLocalDataSource.getSuperheroes()
         if (superheroFromLocal.isEmpty()) {
             val superheroesFromRemote = superheroApiRemoteDataSource.getSuperheroes()
@@ -22,7 +22,7 @@ class SuperheroDataRepository(
         }
     }
 
-    override fun getSuperhero(id: String): Superhero? {
+    override suspend fun getSuperhero(id: String): Superhero? {
         val superheroFromLocal = superheroXmlLocalDataSource.findById(id)
         return if (superheroFromLocal == null || superheroFromLocal.id !=id) {
             val superheroFromRemote = superheroApiRemoteDataSource.getSuperhero(id)

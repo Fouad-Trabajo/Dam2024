@@ -75,7 +75,7 @@ class SuperheroDetailFragment : Fragment() {
         // Texto
         binding.titleSuperhero.text = superhero.name
         // Image
-        binding.image1.loadUrl(superhero.image)
+        binding.image1.loadUrl(superhero.images.md)
     }
 
     private fun getSuperheroId(): String {

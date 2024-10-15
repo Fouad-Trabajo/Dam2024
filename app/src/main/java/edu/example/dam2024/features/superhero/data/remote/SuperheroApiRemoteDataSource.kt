@@ -7,13 +7,13 @@ class SuperheroApiRemoteDataSource {
 
     val superheroApiClient = SuperheroApiClient()
 
-    fun getSuperheroes(): List<Superhero> {
+    suspend fun getSuperheroes(): List<Superhero> {
         superheroApiClient.retrofit
         val response = superheroApiClient.superheroApiService.getSuperheroes()
         return response.body() ?: emptyList()
     }
 
-    fun getSuperhero(id: String): Superhero? {
+    suspend fun getSuperhero(id: String): Superhero? {
         superheroApiClient.retrofit
         val response = superheroApiClient.superheroApiService.getSuperhero(id)
         return response.body()
