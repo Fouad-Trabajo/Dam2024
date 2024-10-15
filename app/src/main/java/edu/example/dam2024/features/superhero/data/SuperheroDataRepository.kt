@@ -24,13 +24,13 @@ class SuperheroDataRepository(
 
     override suspend fun getSuperhero(id: String): Superhero? {
         val superheroFromLocal = superheroXmlLocalDataSource.findById(id)
-        return if (superheroFromLocal == null || superheroFromLocal.id !=id) {
+        return if (superheroFromLocal == null) {
             val superheroFromRemote = superheroApiRemoteDataSource.getSuperhero(id)
             superheroFromRemote?.let {
                 superheroXmlLocalDataSource.save(it)
             }
             superheroFromRemote
-        }else{
+        } else {
             superheroFromLocal
         }
 

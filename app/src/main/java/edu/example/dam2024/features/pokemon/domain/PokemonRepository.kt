@@ -2,6 +2,6 @@ package edu.example.dam2024.features.pokemon.domain
 
 interface PokemonRepository {
 
-    fun getPokemon(id: String): Pokemon?
-    fun getPokemons(): List<Pokemon>
+    suspend fun getPokemon(id: String): Pokemon?
+    suspend fun getPokemons(): List<Pokemon>
 }

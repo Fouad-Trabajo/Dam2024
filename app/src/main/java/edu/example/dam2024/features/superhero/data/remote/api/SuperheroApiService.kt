@@ -1,4 +1,4 @@
-package edu.example.dam2024.features.superhero.data.remote
+package edu.example.dam2024.features.superhero.data.remote.api
 
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 import retrofit2.Response

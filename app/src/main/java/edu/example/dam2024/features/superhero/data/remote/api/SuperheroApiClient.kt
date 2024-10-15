@@ -1,4 +1,4 @@
-package edu.example.dam2024.features.superhero.data.remote
+package edu.example.dam2024.features.superhero.data.remote.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

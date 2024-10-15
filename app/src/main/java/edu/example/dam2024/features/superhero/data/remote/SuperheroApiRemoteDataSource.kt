@@ -1,21 +1,29 @@
 package edu.example.dam2024.features.superhero.data.remote
 
+import edu.example.dam2024.features.superhero.data.remote.api.SuperheroApiClient
 import edu.example.dam2024.features.superhero.domain.models.Superhero
-
 
 class SuperheroApiRemoteDataSource {
 
-    val superheroApiClient = SuperheroApiClient()
+    private val superheroApiClient = SuperheroApiClient()
 
     suspend fun getSuperheroes(): List<Superhero> {
-        superheroApiClient.retrofit
         val response = superheroApiClient.superheroApiService.getSuperheroes()
-        return response.body() ?: emptyList()
+        return if (response.isSuccessful) {
+            response.body() ?: emptyList()
+        } else {
+            // Manejo de errores, puedes lanzar una excepción o manejarlo como desees
+            emptyList() // o lanzar una excepción
+        }
     }
 
     suspend fun getSuperhero(id: String): Superhero? {
-        superheroApiClient.retrofit
         val response = superheroApiClient.superheroApiService.getSuperhero(id)
-        return response.body()
+        return if (response.isSuccessful) {
+            response.body()
+        } else {
+            // Manejo de errores, puedes lanzar una excepción o manejarlo como desees
+            null // o lanzar una excepción
+        }
     }
 }
