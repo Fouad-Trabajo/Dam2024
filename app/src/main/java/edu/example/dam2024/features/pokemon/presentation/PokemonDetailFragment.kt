@@ -75,7 +75,7 @@ class PokemonDetailFragment: Fragment() {
         // Nombre pokemon
         binding.namePokemon.text = pokemon.name
 
-        val imageUrl ="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+        val imageUrl ="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"
         // Cargar la imagen del pokemon
         binding.imgPokemon.loadUrl(imageUrl)
     }

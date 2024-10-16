@@ -14,7 +14,7 @@ class SuperheroViewHolder(private val view: View): RecyclerView.ViewHolder(view)
         binding = ViewSuperheroItemBinding.bind(view)
 
         binding.apply{
-            superheroImage.loadUrl(superhero.image)
+            superheroImage.loadUrl(superhero.images.md)
             superheroName.text = superhero.name
             view.setOnClickListener{
                 onClick(superhero.id)

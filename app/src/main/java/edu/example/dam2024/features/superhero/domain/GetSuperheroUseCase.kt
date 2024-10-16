@@ -4,7 +4,7 @@ import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 class GetSuperheroUseCase(private val superheroRepository: SuperheroRepository) {
 
-    operator fun invoke(id: String): Superhero? {
+    suspend operator fun invoke(id: String): Superhero? {
         return superheroRepository.getSuperhero(id)
     }
 }

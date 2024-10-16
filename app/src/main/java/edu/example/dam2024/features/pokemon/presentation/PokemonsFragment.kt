@@ -77,7 +77,7 @@ class PokemonsFragment: Fragment() {
             )
 
             pokemonAdapter.setEvent { pokemonId ->
-                navigateToMovieDetail(pokemonId)
+                navigateToPokemonDetail(pokemonId)
             }
             listPokemons.adapter = pokemonAdapter
         }
@@ -95,7 +95,7 @@ class PokemonsFragment: Fragment() {
         }
     }
 
-    private fun navigateToMovieDetail(pokemonId: String) {
+    private fun navigateToPokemonDetail(pokemonId: String) {
         findNavController().navigate(
             PokemonsFragmentDirections.actionFromPokemonsToPokemonsDetail(pokemonId)
         )

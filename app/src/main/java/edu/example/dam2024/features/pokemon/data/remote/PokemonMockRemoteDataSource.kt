@@ -9,7 +9,7 @@ import edu.example.dam2024.features.pokemon.domain.Type
 import edu.example.dam2024.features.pokemon.domain.TypeDetails
 
 class PokemonMockRemoteDataSource {
-
+/*
     private val pokemons = listOf(
         Pokemon(
             id = "1",
@@ -175,4 +175,6 @@ class PokemonMockRemoteDataSource {
         fun getPokemon(id: String): Pokemon? {
             return pokemons.firstOrNull { pokemon -> pokemon.id == id }
         }
+
+ */
 }

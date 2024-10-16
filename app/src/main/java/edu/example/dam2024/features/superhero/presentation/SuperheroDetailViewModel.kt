@@ -19,7 +19,7 @@ class SuperheroDetailViewModel(
 
 
     fun viewCreated(id: String) {
-        _uiState.value = (UiState(isLoading = true))
+        _uiState.value = UiState(isLoading = true)
         viewModelScope.launch(Dispatchers.IO) {
             val superhero = getSuperheroUseCase.invoke(id)
             _uiState.postValue(UiState(superhero = superhero))

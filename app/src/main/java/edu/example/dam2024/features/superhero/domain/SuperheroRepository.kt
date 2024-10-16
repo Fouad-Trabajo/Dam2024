@@ -3,6 +3,6 @@ package edu.example.dam2024.features.superhero.domain
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 interface SuperheroRepository {
-    fun getSuperheroes(): List<Superhero>
-    fun getSuperhero(id: String): Superhero?
+    suspend fun getSuperheroes(): List<Superhero>
+    suspend fun getSuperhero(id: String): Superhero?
 }

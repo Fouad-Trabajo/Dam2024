@@ -4,7 +4,7 @@ import edu.example.dam2024.features.movies.domain.models.Movie
 
 class GetPokemonUseCase(private val pokemonRepository: PokemonRepository) {
 
-    operator fun invoke(id: String): Pokemon? {
+    suspend operator fun invoke(id: String): Pokemon? {
         return pokemonRepository.getPokemon(id)
     }
 }

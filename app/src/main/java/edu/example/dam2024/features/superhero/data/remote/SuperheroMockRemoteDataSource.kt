@@ -3,7 +3,7 @@ package edu.example.dam2024.features.superhero.data.remote
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 class SuperheroMockRemoteDataSource {
-
+/*
     private val superheroes = listOf(
         Superhero(id = "1", name = "A-Bomb", image = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/1-a-bomb.jpg"),
         Superhero(id = "2", name = "Abe Sapien", image = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/2-abe-sapien.jpg"),
@@ -32,5 +32,5 @@ class SuperheroMockRemoteDataSource {
     fun getSuperhero(id: String): Superhero? {
         return getSuperheroes().find { it.id == id }
     }
-
+*/
 }
