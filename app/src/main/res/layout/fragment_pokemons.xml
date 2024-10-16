@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.pokemon.presentation.PokemonActivity">
-    <!-- Fila 1  android:background="@drawable/cinema_background" -->
+    tools:context=".features.pokemon.presentation.PokemonsFragment">
 
     <TextView
         android:id="@+id/title_pokemons"
