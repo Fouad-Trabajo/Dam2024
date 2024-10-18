@@ -1,7 +1,7 @@
 package edu.example.dam2024.app.data.api
 
-import edu.example.dam2024.features.pokemon.data.remote.api.PokemonApiService
-import edu.example.dam2024.features.superhero.data.remote.api.SuperheroApiService
+import edu.example.dam2024.features.pokemon.data.remote.PokemonApiService
+import edu.example.dam2024.features.superhero.data.remote.SuperheroApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

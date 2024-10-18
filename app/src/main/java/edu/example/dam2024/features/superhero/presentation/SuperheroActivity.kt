@@ -19,19 +19,7 @@ class SuperheroActivity : AppCompatActivity() {
 
 
 
-        // Show all superheroes in the logcat
-        //val superhero: List<Superhero> = viewModel.getSuperheroes()
-       // Log.d("@dev", superhero.toString())
 
-        // Call one superhero with clicker in the emulator
-        //bindData(superhero)
-        //viewModel.getSuperhero(superhero.first().id)
-
-        //Save, get and delete model in superheroes.xml
-        //textXml()
-
-        //Save, get and delete list of superheroes in superheroes.xml
-        //testListXml()
     }
 
 

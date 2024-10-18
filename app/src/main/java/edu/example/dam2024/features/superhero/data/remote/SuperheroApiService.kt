@@ -1,4 +1,4 @@
-package edu.example.dam2024.features.superhero.data.remote.api
+package edu.example.dam2024.features.superhero.data.remote
 
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 import retrofit2.Response //Esto es muy importante, porque hay otra librería que se llama okhttp3.Response

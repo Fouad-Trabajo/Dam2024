@@ -1,4 +1,4 @@
-import edu.example.dam2024.features.pokemon.data.remote.api.PokemonApiService
+import edu.example.dam2024.features.pokemon.data.remote.PokemonApiService
 import edu.example.dam2024.features.pokemon.domain.Pokemon
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

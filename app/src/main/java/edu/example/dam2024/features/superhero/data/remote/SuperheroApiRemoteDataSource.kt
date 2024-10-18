@@ -1,6 +1,5 @@
 package edu.example.dam2024.features.superhero.data.remote
 
-import edu.example.dam2024.features.superhero.data.remote.api.SuperheroApiService
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 
 
