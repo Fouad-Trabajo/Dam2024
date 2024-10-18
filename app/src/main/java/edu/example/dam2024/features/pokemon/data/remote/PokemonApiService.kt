@@ -1,4 +1,4 @@
-package edu.example.dam2024.features.pokemon.data.remote.api
+package edu.example.dam2024.features.pokemon.data.remote
 
 import edu.example.dam2024.features.pokemon.domain.Pokemon
 import edu.example.dam2024.features.pokemon.domain.PokemonListResponse
