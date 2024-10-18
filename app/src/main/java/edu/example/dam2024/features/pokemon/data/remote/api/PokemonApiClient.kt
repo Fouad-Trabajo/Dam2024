@@ -7,7 +7,7 @@ class PokemonApiClient {
 
     private val BASE_URL = "https://pokeapi.co/api/v2/"
 
-    val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
+    private val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create()).build()
 
     val pokemonApiService: PokemonApiService =
