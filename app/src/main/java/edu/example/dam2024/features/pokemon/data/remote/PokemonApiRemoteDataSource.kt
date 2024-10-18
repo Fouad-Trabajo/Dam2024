@@ -6,7 +6,7 @@ import kotlinx.coroutines.withContext
 class PokemonApiRemoteDataSource(private val pokemonApiService: PokemonApiService) {
 
 
-    suspend fun getPokemons(limit: Int = 20, offset: Int = 0): List<Pokemon> {
+    suspend fun getPokemons(limit: Int = 200, offset: Int = 0): List<Pokemon> {
         return withContext(Dispatchers.IO) {
             val response = pokemonApiService.getPokemons(limit, offset)
             val pokemonListItems = response.body()?.results ?: emptyList()
