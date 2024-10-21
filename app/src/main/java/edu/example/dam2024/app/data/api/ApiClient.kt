@@ -11,7 +11,7 @@ object ApiClient {
     private const val BASE_URL_POKEMON ="https://pokeapi.co/api/v2/"
 
     private fun provideRetrofit(): Retrofit {
-        return Retrofit.Builder().baseUrl(BASE_URL_POKEMON)
+        return Retrofit.Builder().baseUrl(BASE_URL_SUPERHERO)
             .addConverterFactory(GsonConverterFactory.create()).build()
         //Es muy importante añadir el converter
     }

@@ -15,7 +15,7 @@ retrofit = "2.11.0"
 mockito = "5.11.0"
 glide ="4.16.0"
 viewModelScope = "2.8.6"
-navigationComponent = "2.8.2"
+navigationComponent = "2.8.3"
 ktor = "3.0.0"
 
 [libraries]
