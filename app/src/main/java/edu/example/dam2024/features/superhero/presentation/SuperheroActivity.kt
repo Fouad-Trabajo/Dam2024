@@ -19,7 +19,7 @@ class SuperheroActivity : AppCompatActivity() {
     }
 
 
-    // Navegar entre las diferentes vistas de al aplicación
+    // Navegar entre las diferentes vistas de la aplicación
     private fun setupView() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.superhero_container) as NavHostFragment
