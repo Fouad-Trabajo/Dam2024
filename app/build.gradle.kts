@@ -68,8 +68,10 @@ dependencies {
 
     //Librerias para testing
     testImplementation(libs.junit)
-    testImplementation(libs.mockito.framework)
-    testImplementation(libs.mockito.junit)
+    //testImplementation(libs.mockito.framework)
+    //testImplementation(libs.mockito.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.junit.jupiter)
 
     //Librerías para Android-Testing
     androidTestImplementation(libs.androidx.junit)
