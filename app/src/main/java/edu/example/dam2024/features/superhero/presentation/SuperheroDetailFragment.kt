@@ -45,7 +45,7 @@ class SuperheroDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         superheroArgs.superheroId
 
-        view?.findViewById<MaterialToolbar>(R.id.toolbar)?.apply {
+        binding.toolbar.apply {
             setNavigationOnClickListener {
                 findNavController().navigateUp()
             }
@@ -53,7 +53,7 @@ class SuperheroDetailFragment : Fragment() {
         superheroFactory = SuperheroFactory(requireContext())
         viewModel = superheroFactory.buildSuperheroDetailViewModel()
         setupObserver()
-        getSuperheroId()?.let {
+        getSuperheroId().let {
             viewModel.viewCreated(it)
         }
 

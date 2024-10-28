@@ -17,7 +17,7 @@ import edu.example.dam2024.features.superhero.presentation.adapter.SuperheroAdap
 class SuperheroesFragment : Fragment() {
 
     private lateinit var superheroFactory: SuperheroFactory
-    private lateinit var viewModel: SuperheroesViewModel
+    private lateinit var superheroesViewModel: SuperheroesViewModel
 
     private var _binding: FragmentSuperheroesBinding? = null
     private val binding get() = _binding!!
@@ -37,9 +37,9 @@ class SuperheroesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         superheroFactory = SuperheroFactory(requireContext())
-        viewModel = superheroFactory.buildViewModel()
+        superheroesViewModel = superheroFactory.buildViewModel()
         setupObserver()
-        viewModel.viewCreated()
+        superheroesViewModel.viewCreated()
     }
 
     private fun setupObserver() {
@@ -62,8 +62,14 @@ class SuperheroesFragment : Fragment() {
             }
         }
         //uso la variable superheroObserver para "observar" el ViewModel
-        viewModel.uiState.observe(viewLifecycleOwner, superheroObserver)
+        superheroesViewModel.uiState.observe(viewLifecycleOwner, superheroObserver)
 
+        
+        val totalSuperheroesObserver = Observer<Int> { total ->
+            // Actualiza la interfaz de usuario con el total de superhéroes
+            binding.totalSuperheroes.text = "Total Superhéroes: $total"
+        }
+        superheroesViewModel.totalSuperheroes.observe(viewLifecycleOwner, totalSuperheroesObserver)
     }
 
     private fun setupView() {

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="LISTA DE POKEMONS"
+        android:text="@string/list_pokemons"
         android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,11 +21,12 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/totalPokemonsTextView"
+        android:id="@+id/totalPokemons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Pokémon: 0"
-        android:layout_margin="16dp"/>
+        android:text="@string/total_pokemons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_pokemons"
