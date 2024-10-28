@@ -7,28 +7,25 @@
     android:orientation="vertical"
     tools:context=".features.superhero.presentation.SuperheroesFragment">
 
-    <EditText
-        android:id="@+id/edit_1"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:hint="Busqueda"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <TextView
+        android:id="@+id/total_superheroes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_superheroes"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/title_superheroes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="LISTA DE SUPERHÉROES"
+        android:text="@string/list_superheroes"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_1"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView

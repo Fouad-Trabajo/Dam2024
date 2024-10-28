@@ -71,7 +71,7 @@ class PokemonsFragment : Fragment() {
         // Observador para el total de Pokémon
         val totalPokemonsObserver = Observer<Int> { total ->
             // Actualiza la interfaz de usuario con el total de Pokémon
-            binding.totalPokemonsTextView.text = "Total Pokémon: $total" // Asegúrate de tener un TextView en tu layout
+            binding.totalPokemons.text = "Total Pokémon: $total" // Asegúrate de tener un TextView en tu layout
         }
         pokemonsViewModel.totalPokemons.observe(viewLifecycleOwner, totalPokemonsObserver)
 

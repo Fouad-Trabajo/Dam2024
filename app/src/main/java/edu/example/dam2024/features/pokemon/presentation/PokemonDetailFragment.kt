@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.appbar.MaterialToolbar
+import edu.example.dam2024.R
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.app.extensions.loadUrl
 import edu.example.dam2024.databinding.FragmentPokemonDetailBinding
@@ -36,6 +39,14 @@ class PokemonDetailFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        pokemonArgs.pokemonId
+
+        binding.toolbar.apply {
+            setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
+        }
+
         pokemonFactory = PokemonFactory(requireContext())
         pokemonsViewModel = pokemonFactory.buildPokemonDetailViewModel()
         setupObserver()
