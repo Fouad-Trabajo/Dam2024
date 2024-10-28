@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.databinding.FragmentPokemonsBinding
 import edu.example.dam2024.features.movies.domain.models.Movie
@@ -16,7 +17,7 @@ import edu.example.dam2024.features.movies.presentation.MoviesViewModel
 import edu.example.dam2024.features.pokemon.domain.Pokemon
 import edu.example.dam2024.features.pokemon.presentation.adapter.PokemonAdapter
 
-class PokemonsFragment: Fragment() {
+class PokemonsFragment : Fragment() {
 
     private lateinit var pokemonFactory: PokemonFactory
     private lateinit var pokemonsViewModel: PokemonsViewModel
@@ -25,7 +26,7 @@ class PokemonsFragment: Fragment() {
     private var _binding: FragmentPokemonsBinding? = null
     private val binding get() = _binding!!
 
-    private val pokemonAdapter  = PokemonAdapter()
+    private val pokemonAdapter = PokemonAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +43,7 @@ class PokemonsFragment: Fragment() {
         pokemonFactory = PokemonFactory(requireContext())
         pokemonsViewModel = pokemonFactory.buildViewModel()
         setupObserver()
+        pokemonsViewModel.fetchTotalPokemons()
         pokemonsViewModel.viewCreated()
     }
 
@@ -66,6 +68,13 @@ class PokemonsFragment: Fragment() {
         //uso la variable movieObserver para observar el ViewModel
         pokemonsViewModel.uiState.observe(viewLifecycleOwner, pokemonObserver)
 
+        // Observador para el total de Pokémon
+        val totalPokemonsObserver = Observer<Int> { total ->
+            // Actualiza la interfaz de usuario con el total de Pokémon
+            binding.totalPokemonsTextView.text = "Total Pokémon: $total" // Asegúrate de tener un TextView en tu layout
+        }
+        pokemonsViewModel.totalPokemons.observe(viewLifecycleOwner, totalPokemonsObserver)
+
     }
 
 
@@ -80,11 +89,20 @@ class PokemonsFragment: Fragment() {
                 navigateToPokemonDetail(pokemonId)
             }
             listPokemons.adapter = pokemonAdapter
+
+            //Agregar un scroll para cargar más pokemon, al llegar al final del página
+            listPokemons.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    if (!recyclerView.canScrollVertically(1)) { //si ha llegado al final
+                        pokemonsViewModel.loadMorePokemons()
+                    }
+                }
+            })
         }
     }
 
     private fun bindData(pokemons: List<Pokemon>) {
-        pokemonAdapter.submitList(pokemons)
+        pokemonAdapter.addPokemons(pokemons)
     }
 
     private fun showError(error: ErrorApp) {

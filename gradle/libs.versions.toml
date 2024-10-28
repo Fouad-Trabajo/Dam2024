@@ -8,17 +8,16 @@ espressoCore = "3.6.1"
 appcompat = "1.7.0"
 kotlinxSerializationJson = "1.2.2"
 material = "1.12.0"
-activity = "1.9.2"
+activity = "1.9.3"
 constraintlayout = "2.1.4"
 gson = "2.11.0"
 retrofit = "2.11.0"
-mockito = "5.11.0"
 glide ="4.16.0"
 viewModelScope = "2.8.6"
 navigationComponent = "2.8.3"
-ktor = "3.0.0"
 mockk = "1.13.13"
 junitJupiter = "5.10.2"
+testCoroutines = "1.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -34,16 +33,15 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 gson-serializer = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
-mockito-framework = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
-mockito-junit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
+
 glide = { group ="com.github.bumptech.glide", name ="glide", version.ref="glide"}
 
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junitJupiter" }
+test-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "testCoroutines" }
 
 viewmodel-scope = { group ="androidx.lifecycle", name ="lifecycle-viewmodel-ktx", version.ref="viewModelScope"}
 nav-ui = { group ="androidx.navigation", name ="navigation-ui", version.ref="navigationComponent"}
-nav-fragment = { group ="androidx.navigation", name ="navigation-fragment", version.ref="navigationComponent"}
 nav-fragment-ktx = { group ="androidx.navigation", name="navigation-fragment-ktx", version.ref ="navigationComponent"}
 
 [plugins]

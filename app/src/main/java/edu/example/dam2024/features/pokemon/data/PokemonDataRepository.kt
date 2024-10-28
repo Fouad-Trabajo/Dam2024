@@ -1,6 +1,6 @@
 package edu.example.dam2024.features.pokemon.data
 
-import PokemonApiRemoteDataSource
+import edu.example.dam2024.features.pokemon.data.remote.PokemonApiRemoteDataSource
 import edu.example.dam2024.features.pokemon.data.local.PokemonXmlLocalDataSource
 import edu.example.dam2024.features.pokemon.domain.Pokemon
 import edu.example.dam2024.features.pokemon.domain.PokemonRepository
@@ -10,7 +10,7 @@ class PokemonDataRepository(
     private val pokemonApiRemoteDataSource: PokemonApiRemoteDataSource
 ) : PokemonRepository {
 
-    override suspend fun getPokemons(): List<Pokemon> {
+    override suspend fun getPokemons(url: String): List<Pokemon> {
         val pokemonFromLocal = pokemonXmlLocalDataSource.getPokemons()
         if (pokemonFromLocal.isEmpty()) {
             val pokemonFromRemote = pokemonApiRemoteDataSource.getPokemons()

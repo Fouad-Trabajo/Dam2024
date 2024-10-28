@@ -25,4 +25,11 @@ class PokemonAdapter : ListAdapter<Pokemon, PokemonViewHolder>(PokemonDiffUtil()
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
         holder.bind(currentList[position], onClick)
     }
+
+    //Método para añdir nuevos elementos(Pokemon) a la lista existente
+    fun addPokemons(newPokemons: List<Pokemon>) {
+        val currentList =  currentList.toMutableList()
+        currentList.addAll(newPokemons)
+        submitList(currentList)
+    }
 }
