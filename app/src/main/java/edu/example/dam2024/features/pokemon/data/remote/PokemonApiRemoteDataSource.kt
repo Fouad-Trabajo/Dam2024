@@ -1,4 +1,5 @@
-import edu.example.dam2024.features.pokemon.data.remote.PokemonApiService
+package edu.example.dam2024.features.pokemon.data.remote
+
 import edu.example.dam2024.features.pokemon.domain.Pokemon
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -6,7 +7,7 @@ import kotlinx.coroutines.withContext
 class PokemonApiRemoteDataSource(private val pokemonApiService: PokemonApiService) {
 
 
-    suspend fun getPokemons(limit: Int = 200, offset: Int = 0): List<Pokemon> {
+    suspend fun getPokemons(limit: Int = 1000, offset: Int = 0): List<Pokemon> {
         return withContext(Dispatchers.IO) {
             val response = pokemonApiService.getPokemons(limit, offset)
             val pokemonListItems = response.body()?.results ?: emptyList()
@@ -16,6 +17,13 @@ class PokemonApiRemoteDataSource(private val pokemonApiService: PokemonApiServic
                 val pokemonResponse = pokemonApiService.getPokemon(id)
                 pokemonResponse.body()
             }
+        }
+    }
+
+    suspend fun getTotalPokemons(): String {
+        return withContext(Dispatchers.IO) {
+            val response = pokemonApiService.getAllPokemons()
+            response.count // Asegúrate de que 'count' sea el campo correcto
         }
     }
 

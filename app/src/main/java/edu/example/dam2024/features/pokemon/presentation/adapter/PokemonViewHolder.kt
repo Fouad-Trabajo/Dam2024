@@ -8,15 +8,16 @@ import edu.example.dam2024.databinding.ViewPokemonItemBinding
 import edu.example.dam2024.features.movies.domain.models.Movie
 import edu.example.dam2024.features.pokemon.domain.Pokemon
 
-class PokemonViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
+class PokemonViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
     private lateinit var binding: ViewPokemonItemBinding
 
-    fun bind(pokemon: Pokemon, onClick: (String) -> Unit){
+    fun bind(pokemon: Pokemon, onClick: (String) -> Unit) {
         binding = ViewPokemonItemBinding.bind(view)
 
         binding.apply {
-            val imageUrl ="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"
+            val imageUrl =
+                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"
             pokemonImage.loadUrl(imageUrl)
             pokemonName.text = pokemon.name
             view.setOnClickListener {

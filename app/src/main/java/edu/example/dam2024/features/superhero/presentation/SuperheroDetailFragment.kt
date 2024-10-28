@@ -9,7 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.appbar.MaterialToolbar
+import edu.example.dam2024.R
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.app.extensions.loadUrl
 
@@ -42,6 +45,11 @@ class SuperheroDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         superheroArgs.superheroId
 
+        view?.findViewById<MaterialToolbar>(R.id.toolbar)?.apply {
+            setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
+        }
         superheroFactory = SuperheroFactory(requireContext())
         viewModel = superheroFactory.buildSuperheroDetailViewModel()
         setupObserver()

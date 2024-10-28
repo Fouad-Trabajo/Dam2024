@@ -1,6 +1,6 @@
 package edu.example.dam2024.features.pokemon.presentation
 
-import PokemonApiRemoteDataSource
+import edu.example.dam2024.features.pokemon.data.remote.PokemonApiRemoteDataSource
 import android.content.Context
 import edu.example.dam2024.app.data.api.ApiClient
 import edu.example.dam2024.features.pokemon.data.PokemonDataRepository
@@ -20,7 +20,7 @@ class PokemonFactory(private val context: Context) {
 
 
     fun buildViewModel(): PokemonsViewModel {
-        return PokemonsViewModel(getPokemonsUseCase)
+        return PokemonsViewModel(getPokemonsUseCase,pokemonApiRemoteDataSource)
     }
 
     fun buildPokemonDetailViewModel(): PokemonDetailViewModel {

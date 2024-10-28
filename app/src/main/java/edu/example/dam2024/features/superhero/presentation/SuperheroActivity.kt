@@ -1,53 +1,38 @@
 package edu.example.dam2024.features.superhero.presentation
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import edu.example.dam2024.R
+import edu.example.dam2024.databinding.ActivitySuperheroesBinding
 
 class SuperheroActivity : AppCompatActivity() {
 
-    //Inicialización
-    private lateinit var superheroFactory : SuperheroFactory
-    private lateinit var viewModel : SuperheroesViewModel
-
+    private lateinit var binding: ActivitySuperheroesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_superheroes)
-
-
-
-
+        binding = ActivitySuperheroesBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setupView()
     }
 
 
-/*
-    private fun textXml() {
-        val superheroXmlLocalDataSource = SuperheroXmlLocalDataSource(this)
-        val superhero = viewModel.getSuperhero("1")
-        superhero?.let {
-            superheroXmlLocalDataSource.save(it) //Guardar el superhéroe en el archivo xml
+    // Navegar entre las diferentes vistas de la aplicación
+    private fun setupView() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.superhero_container) as NavHostFragment
+
+        val navController = navHostFragment.navController
+        binding.menuActivitySuperhero.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.fragment_superheroes || destination.id == R.id.fragment_superhero_2) {
+                binding.menuActivitySuperhero.visibility = View.VISIBLE
+            } else {
+                binding.menuActivitySuperhero.visibility = View.GONE
+            }
         }
-        val superheroSave =
-            superheroXmlLocalDataSource.getSuperhero() //Obtener el superhero del xml
-        Log.d("@dev", superheroSave.toString())
-
-        //Delete superhero in superheroes.xml
-        superheroXmlLocalDataSource.delete()
     }
-
-    private fun testListXml(){
-        val superheroXmlLocalDataSource = SuperheroXmlLocalDataSource(this)
-        val superheroes = viewModel.getSuperheroes()
-        superheroXmlLocalDataSource.saveAll(superheroes)
-
-        // Get list of superheroes in superheroes.xml
-        val superheroSave = superheroXmlLocalDataSource.getSuperheroes()
-        Log.d("@dev", superheroSave.toString())
-
-    }
-
- */
 }
