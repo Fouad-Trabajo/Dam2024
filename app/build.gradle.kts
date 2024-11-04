@@ -2,16 +2,17 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.navigation.safeargs.kotlin)
+    alias(libs.plugins.ksp)
 }
 
 android {
     namespace = "edu.example.dam2024"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "edu.example.dam2024"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -65,11 +66,17 @@ dependencies {
     implementation(libs.nav.ui)
     api(libs.nav.fragment.ktx)
 
+    //Librerías para inyección de dependencias (Koin)
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.android)
+    implementation(libs.koin.annotations)
+
+    //KSP
+    ksp(libs.koin.ksp)
 
     //Librerias para testing
     testImplementation(libs.junit)
-    //testImplementation(libs.mockito.framework)
-    //testImplementation(libs.mockito.junit)
+    testImplementation(libs.test.coroutines)
     testImplementation(libs.mockk)
     testImplementation(libs.junit.jupiter)
 

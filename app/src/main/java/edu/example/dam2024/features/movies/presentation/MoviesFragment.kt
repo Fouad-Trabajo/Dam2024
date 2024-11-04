@@ -14,11 +14,14 @@ import edu.example.dam2024.databinding.FragmentMoviesBinding
 import edu.example.dam2024.features.movies.data.remote.MovieMockRemoteDataSource
 import edu.example.dam2024.features.movies.domain.models.Movie
 import edu.example.dam2024.features.movies.presentation.adapter.MovieAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
 
-    private lateinit var movieFactory: MovieFactory
-    private lateinit var viewModel: MoviesViewModel
+    //private lateinit var movieFactory: MovieFactory
+    //private lateinit var viewModel: MoviesViewModel
+
+    val moviesViewModel : MoviesViewModel by viewModel()
 
     private var _binding: FragmentMoviesBinding? = null
     private val binding get() = _binding!! //!! es mala práctica, se puede utilizar para test
@@ -38,12 +41,12 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
     // Para
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        movieFactory = MovieFactory(requireContext())
-        viewModel = movieFactory.buildViewModel()
+        //movieFactory = MovieFactory(requireContext())
+        //viewModel = movieFactory.buildViewModel()
 
 
         setupObserver()
-        viewModel.viewCreated()
+        moviesViewModel.viewCreated()
     }
 
 
@@ -66,7 +69,7 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
             }
         }
         //uso la variable movieObserver para observar el ViewModel
-        viewModel.uiState.observe(viewLifecycleOwner, movieObserver)
+        moviesViewModel.uiState.observe(viewLifecycleOwner, movieObserver)
         /** no podemos poner this, porque el fragmento no hereda de ViewLifeCycleOwner,
         MoviesActivity si que hereda de ViewLifeCycleOwner con el AppCompatActivity */
     }

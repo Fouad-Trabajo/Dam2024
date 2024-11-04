@@ -4,11 +4,12 @@ import edu.example.dam2024.features.movies.data.local.MovieXmlLocalDataSource
 import edu.example.dam2024.features.movies.data.remote.MovieMockRemoteDataSource
 import edu.example.dam2024.features.movies.domain.models.Movie
 import edu.example.dam2024.features.movies.domain.usecases.MovieRepository
+import org.koin.core.annotation.Single
 
 /**
  *  Naming: Modelo + DataRepository
  */
-
+@Single
 class MovieDataRepository(
     private val movieXmlLocalDataSource: MovieXmlLocalDataSource,
     private val mockRemoteDataSource: MovieMockRemoteDataSource

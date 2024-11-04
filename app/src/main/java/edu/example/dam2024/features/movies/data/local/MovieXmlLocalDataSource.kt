@@ -4,7 +4,9 @@ import android.content.Context
 import com.google.gson.Gson
 import edu.example.dam2024.R
 import edu.example.dam2024.features.movies.domain.models.Movie
+import org.koin.core.annotation.Single
 
+@Single
 class MovieXmlLocalDataSource(private val context: Context) {
     //Tambien le puedo pasar un MovieActivity y heredar de Context igualmente
 

@@ -1,11 +1,13 @@
 package edu.example.dam2024.features.movies.data.remote
 
 import edu.example.dam2024.features.movies.domain.models.Movie
+import org.koin.core.annotation.Single
 
 /**
  * Naming: Modelo + Tecnología + RemoteDataSource (Fuente de datos local)
  */
 
+@Single //Con ApiRemoteDataSource es lo mismo
 class MovieMockRemoteDataSource {
 
     private val movies = listOf(

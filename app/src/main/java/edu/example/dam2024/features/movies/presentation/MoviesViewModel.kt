@@ -8,9 +8,11 @@ import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.features.movies.domain.models.Movie
 import edu.example.dam2024.features.movies.domain.usecases.GetMoviesUseCase
 import kotlinx.coroutines.*
+import org.koin.android.annotation.KoinViewModel
 
 
 // El ViewModel sobrevive al ciclo de vida del software
+@KoinViewModel
 class MoviesViewModel(
     private val getMoviesUseCase: GetMoviesUseCase
 ) : ViewModel() {
