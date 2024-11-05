@@ -21,7 +21,7 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
     //private lateinit var movieFactory: MovieFactory
     //private lateinit var viewModel: MoviesViewModel
 
-    val moviesViewModel : MoviesViewModel by viewModel()
+    private val moviesViewModel : MoviesViewModel by viewModel()
 
     private var _binding: FragmentMoviesBinding? = null
     private val binding get() = _binding!! //!! es mala práctica, se puede utilizar para test
