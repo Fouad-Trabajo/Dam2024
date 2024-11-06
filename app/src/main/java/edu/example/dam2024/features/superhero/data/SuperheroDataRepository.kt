@@ -5,7 +5,9 @@ import edu.example.dam2024.features.superhero.data.remote.SuperheroApiRemoteData
 import edu.example.dam2024.features.superhero.data.remote.SuperheroMockRemoteDataSource
 import edu.example.dam2024.features.superhero.domain.SuperheroRepository
 import edu.example.dam2024.features.superhero.domain.models.Superhero
+import org.koin.core.annotation.Single
 
+@Single
 class SuperheroDataRepository(
     private val superheroXmlLocalDataSource: SuperheroXmlLocalDataSource,
     private val superheroApiRemoteDataSource: SuperheroApiRemoteDataSource

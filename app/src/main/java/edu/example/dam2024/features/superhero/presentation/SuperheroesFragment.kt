@@ -13,11 +13,14 @@ import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.databinding.FragmentSuperheroesBinding
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 import edu.example.dam2024.features.superhero.presentation.adapter.SuperheroAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SuperheroesFragment : Fragment() {
 
-    private lateinit var superheroFactory: SuperheroFactory
-    private lateinit var superheroesViewModel: SuperheroesViewModel
+    //private lateinit var superheroFactory: SuperheroFactory
+    //private lateinit var superheroesViewModel: SuperheroesViewModel
+
+    private val superheroesViewModel: SuperheroesViewModel by viewModel()
 
     private var _binding: FragmentSuperheroesBinding? = null
     private val binding get() = _binding!!
@@ -36,8 +39,8 @@ class SuperheroesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        superheroFactory = SuperheroFactory(requireContext())
-        superheroesViewModel = superheroFactory.buildViewModel()
+        //superheroFactory = SuperheroFactory(requireContext())
+        //superheroesViewModel = superheroFactory.buildViewModel()
         setupObserver()
         superheroesViewModel.viewCreated()
     }
@@ -69,7 +72,7 @@ class SuperheroesFragment : Fragment() {
             // Actualiza la interfaz de usuario con el total de superhéroes
             binding.totalSuperheroes.text = "Total Superhéroes: $total"
         }
-        superheroesViewModel.totalSuperheroes.observe(viewLifecycleOwner, totalSuperheroesObserver)
+        //superheroesViewModel.totalSuperheroes.observe(viewLifecycleOwner, totalSuperheroesObserver)
     }
 
     private fun setupView() {

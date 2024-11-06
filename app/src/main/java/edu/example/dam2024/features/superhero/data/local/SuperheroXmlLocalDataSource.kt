@@ -4,7 +4,9 @@ import android.content.Context
 import com.google.gson.Gson
 import edu.example.dam2024.R
 import edu.example.dam2024.features.superhero.domain.models.Superhero
+import org.koin.core.annotation.Single
 
+@Single
 class SuperheroXmlLocalDataSource(private val context: Context) {
 
     private val gson = Gson()

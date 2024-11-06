@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.databinding.FragmentMoviesBinding
-import edu.example.dam2024.features.movies.data.remote.MovieMockRemoteDataSource
 import edu.example.dam2024.features.movies.domain.models.Movie
 import edu.example.dam2024.features.movies.presentation.adapter.MovieAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,7 +20,7 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
     //private lateinit var movieFactory: MovieFactory
     //private lateinit var viewModel: MoviesViewModel
 
-    val moviesViewModel : MoviesViewModel by viewModel()
+    private val moviesViewModel: MoviesViewModel by viewModel()
 
     private var _binding: FragmentMoviesBinding? = null
     private val binding get() = _binding!! //!! es mala práctica, se puede utilizar para test
@@ -38,7 +37,7 @@ class MoviesFragment : Fragment() { //No se puede poner fragment sin un activity
         return binding.root
     }
 
-    // Para
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //movieFactory = MovieFactory(requireContext())

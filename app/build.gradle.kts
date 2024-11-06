@@ -59,6 +59,10 @@ dependencies {
     // Librerías para interactuar con la API superhero.xml y enviar solicitudes de red
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter)
+
+    //Librerías para logging-retrofit
+    implementation(libs.okhttp.log.interceptor)
+
     implementation(libs.glide)
     implementation(libs.viewmodel.scope)
 
@@ -73,6 +77,8 @@ dependencies {
 
     //KSP
     ksp(libs.koin.ksp)
+
+
 
     //Librerias para testing
     testImplementation(libs.junit)

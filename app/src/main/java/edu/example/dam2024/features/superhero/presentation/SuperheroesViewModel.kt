@@ -5,8 +5,9 @@ import edu.example.dam2024.features.superhero.domain.GetSuperheroesUseCase
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 import kotlinx.coroutines.*
 import androidx.lifecycle.*
+import org.koin.android.annotation.KoinViewModel
 
-
+@KoinViewModel
 class SuperheroesViewModel(
     private val getSuperheroesUseCase: GetSuperheroesUseCase
 ) : ViewModel() {
@@ -21,7 +22,7 @@ class SuperheroesViewModel(
     fun viewCreated() {
         _uiState.value = UiState(isLoading = true)
         viewModelScope.launch(Dispatchers.IO) {
-            val superheroes = getSuperheroesUseCase()
+            val superheroes = getSuperheroesUseCase.invoke()
             _uiState.postValue(UiState(superheroes = superheroes))
             _totalSuperheroes.postValue(superheroes.size)
         }
