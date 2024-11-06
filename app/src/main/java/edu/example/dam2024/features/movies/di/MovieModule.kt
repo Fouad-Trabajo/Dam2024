@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 @Module
 @ComponentScan
 class MovieModule {
-    
+
     @Single
     fun provideMovieService(retrofit: Retrofit): MovieService = 
         retrofit.create(MovieService::class.java)
