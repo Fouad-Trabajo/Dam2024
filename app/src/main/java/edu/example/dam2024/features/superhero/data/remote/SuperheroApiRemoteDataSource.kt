@@ -4,12 +4,12 @@ import edu.example.dam2024.features.superhero.domain.models.Superhero
 import org.koin.core.annotation.Single
 
 @Single
-class SuperheroApiRemoteDataSource(private val superheroService: SuperheroService) {
+class SuperheroApiRemoteDataSource(private val superheroApiService: SuperheroApiService) {
 
 
     // los modelos ApiModel no deben llegar al DataRepistory NUNCA
     suspend fun getSuperheroes(): List<Superhero> {
-        val response = superheroService.getSuperheroes()
+        val response = superheroApiService.getSuperheroes()
         return if (response.isSuccessful) {
              response.body()!!.map{ it.toModel()}
         }else{
@@ -18,7 +18,7 @@ class SuperheroApiRemoteDataSource(private val superheroService: SuperheroServic
     }
 
     suspend fun getSuperhero(id: String): Superhero {
-        val response = superheroService.getSuperhero(id)
+        val response = superheroApiService.getSuperhero(id)
         return response.body()!!.toModel()
     }
 }

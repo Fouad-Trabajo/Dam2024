@@ -12,9 +12,9 @@ class SuperheroFactory(private val context: Context) {
 
     //Todas estas dependencias, deben seguir un orden de dependencia
 
-    //private val superheroApiService = ApiClient.provideSuperheroService()
-    private val superheroService =
-    private val superheroApiRemoteDataSource = SuperheroApiRemoteDataSource(superheroService)
+    private val superheroApiService = ApiClient.provideSuperheroService()
+    //private val superheroService =
+    private val superheroApiRemoteDataSource = SuperheroApiRemoteDataSource(superheroApiService)
     private val superheroXmlLocalDataSource = SuperheroXmlLocalDataSource(context)
     private val superheroDataRepository =
         SuperheroDataRepository(superheroXmlLocalDataSource, superheroApiRemoteDataSource) //orden

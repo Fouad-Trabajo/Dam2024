@@ -102,7 +102,7 @@ class PokemonsFragment : Fragment() {
     }
 
     private fun bindData(pokemons: List<Pokemon>) {
-        pokemonAdapter.addPokemons(pokemons)
+        pokemonAdapter.addPokemons(pokemons.sortedBy { it.id.toInt() })
     }
 
     private fun showError(error: ErrorApp) {
