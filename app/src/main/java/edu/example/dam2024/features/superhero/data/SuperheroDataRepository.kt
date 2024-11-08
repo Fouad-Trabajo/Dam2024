@@ -2,7 +2,6 @@ package edu.example.dam2024.features.superhero.data
 
 import edu.example.dam2024.features.superhero.data.local.SuperheroXmlLocalDataSource
 import edu.example.dam2024.features.superhero.data.remote.SuperheroApiRemoteDataSource
-import edu.example.dam2024.features.superhero.data.remote.SuperheroMockRemoteDataSource
 import edu.example.dam2024.features.superhero.domain.SuperheroRepository
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 import org.koin.core.annotation.Single
@@ -22,6 +21,19 @@ class SuperheroDataRepository(
         } else {
             return superheroFromLocal
         }
+        /**
+        ´´´
+        superheroApiRemoteDataSource.getSuperheroes().fold{
+        {
+        //success
+        },{
+        //failure
+        }
+        }
+        ´´´
+
+
+         */
     }
 
     override suspend fun getSuperhero(id: String): Superhero? {
