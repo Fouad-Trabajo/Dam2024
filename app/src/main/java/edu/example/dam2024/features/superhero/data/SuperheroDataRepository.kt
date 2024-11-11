@@ -21,7 +21,8 @@ class SuperheroDataRepository(
         } else {
             return superheroFromLocal
         }
-    }
+    } //Debo mirar el caso de uso del proyecto de Chema, para ver como lo tiene
+    // a ver si eso es el problema que tengo en el DataRepository
 
     /**
      * ```
