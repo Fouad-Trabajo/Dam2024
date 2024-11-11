@@ -1,7 +1,7 @@
 package edu.example.dam2024.app.data.api
 
 import edu.example.dam2024.features.pokemon.data.remote.PokemonApiService
-import edu.example.dam2024.features.superhero.data.remote.SuperheroApiService
+import edu.example.dam2024.features.superhero.data.remote.SuperheroService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -31,8 +31,8 @@ object ApiClient {
     }
 
     // Métodos específicos para obtener tus servicios
-    fun provideSuperheroService(): SuperheroApiService {
-        return provideService(BASE_URL_SUPERHERO, SuperheroApiService::class.java)
+    fun provideSuperheroService(): SuperheroService {
+        return provideService(BASE_URL_SUPERHERO, SuperheroService::class.java)
     }
 
     fun providePokemonService(): PokemonApiService {

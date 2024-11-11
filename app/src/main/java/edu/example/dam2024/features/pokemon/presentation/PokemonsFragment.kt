@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.databinding.FragmentPokemonsBinding
-import edu.example.dam2024.features.movies.domain.models.Movie
-import edu.example.dam2024.features.movies.presentation.MoviesViewModel
 import edu.example.dam2024.features.pokemon.domain.Pokemon
 import edu.example.dam2024.features.pokemon.presentation.adapter.PokemonAdapter
 
@@ -107,9 +105,10 @@ class PokemonsFragment : Fragment() {
 
     private fun showError(error: ErrorApp) {
         when (error) {
-            ErrorApp.DataErrorApp -> TODO()
             ErrorApp.InternetErrorApp -> TODO()
             ErrorApp.ServerErrorApp -> TODO()
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.UnknowErrorApp -> TODO()
         }
     }
 

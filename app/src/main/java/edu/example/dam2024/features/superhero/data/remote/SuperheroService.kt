@@ -1,13 +1,12 @@
 package edu.example.dam2024.features.superhero.data.remote
 
-import edu.example.dam2024.features.superhero.domain.models.Superhero
-import retrofit2.Response
+import retrofit2.Response //Esto es muy importante, porque hay otra librería que se llama okhttp3.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface SuperheroService {
 
-    // REST API: POST: Modificar información, GET:Obtener información, DELETE, PUT: Añadir información
+    // REST API: POST: Modificar información, GET:Obtener información, DELETE, PUT:Añadir información
 
     @GET("all.json")
     suspend fun getSuperheroes(): Response<List<SuperheroApiModel>>

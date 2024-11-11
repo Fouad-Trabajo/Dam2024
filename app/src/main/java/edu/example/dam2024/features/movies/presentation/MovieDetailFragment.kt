@@ -88,9 +88,10 @@ class MovieDetailFragment : Fragment() {
 
     private fun showError(error: ErrorApp) {
         when (error) {
-            ErrorApp.DataErrorApp -> TODO()
             ErrorApp.InternetErrorApp -> TODO()
             ErrorApp.ServerErrorApp -> TODO()
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.UnknowErrorApp -> TODO()
         }
 
     }

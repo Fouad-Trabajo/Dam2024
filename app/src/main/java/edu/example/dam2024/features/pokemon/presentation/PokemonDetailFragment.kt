@@ -9,12 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.appbar.MaterialToolbar
-import edu.example.dam2024.R
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.app.extensions.loadUrl
 import edu.example.dam2024.databinding.FragmentPokemonDetailBinding
-import edu.example.dam2024.features.movies.domain.models.Movie
 import edu.example.dam2024.features.pokemon.domain.Pokemon
 
 class PokemonDetailFragment: Fragment() {
@@ -93,9 +90,10 @@ class PokemonDetailFragment: Fragment() {
 
     private fun showError(error: ErrorApp) {
         when (error) {
-            ErrorApp.DataErrorApp -> TODO()
             ErrorApp.InternetErrorApp -> TODO()
             ErrorApp.ServerErrorApp -> TODO()
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.UnknowErrorApp -> TODO()
         }
 
     }

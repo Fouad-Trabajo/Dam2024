@@ -13,7 +13,6 @@ import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.databinding.FragmentSuperheroesBinding
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 import edu.example.dam2024.features.superhero.presentation.adapter.SuperheroAdapter
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SuperheroesFragment : Fragment() {
 
@@ -96,9 +95,10 @@ class SuperheroesFragment : Fragment() {
 
     private fun showError(error: ErrorApp) {
         when (error) {
-            ErrorApp.DataErrorApp -> TODO()
             ErrorApp.InternetErrorApp -> TODO()
             ErrorApp.ServerErrorApp -> TODO()
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.UnknowErrorApp -> TODO()
         }
     }
 

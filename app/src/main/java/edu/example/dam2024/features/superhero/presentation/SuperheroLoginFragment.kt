@@ -8,11 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import edu.example.dam2024.R
 import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.databinding.FragmentLoginSuperheroBinding
-import edu.example.dam2024.databinding.FragmentSuperheroesBinding
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 import edu.example.dam2024.features.superhero.presentation.adapter.SuperheroAdapter
 
@@ -84,9 +81,10 @@ class SuperheroLoginFragment : Fragment() {
 
     private fun showError(error: ErrorApp) {
         when (error) {
-            ErrorApp.DataErrorApp -> TODO()
             ErrorApp.InternetErrorApp -> TODO()
             ErrorApp.ServerErrorApp -> TODO()
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.UnknowErrorApp -> TODO()
         }
     }
 

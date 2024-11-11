@@ -12,7 +12,7 @@ class SuperheroDataRepository(
     private val superheroApiRemoteDataSource: SuperheroApiRemoteDataSource
 ) : SuperheroRepository {
 
-    override suspend fun getSuperheroes(): List<Superhero> {
+    override suspend fun getSuperheroesAnterior(): List<Superhero> {
         val superheroFromLocal = superheroXmlLocalDataSource.getSuperheroes()
         if (superheroFromLocal.isEmpty()) {
             val superheroesFromRemote = superheroApiRemoteDataSource.getSuperheroes()
@@ -21,20 +21,35 @@ class SuperheroDataRepository(
         } else {
             return superheroFromLocal
         }
-        /**
-        ´´´
-        superheroApiRemoteDataSource.getSuperheroes().fold{
-        {
-        //success
-        },{
-        //failure
-        }
-        }
-        ´´´
-
-
-         */
     }
+
+    /**
+     * ```
+    override suspend fun getSuperheroes(): List<Superhero> {
+    // Intenta obtener datos desde el almacenamiento local
+    val superheroesFromLocal = superheroXmlLocalDataSource.getSuperheroes()
+
+    // Si no hay datos locales, intenta obtenerlos de la API
+    return if (superheroesFromLocal.isEmpty()) {
+    when (val result = superheroApiRemoteDataSource.getSuperheroes()) {
+    is Result.Success -> {
+    val superheroes = result.getOrNull() ?: emptyList()
+    superheroXmlLocalDataSource.saveAll(superheroes)
+    superheroes
+    }
+    is Result.Failure -> {
+    // Maneja el error devolviendo una lista vacía o lanzando una excepción si prefieres
+    emptyList()
+    }
+    }
+    } else {
+    // Devuelve los datos locales si están disponibles
+    superheroesFromLocal
+        }
+    }
+    ```
+     */
+
 
     override suspend fun getSuperhero(id: String): Superhero? {
         val superheroFromLocal = superheroXmlLocalDataSource.findById(id)

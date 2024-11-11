@@ -1,9 +1,19 @@
 package edu.example.dam2024.app.domain
 
-sealed class ErrorApp : Throwable() { //Son enum vitaminados (llenos de esteroides)
+sealed class ErrorApp : Throwable() {
+    object InternetErrorApp : ErrorApp() {
+        private fun readResolve(): Any = InternetErrorApp
+    }
 
-    object InternetErrorApp : ErrorApp() //cambiar object por class
-    object ServerErrorApp: ErrorApp()
-    object DataErrorApp: ErrorApp()
-    //object UnknownErrorApp: ErrorApp()
+    object ServerErrorApp : ErrorApp() {
+        private fun readResolve(): Any = ServerErrorApp
+    }
+
+    object DataErrorApp : ErrorApp() {
+        private fun readResolve(): Any = DataErrorApp
+    }
+
+    object UnknowErrorApp : ErrorApp() {
+        private fun readResolve(): Any = UnknowErrorApp
+    }
 }
