@@ -12,14 +12,14 @@ class SuperheroDataRepository(
     private val superheroApiRemoteDataSource: SuperheroApiRemoteDataSource
 ) : SuperheroRepository {
 
-    override suspend fun getSuperheroesAnterior(): List<Superhero> {
+    override suspend fun getSuperheroes(): Result<List<Superhero>> {
         val superheroFromLocal = superheroXmlLocalDataSource.getSuperheroes()
-        if (superheroFromLocal.isEmpty()) {
+        return if (superheroFromLocal.isEmpty()) {
             val superheroesFromRemote = superheroApiRemoteDataSource.getSuperheroes()
             superheroXmlLocalDataSource.saveAll(superheroesFromRemote)
-            return superheroesFromRemote
+            superheroesFromRemote
         } else {
-            return superheroFromLocal
+            superheroFromLocal
         }
     } //Debo mirar el caso de uso del proyecto de Chema, para ver como lo tiene
     // a ver si eso es el problema que tengo en el DataRepository

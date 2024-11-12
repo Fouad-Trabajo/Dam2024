@@ -1,7 +1,5 @@
 package edu.example.dam2024.app.data.api
 
-import edu.example.dam2024.features.pokemon.data.remote.PokemonApiService
-import edu.example.dam2024.features.superhero.data.remote.SuperheroService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -14,28 +12,10 @@ object ApiClient {
     // Un mapa para almacenar servicios
     private val serviceMap = mutableMapOf<String, Any>()
 
-    // Método genérico para crear el cliente Retrofit
-    private fun <T> createService(baseUrl: String, serviceClass: Class<T>): T {
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BASE_URL_POKEMON)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(serviceClass)
-    }
-
-    // Método para obtener un servicio, creando uno nuevo si no existe
-    private fun <T : Any> provideService(baseUrl: String, serviceClass: Class<T>): T {
-        return serviceMap[baseUrl] as? T ?: createService(baseUrl, serviceClass).also {
-            serviceMap[baseUrl] = it
-        }
-    }
-
-    // Métodos específicos para obtener tus servicios
-    fun provideSuperheroService(): SuperheroService {
-        return provideService(BASE_URL_SUPERHERO, SuperheroService::class.java)
-    }
-
-    fun providePokemonService(): PokemonApiService {
-        return provideService(BASE_URL_POKEMON, PokemonApiService::class.java)
     }
 }
