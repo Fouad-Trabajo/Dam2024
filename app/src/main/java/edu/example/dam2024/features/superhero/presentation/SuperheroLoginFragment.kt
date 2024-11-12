@@ -12,11 +12,14 @@ import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.databinding.FragmentLoginSuperheroBinding
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 import edu.example.dam2024.features.superhero.presentation.adapter.SuperheroAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SuperheroLoginFragment : Fragment() {
 
-    private lateinit var superheroFactory: SuperheroFactory
-    private lateinit var viewModel: SuperheroesViewModel
+    //private lateinit var superheroFactory: SuperheroFactory
+    //private lateinit var viewModel: SuperheroesViewModel
+
+    private val superheroLoginViewModel: SuperheroesViewModel by viewModel()
 
     private var _binding: FragmentLoginSuperheroBinding? = null
     private val binding get() = _binding!!
@@ -35,10 +38,10 @@ class SuperheroLoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        superheroFactory = SuperheroFactory(requireContext())
-        viewModel = superheroFactory.buildViewModel()
+        //superheroFactory = SuperheroFactory(requireContext())
+        //viewModel = superheroFactory.buildViewModel()
         setupObserver()
-        viewModel.viewCreated()
+        superheroLoginViewModel.viewCreated()
     }
 
     private fun setupObserver() {
@@ -61,7 +64,7 @@ class SuperheroLoginFragment : Fragment() {
             }
         }
         //uso la variable superheroObserver para "observar" el ViewModel
-        viewModel.uiState.observe(viewLifecycleOwner, superheroObserver)
+        superheroLoginViewModel.uiState.observe(viewLifecycleOwner, superheroObserver)
 
     }
 

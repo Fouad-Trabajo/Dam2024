@@ -15,11 +15,14 @@ import edu.example.dam2024.app.domain.ErrorApp
 import edu.example.dam2024.app.extensions.loadUrl
 import edu.example.dam2024.databinding.FragmentSuperheroDetailBinding
 import edu.example.dam2024.features.superhero.domain.models.Superhero
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SuperheroDetailFragment : Fragment() {
 
-    private lateinit var superheroFactory: SuperheroFactory
-    private lateinit var viewModel: SuperheroDetailViewModel
+    //private lateinit var superheroFactory: SuperheroFactory
+    //private lateinit var viewModel: SuperheroDetailViewModel
+
+    private val superheroDetailViewModel: SuperheroDetailViewModel by viewModel()
 
     private var _binding: FragmentSuperheroDetailBinding? = null
     private val binding get() = _binding!!
@@ -46,11 +49,11 @@ class SuperheroDetailFragment : Fragment() {
                 findNavController().navigateUp()
             }
         }
-        superheroFactory = SuperheroFactory(requireContext())
-        viewModel = superheroFactory.buildSuperheroDetailViewModel()
+        //superheroFactory = SuperheroFactory(requireContext())
+        //viewModel = superheroFactory.buildSuperheroDetailViewModel()
         setupObserver()
         getSuperheroId().let {
-            viewModel.viewCreated(it)
+            superheroDetailViewModel.viewCreated(it)
         }
 
     }
@@ -72,7 +75,7 @@ class SuperheroDetailFragment : Fragment() {
                 Log.d("@dev", "Oculto cargando...")
             }
         }
-        viewModel.uiState.observe(viewLifecycleOwner, superheroObserver)
+        superheroDetailViewModel.uiState.observe(viewLifecycleOwner, superheroObserver)
     }
 
     private fun bindData(superhero: Superhero) {
