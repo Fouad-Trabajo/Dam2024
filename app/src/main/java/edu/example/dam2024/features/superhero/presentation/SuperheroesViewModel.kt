@@ -41,6 +41,6 @@ class SuperheroesViewModel(
     data class UiState(
         val isLoading: Boolean = false,
         val errorApp: ErrorApp? = null,
-        val superheroes: List<Superhero>? = null
+        val superheroes: List<Superhero>? = emptyList()
     )
 }
