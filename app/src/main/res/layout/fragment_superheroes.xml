@@ -40,4 +40,10 @@
         app:layout_constraintTop_toBottomOf="@+id/title_superheroes"
         tools:listitem="@layout/view_superhero_item" />
 
+    <!-- Me he acabo de craer un widget propio, una vista propia-->
+    <edu.example.dam2024.app.presentation.views.ErrorAppView
+        android:id="@+id/error_app_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

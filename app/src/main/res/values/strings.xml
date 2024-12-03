@@ -18,6 +18,12 @@
     <string name="list_superheroes">LISTA DE SUPERHÉROES</string>
     <string name="total_superheroes">Total superéroes: 0</string>
 
+    <!-- Datos de error de app -->
+    <string name="title_error_server">Error en el servidor</string>
+    <string name="description_error_server">Descripción del error en el servidor</string>
+    <string name="action_error_server">Reintentar</string>
+
+
 </resources>
 
     <!-- Esta clase es muy importante, en el texView (GUI) no se debe poner a pelo

@@ -10,13 +10,15 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.example.dam2024.app.domain.ErrorApp
+import edu.example.dam2024.app.presentation.hide
+import edu.example.dam2024.app.presentation.views.ErrorAppUIFactory
 import edu.example.dam2024.databinding.FragmentSuperheroesBinding
 import edu.example.dam2024.features.superhero.domain.models.Superhero
 import edu.example.dam2024.features.superhero.presentation.adapter.SuperheroAdapter
 
 class SuperheroesFragment : Fragment() {
 
-    private lateinit var superheroFactory: SuperheroFactory
+    //private lateinit var superheroFactory: SuperheroFactory
     private lateinit var superheroesViewModel: SuperheroesViewModel
 
     //private val superheroesViewModel: SuperheroesViewModel by viewModel()
@@ -25,6 +27,8 @@ class SuperheroesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val superheroAdapter = SuperheroAdapter()
+
+    //val errorFactory  : ErrorAppUIFactory con inyección de dependencias con Koin
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,8 +42,8 @@ class SuperheroesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        superheroFactory = SuperheroFactory(requireContext())
-        superheroesViewModel = superheroFactory.buildViewModel()
+        //superheroFactory = SuperheroFactory(requireContext())
+        //superheroesViewModel = superheroFactory.buildViewModel()
         setupObserver()
         superheroesViewModel.viewCreated()
     }
@@ -51,9 +55,13 @@ class SuperheroesFragment : Fragment() {
             }
             uiState.errorApp?.let {
                 //pinto el error
+                val error = ErrorAppUIFactory(requireContext())
+                val errorAppUI = error.build(it)
+                binding.errorAppView.render(errorAppUI)
                 showError(it)
             } ?: run { //es como un else
                 // ocultar el error
+                binding.errorAppView.hide()
             }
             if (uiState.isLoading) {
                 //muestro el cargando...
